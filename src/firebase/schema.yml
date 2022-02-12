@@ -1,0 +1,12 @@
+
+menues:
+  memueID: UID
+    id: number
+    name: string
+    plice: number
+
+users:
+  userID: liffID
+    - userName: string
+
+
