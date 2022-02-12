@@ -1,5 +1,5 @@
 {
-  "name": "liff-next-ec-template",
+  "name": "front",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,15 +8,46 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "12.0.10",
+    "@headlessui/react": "^1.4.3",
+    "@heroicons/react": "^1.0.5",
+    "@hookform/resolvers": "^2.8.5",
+    "@material-ui/core": "^4.12.3",
+    "@mui/icons-material": "^5.2.5",
+    "@mui/lab": "^5.0.0-alpha.65",
+    "@mui/material": "^5.2.6",
+    "@mui/x-data-grid": "^5.2.1",
+    "@reduxjs/toolkit": "^1.6.2",
+    "clsx": "^1.1.1",
+    "firebase": "^9.6.0",
+    "next": "12.0.7",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-dropzone": "^11.4.2",
+    "react-hook-form": "^7.22.1",
+    "react-icons": "^4.3.1",
+    "react-loader-spinner": "^4.0.0",
+    "react-redux": "^7.2.6",
+    "universal-cookie": "^4.0.4",
+    "yarn": "^1.22.17",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@types/node": "17.0.17",
-    "@types/react": "17.0.39",
-    "eslint": "8.9.0",
-    "eslint-config-next": "12.0.10",
-    "typescript": "4.5.5"
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@types/node": "^16.11.11",
+    "@types/react": "^17.0.37",
+    "@types/react-redux": "^7.1.20",
+    "autoprefixer": "^10.4.2",
+    "chart.js": "^3.7.0",
+    "eslint": "8.4.1",
+    "eslint-config-next": "12.0.7",
+    "faker": "5.5.3",
+    "framer-motion": "^4",
+    "postcss": "^8.4.5",
+    "prettier": "^2.5.1",
+    "prettier-plugin-tailwindcss": "^0.1.3",
+    "react-chartjs-2": "^4.0.0",
+    "tailwindcss": "^3.0.12",
+    "typescript": "^4.5.2"
   }
 }
