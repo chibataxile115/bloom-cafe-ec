@@ -20,7 +20,7 @@ const HomePageBase: FC = () => {
   const registClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     // stepperの更新
     dispatch(changeState({ ...selectStep, stepIndex: 2 }))
-    router.push('/check-page')
+    router.push('/menue')
   }
 
   // FIXME: Selectorの呼び出しを修正する
