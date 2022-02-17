@@ -11,11 +11,19 @@ const HomeLayout: FC<Props> = (props) => {
   const { children, title } = props
 
   return (
-    <div>
+    <div
+      className="
+    flex min-h-screen flex-col
+    items-center
+    justify-center
+    bg-gray-500
+    bg-cover 
+    "
+    >
       <Head>
         <title>{title}</title>
       </Head>
-
+      <div className="bg-gradient-to-r "></div>
       <header className="mt-10 min-w-full">
         <Steper />
       </header>
