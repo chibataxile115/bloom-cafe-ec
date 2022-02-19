@@ -6,7 +6,6 @@ import { HomeLayout } from '../layout'
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
 import {
   selectStep,
-  resetState,
   changeState,
 } from '../../redux/features/step/stepSlice'
 
