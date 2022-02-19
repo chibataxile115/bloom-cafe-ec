@@ -8,7 +8,7 @@ import { selectStep, changeState } from '../../redux/features/step/stepSlice'
 
 // NOTE: original
 import { HomeLayout } from '../layout'
-import { FormItem } from '../modules'
+import { ButtonCount, FormItem } from '../modules'
 
 const MenueBase = () => {
   const router = useRouter()
@@ -24,6 +24,7 @@ const MenueBase = () => {
       <HomeLayout title="商品一覧">
         menueBase
         <FormItem />
+        <ButtonCount/>
         <button onClick={registClick}>注文確定</button>
       </HomeLayout>
     </div>
