@@ -19,6 +19,12 @@ const MenueBase = () => {
     router.push('/order')
   }
 
+  const cartClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // stepperの更新
+    dispatch(changeState({ ...selectStep, stepIndex: 3 }))
+    router.push('/cart')
+  }
+
   return (
     <div>
       <HomeLayout title="商品一覧">
@@ -26,6 +32,7 @@ const MenueBase = () => {
         <FormItem />
         <ButtonCount/>
         <button onClick={registClick}>注文確定</button>
+        <button onClick={cartClick}>注文内容を確認する</button>
       </HomeLayout>
     </div>
   )
