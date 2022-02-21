@@ -1,7 +1,11 @@
 import React from 'react'
 
+// NOTE: original
+import { CartBase } from '../components/pages'
+
 const cart = () => {
-  return <div>cart</div>
+  return <CartBase />
 }
 
 export default cart
+
