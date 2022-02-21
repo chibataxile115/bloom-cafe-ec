@@ -10,7 +10,6 @@ import {
 
 import {
   selectStep,
-  resetState,
   changeState,
 } from '../../redux/features/step/stepSlice'
 
