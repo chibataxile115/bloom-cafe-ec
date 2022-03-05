@@ -1,13 +1,15 @@
-import React, { useState, useCallback } from 'react'
-import { Button } from '@material-ui/core'
+import React, { FC, useState, useCallback } from 'react'
 
-const CartButton = ( ) => {
-  
+interface Props {
+  cartButtonID: number
+}
 
+const CartButton: FC<Props> = (props) => {
+  const { cartButtonID } = props
 
   return (
     <div>
-      <button id="add" className="" >
+      <button id={`cartButton${cartButtonID}`} className="">
         カートに追加する
       </button>
     </div>
