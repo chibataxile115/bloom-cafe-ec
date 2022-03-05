@@ -13,3 +13,7 @@ export interface MenueItems {
 export interface Step {
   stepIndex: number
 }
+
+export interface cartCount {
+  count: number
+}

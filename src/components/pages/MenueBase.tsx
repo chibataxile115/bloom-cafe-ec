@@ -8,8 +8,8 @@ import { selectStep, changeState } from '../../redux/features/step/stepSlice'
 
 // NOTE: original
 import { HomeLayout } from '../layout'
-import { ButtonCount, FormItem } from '../modules'
-import { ImageGallery } from '../modules/menueparts'
+import { MenueCard } from '../modules'
+import { ImageGallery } from '../modules/MenueParts'
 
 const MenueBase = () => {
   const router = useRouter()
@@ -17,7 +17,7 @@ const MenueBase = () => {
   const registClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     // stepperの更新
     dispatch(changeState({ ...selectStep, stepIndex: 3 }))
-    router.push('/order')
+    router.push('/form')
   }
 
   const cartClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -29,10 +29,11 @@ const MenueBase = () => {
   return (
     <div>
       <HomeLayout title="商品一覧">
-        <ImageGallery/>
-        <FormItem />
-        <ButtonCount/>
-        <button onClick={registClick}>注文確定</button>
+        <div className="flex">
+          <MenueCard />
+        </div>
+        {/* <ImageGallery/> */}
+
         <button onClick={cartClick}>注文内容を確認する</button>
       </HomeLayout>
     </div>
