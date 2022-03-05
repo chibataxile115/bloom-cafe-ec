@@ -4,7 +4,13 @@ import { Steper } from '../atoms'
 
 interface Props {
   children: ReactNode
-  title: 'ようこそ' | '商品一覧' | '商品詳細' | '注文確認' | 'カート'
+  title:
+    | 'ようこそ'
+    | '商品一覧'
+    | '商品詳細'
+    | '注文確認'
+    | '入力フォーム'
+    | 'カート'
 }
 
 const HomeLayout: FC<Props> = (props) => {
