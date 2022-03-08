@@ -14,6 +14,6 @@ export interface Step {
   stepIndex: number
 }
 
-export interface cartCount {
-  count: number
+export interface Count {
+  countCart: number
 }
