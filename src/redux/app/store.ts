@@ -4,11 +4,13 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import userReducer from '../features/userSlice'
 import menueItemsReducer from '../features/menue/menueItemsSlice'
 import stepReducer from '../features/step/stepSlice'
+import countReducer from '../features/countSlice'
 
 const reducer = {
   user: userReducer,
   menueItems: menueItemsReducer,
   step: stepReducer,
+  count: countReducer
 }
 
 export const store = configureStore({
