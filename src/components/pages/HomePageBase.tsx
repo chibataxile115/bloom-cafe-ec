@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 // NOTE: Redux関連
@@ -9,12 +9,17 @@ import {
 } from '../../redux/features/menue/menueItemsSlice'
 // NOTE: React Icons
 import { FiAlertCircle } from 'react-icons/fi'
+// NOTE: Custom Hook
+import { useFetchMenue } from '../../hooks/menue/useFetchMenue'
 
 import { selectStep, changeState } from '../../redux/features/step/stepSlice'
 
 const HomePageBase: FC = () => {
   const router = useRouter()
   const dispatch = useAppDispatch()
+
+  useFetchMenue()
+
   const registClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     // stepperの更新
     dispatch(changeState({ ...selectStep, stepIndex: 2 }))
