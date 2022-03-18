@@ -14,6 +14,18 @@ export interface Step {
   stepIndex: number
 }
 
-export interface Count {
-  countCart: number
+export interface StoringData {
+  count: number
+  plice: number
+  imageURL: string
+  name: string
+}
+
+export interface MenueList {
+  id: number
+  name: string
+  isInCart: boolean
+  count: number
+  imageURL: string
+  plice: number
 }
