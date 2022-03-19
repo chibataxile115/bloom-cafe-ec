@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 // NOTE: Firebase関連
 import { DB, Storage } from '../../firebase/firebaseConfig'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
@@ -16,6 +17,8 @@ const AdminBase: React.VFC = () => {
 
   const [name, setName] = useState('')
   const [plice, setPlice] = useState(0)
+
+  const router = useRouter()
 
   const onChangeImageHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files![0]) {
@@ -72,6 +75,10 @@ const AdminBase: React.VFC = () => {
       )
     }
   }
+
+  useEffect(() => {
+    router.push('/admin/menue-list')
+  }, [])
 
   return (
     <div className="flex flex-col justify-center">
