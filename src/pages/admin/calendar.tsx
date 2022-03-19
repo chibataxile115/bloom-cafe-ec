@@ -1,7 +1,13 @@
 import { NextPage } from 'next'
+// Originals
+import { CalenderBase } from '../../components/pages/admin/schedule'
 
 const calendar: NextPage = () => {
-  return <div>calendar</div>
+  return (
+    <>
+      <CalenderBase />
+    </>
+  )
 }
 
 export default calendar
