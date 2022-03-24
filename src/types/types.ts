@@ -1,6 +1,17 @@
 export interface User {
   liffID: string
   userName: string
+  uuid: string
+}
+
+export interface AuthPage {
+  email: string
+  password: string
+  isLogin: boolean
+  modal: boolean
+  reset: boolean
+  showPassword: boolean
+  isLoading: boolean
 }
 
 export interface MenueItems {
