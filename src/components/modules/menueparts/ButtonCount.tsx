@@ -7,6 +7,7 @@ import {
   selectStoringData,
   addOrder,
   incrementOrder,
+  decrementOrder,
 } from '../../../redux/features/storingdateSlice'
 
 interface Props {
@@ -25,6 +26,16 @@ const ButtonCount: FC<Props> = (props) => {
   const incrementCount = (updatedCount: number, targetIndex: number) => {
     dispatch(
       incrementOrder({
+        ...storingDataSelector,
+        targetIndex: targetIndex,
+        updatedCount: updatedCount,
+      })
+    )
+  }
+
+  const decrementCount = (updatedCount: number, targetIndex: number) => {
+    dispatch(
+      decrementOrder({
         ...storingDataSelector,
         targetIndex: targetIndex,
         updatedCount: updatedCount,
@@ -68,15 +79,12 @@ const ButtonCount: FC<Props> = (props) => {
         </Button>
         {/* マイナスボタン */}
         <Button
-          id={`decrementButton${countButtonID}`}
-          color="primary"
-          style={{ margin: '5px', fontSize: '20px', padding: '0' }}
-          onClick={() => {
-            dispatch(addOrder(1, '', true, 1, 'https://jflasj', 123456))
-          }}
+          id={`decrementCount${countButtonID}`}
+          color="secondary"
+          style={{ margin: '3px', fontSize: '20px', padding: '0' }}
+          onClick={() => decrementCount(0, 0)}
         >
-          カートに入れるデモ
-          {/* <svg
+        <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5 text-blue-700"
             viewBox="0 0 20 20"
@@ -87,7 +95,19 @@ const ButtonCount: FC<Props> = (props) => {
               d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
               clipRule="evenodd"
             />
-          </svg> */}
+          </svg>
+        </Button>
+        {/* カートに追加する */}
+        <Button
+          id={`decrementButton${countButtonID}`}
+          color="primary"
+          style={{ margin: '5px', fontSize: '20px', padding: '0' }}
+          onClick={() => {
+            dispatch(addOrder(1, '', true, 1, 'https://jflasj', 123456))
+          }}
+        >
+          カートに入れるデモ
+          
         </Button>
       </div>
     </div>
