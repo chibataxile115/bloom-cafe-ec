@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../../redux/app/hooks'
 import {
   selectStoringData,
   addOrder,
-  updateOrder,
+  incrementOrder,
 } from '../../../redux/features/storingdateSlice'
 
 interface Props {
@@ -19,38 +19,24 @@ const ButtonCount: FC<Props> = (props) => {
   const dispatch = useAppDispatch()
   const storingDataSelector = useAppSelector(selectStoringData)
 
-  const addCart = () =>
-    dispatch(addOrder(1, 1500, 'https://github.com/', 'おにぎり'))
+  const addCart = () => {}
+  // dispatch(addOrder(1, 1500, 'https://github.com/', 'おにぎり'))
 
   const incrementCount = (updatedCount: number, targetIndex: number) => {
-    // falseだったら・配列が空だったら
-    if (!storingDataSelector) {
-      addOrder(1, 1500, 'https://github.com/', 'おにぎり')
-    } else if (storingDataSelector.length) {
-    }
-    try {
-      const before = storingDataSelector[countButtonID].count
-      dispatch(
-        updateOrder({
-          ...storingDataSelector,
-          targetIndex: targetIndex,
-          updatedCount: updatedCount,
-        })
-      )
-    } catch {
-      addOrder(1, 1500, 'https://github.com/', 'おにぎり')
-    }
-  }
-
-  const decrementCount = (updatedCount: number, targetIndex: number) => {
     dispatch(
-      updateOrder({
+      incrementOrder({
         ...storingDataSelector,
         targetIndex: targetIndex,
         updatedCount: updatedCount,
       })
     )
   }
+
+  // const decrementCount = (updatedCount: number, targetIndex: number) => {}
+
+  // const onClickIncrement = () => {
+  //   dispatch(incrementOrder())
+  // }
 
   return (
     <div className="flex flex-col">
@@ -65,12 +51,7 @@ const ButtonCount: FC<Props> = (props) => {
           id={`incrementButton${countButtonID}`}
           color="secondary"
           style={{ margin: '3px', fontSize: '20px', padding: '0' }}
-          onClick={() =>
-            incrementCount(
-              storingDataSelector[countButtonID].count + 1,
-              countButtonID
-            )
-          }
+          onClick={() => incrementCount(0, 0)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -90,14 +71,12 @@ const ButtonCount: FC<Props> = (props) => {
           id={`decrementButton${countButtonID}`}
           color="primary"
           style={{ margin: '5px', fontSize: '20px', padding: '0' }}
-          onClick={() =>
-            decrementCount(
-              storingDataSelector[countButtonID].count - 1,
-              countButtonID
-            )
-          }
+          onClick={() => {
+            dispatch(addOrder(1, '', true, 1, 'https://jflasj', 123456))
+          }}
         >
-          <svg
+          カートに入れるデモ
+          {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5 text-blue-700"
             viewBox="0 0 20 20"
@@ -108,7 +87,7 @@ const ButtonCount: FC<Props> = (props) => {
               d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
               clipRule="evenodd"
             />
-          </svg>
+          </svg> */}
         </Button>
       </div>
     </div>
