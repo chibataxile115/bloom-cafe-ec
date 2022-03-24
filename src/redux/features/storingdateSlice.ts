@@ -54,18 +54,17 @@ export const storingDataSlice = createSlice({
       }
     },
     //商品の注文数を減算
-    decrementOrder: (state, action: PayloadAction<StoringData>) => {
-      if (state.length !== 0) {
+    decrementOrder: (state, action: PayloadAction<UpdateArg>) => {
+      if (state[0].count > 0) {
         state[0].count = state[0].count - 1
-      } else {
-        return
       }
     },
   },
 })
 
 // NOTE: actionsをエクスポートする
-export const { resetOrder, addOrder, incrementOrder } = storingDataSlice.actions
+export const { resetOrder, addOrder, incrementOrder, decrementOrder } =
+  storingDataSlice.actions
 // NOTE: reducerをエクスポートする
 export const selectStoringData = (state: RootState) => state.storingData
 // NOTE: selectorをエクスポートする
