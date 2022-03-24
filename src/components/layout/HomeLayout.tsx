@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react'
-import Head from 'next/Head'
+import Head from 'next/head'
 import { Steper } from '../atoms'
 
 interface Props {
@@ -23,7 +23,7 @@ const HomeLayout: FC<Props> = (props) => {
     items-center
     justify-center
     bg-gray-500
-    bg-cover 
+    bg-cover
     "
     >
       <Head>
