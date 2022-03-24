@@ -84,7 +84,7 @@ const ButtonCount: FC<Props> = (props) => {
           style={{ margin: '3px', fontSize: '20px', padding: '0' }}
           onClick={() => decrementCount(0, 0)}
         >
-        <svg
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5 text-blue-700"
             viewBox="0 0 20 20"
@@ -107,7 +107,6 @@ const ButtonCount: FC<Props> = (props) => {
           }}
         >
           カートに入れるデモ
-          
         </Button>
       </div>
     </div>

@@ -58,14 +58,13 @@ export const storingDataSlice = createSlice({
       if (state[0].count > 0) {
         state[0].count = state[0].count - 1
       }
-      
-      
     },
   },
 })
 
 // NOTE: actionsをエクスポートする
-export const { resetOrder, addOrder, incrementOrder,decrementOrder } = storingDataSlice.actions
+export const { resetOrder, addOrder, incrementOrder, decrementOrder } =
+  storingDataSlice.actions
 // NOTE: reducerをエクスポートする
 export const selectStoringData = (state: RootState) => state.storingData
 // NOTE: selectorをエクスポートする
