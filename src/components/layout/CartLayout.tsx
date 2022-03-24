@@ -1,10 +1,9 @@
 import { FC, ReactNode } from 'react'
 import Head from 'next/head'
 
-
 interface Props {
   children: ReactNode
-  title:'カート'
+  title: 'カート'
 }
 
 const CartLayout: FC<Props> = (props) => {
@@ -19,8 +18,6 @@ const CartLayout: FC<Props> = (props) => {
         {children}
       </main>
     </div>
-
-    
   )
 }
 
