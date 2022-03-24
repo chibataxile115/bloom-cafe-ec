@@ -55,9 +55,9 @@ export const storingDataSlice = createSlice({
     },
     //商品の注文数を減算
     decrementOrder: (state, action: PayloadAction<StoringData>) => {
-      if(state.length !== 0) {
-        state[0].count = state[0].count-1
-      }else{
+      if (state.length !== 0) {
+        state[0].count = state[0].count - 1
+      } else {
         return
       }
     },
