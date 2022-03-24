@@ -17,14 +17,14 @@ export const useFetchMenue = () => {
     const querySnap = await getDocs(collection(DB, 'menues'))
     querySnap.forEach((doc) => {
       const docData = doc.data()
-      console.log(doc.data().name)
+      console.log(docData.name)
       dispatch(
         addMenue(
           docData.id,
           docData.name,
           false,
           0,
-          'https://www.google.com',
+          docData.imageURL,
           docData.plice
         )
       )
