@@ -1,6 +1,7 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 
 // Reducer
+import authPageReducer from '../features/authPageSlice'
 import userReducer from '../features/userSlice'
 import menueItemsReducer from '../features/menue/menueItemsSlice'
 import stepReducer from '../features/step/stepSlice'
@@ -8,6 +9,7 @@ import storingDataReducer from '../features/storingdateSlice'
 import menueListReducer from '../features/menue/menueListSlice'
 
 const reducer = {
+  authPage: authPageReducer,
   user: userReducer,
   menueItems: menueItemsReducer,
   step: stepReducer,
