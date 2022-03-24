@@ -16,43 +16,56 @@ export const storingDataSlice = createSlice({
   name: 'storingData',
   initialState,
   reducers: {
-    // もう一度注文する場合
     resetOrder: (state) => {
       state.splice(0)
     },
+    // 商品を登録
     addOrder: {
       reducer: (state, action: PayloadAction<StoringData>) => {
         state.push(action.payload)
       },
       prepare: (
+        id: number,
+        name: string,
+        isInCart: boolean,
         count: number,
-        plice: number,
         imageURL: string,
-        name: string
+        plice: number
       ) => {
         return {
           payload: {
-            count,
-            plice,
-            imageURL,
+            id,
             name,
+            isInCart,
+            count,
+            imageURL,
+            plice,
           },
         }
       },
     },
-    updateOrder: (state, action: PayloadAction<UpdateArg>) => {
-      // 配列にコピー
-      let cartList = state.slice()
-      state[action.payload.targetIndex].count = action.payload.updatedCount
+
+    // 商品の注文数を加算
+    incrementOrder: (state, action: PayloadAction<UpdateArg>) => {
+      if (state.length !== 0) {
+        state[0].count = state[0].count + 1
+      } else {
+        alert('商品が追加されていません')
+      }
     },
-    // deleteOrder: (state) => {
-    //   state.Count.countCart -= 1
-    // },
+    //商品の注文数を減算
+    decrementOrder: (state, action: PayloadAction<StoringData>) => {
+      if (state.length !== 0) {
+        state[0].count = state[0].count - 1
+      } else {
+        return
+      }
+    },
   },
 })
 
 // NOTE: actionsをエクスポートする
-export const { resetOrder, addOrder, updateOrder } = storingDataSlice.actions
+export const { resetOrder, addOrder, incrementOrder } = storingDataSlice.actions
 // NOTE: reducerをエクスポートする
 export const selectStoringData = (state: RootState) => state.storingData
 // NOTE: selectorをエクスポートする

@@ -64,11 +64,6 @@ const AdminBase: React.VFC = () => {
                 createdAt: serverTimestamp(),
                 updatedAt: serverTimestamp(),
               })
-              // useStateを初期化
-              // setSelectImage(null)
-              // setUniqueImage('')
-              // setName('')
-              // setPlice(0)
             }
           )
         }
