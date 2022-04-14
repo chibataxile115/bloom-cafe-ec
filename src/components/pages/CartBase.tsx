@@ -2,13 +2,12 @@ import React from 'react'
 import { useRouter } from 'next/router'
 // NOTE: original
 import { CartLayout } from '../layout'
+import { CartCard } from '../modules'
 
 // NOTE: Redux関連
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
-import {
-  selectStep,
-  changeState,
-} from '../../redux/features/step/stepSlice'
+import { selectStep, changeState } from '../../redux/features/step/stepSlice'
+
 
 const CartBase = () => {
   const router = useRouter()
@@ -22,6 +21,7 @@ const CartBase = () => {
   return (
     <div>
       <CartLayout title="カート">
+        <CartCard/>
         <button onClick={registClick}>注文選択へ戻る</button>
       </CartLayout>
     </div>
@@ -29,4 +29,3 @@ const CartBase = () => {
 }
 
 export default CartBase
-

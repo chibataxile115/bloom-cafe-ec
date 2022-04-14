@@ -5,7 +5,6 @@ import { StoringData } from '../../types/types'
 
 interface UpdateArg {
   targetIndex: number
-  updatedCount: number
 }
 
 // NOTE: initialStateを定義
@@ -48,15 +47,15 @@ export const storingDataSlice = createSlice({
     // 商品の注文数を加算
     incrementOrder: (state, action: PayloadAction<UpdateArg>) => {
       if (state.length !== 0) {
-        state[0].count = state[0].count + 1
-      } else {
-        alert('商品が追加されていません')
+        state[action.payload.targetIndex].count =
+          state[action.payload.targetIndex].count + 1
       }
     },
     //商品の注文数を減算
     decrementOrder: (state, action: PayloadAction<UpdateArg>) => {
-      if (state[0].count > 0) {
-        state[0].count = state[0].count - 1
+      if (state[action.payload.targetIndex].count > 0) {
+        state[action.payload.targetIndex].count =
+          state[action.payload.targetIndex].count - 1
       }
     },
   },
