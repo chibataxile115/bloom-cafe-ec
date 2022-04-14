@@ -15,17 +15,21 @@ export interface Step {
 }
 
 export interface StoringData {
-  count: number
-  plice: number
-  imageURL: string
-  name: string
-}
-
-export interface MenueList {
   id: number
   name: string
   isInCart: boolean
   count: number
   imageURL: string
   plice: number
+}
+
+export interface MenueList {
+  documentId: string
+  id: number
+  name: string
+  isInCart: boolean
+  count: number
+  imageURL: string
+  plice: number
+  isInit: boolean
 }
