@@ -6,34 +6,36 @@ import { getDocs, collection, query, orderBy, where } from 'firebase/firestore'
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
 import {
   selectMenueList,
-  addMenue,
+  addMenue as addMenueForMenueList,
+  resetMenue as resetMenueForMenueList,
 } from '../../redux/features/menue/menueListSlice'
+import { consumers } from 'stream'
 
 export const useFetchMenue = () => {
   const dispatch = useAppDispatch()
   const menueListSelector = useAppSelector(selectMenueList)
 
-  const getMenueList = async () => {
+  const getMenueList = useCallback(async () => {
     const querySnap = await getDocs(collection(DB, 'menues'))
+    let index = 0
     querySnap.forEach((doc) => {
       const docData = doc.data()
-      console.log(docData.name)
+      // console.log(`型 : ${typeof docData.id}`)
       dispatch(
-        addMenue(
+        addMenueForMenueList(
           docData.id,
+          index,
           docData.name,
           false,
           0,
           docData.imageURL,
-          docData.plice
+          docData.plice,
+          true
         )
       )
+      index += 1
     })
-  }
-
-  useEffect(() => {
-    getMenueList()
   }, [])
 
-  return {}
+  return { getMenueList }
 }
