@@ -1,5 +1,4 @@
-import { FC } from 'react'
-import { Button } from '@material-ui/core'
+import React, { FC } from 'react'
 
 import { ButtonCount, CartButton, ImageViewer } from './MenueParts'
 // Redux関連
@@ -9,23 +8,24 @@ import {
   addMenue,
 } from '../../redux/features/menue/menueListSlice'
 
-const Card: FC = () => {
+const MenueCard: FC = () => {
   const dispatch = useAppDispatch()
   const menueListSelector = useAppSelector(selectMenueList)
 
   return (
-    <div className="mx-36 h-3 bg-gray-700">
+    <div className="h-w-full">
       <div className="w-full">
-        {menueListSelector.map((item) => (
-          // TODO: カード毎のデザインはここのclassNameを修正する
-          <li key={item.id} className="">
+        {menueListSelector.map((item, index) => (
+          <div key={index} className="h-w-full mx-36 my-10 bg-gray-600">
+            {/* // TODO: カード毎のデザインはここのclassNameを修正する */}
+
             <ImageViewer imagePath={item.imageURL} />
             <ButtonCount countButtonID={item.id} />
             <CartButton cartButtonID={item.id} />
-          </li>
+          </div>
         ))}
       </div>
     </div>
   )
 }
-export default Card
+export default MenueCard
