@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { useContext } from 'react'
 import { useRouter } from 'next/router'
 // NOTE: Custom Hook
@@ -9,19 +9,30 @@ import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
 import { selectStep, changeState } from '../../redux/features/step/stepSlice'
 import {
   selectMenueList,
-  addMenue,
+  addMenue as addMenueForMenueList,
+  resetMenue as resetMenueForMenueList,
 } from '../../redux/features/menue/menueListSlice'
 
 // NOTE: original
 import { HomeLayout } from '../layout'
 import { MenueCard } from '../modules'
+import { withCoalescedInvoke } from 'next/dist/lib/coalesced-function'
 
 const MenueBase = () => {
   const router = useRouter()
   const dispatch = useAppDispatch()
   const menueListSelector = useAppSelector(selectMenueList)
 
-  useFetchMenue()
+  const { getMenueList } = useFetchMenue()
+
+  useEffect(() => {
+    if (menueListSelector.length !== 0) {
+      dispatch(resetMenueForMenueList())
+      getMenueList()
+    } else {
+      getMenueList()
+    }
+  }, [])
 
   const registClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     // stepperの更新
