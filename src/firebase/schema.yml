@@ -1,12 +1,27 @@
 
 menues:
   memueID: UID
-    id: number
+    docID: string
+    imageURL: string
     name: string
     plice: number
+    category: string
+    detailImageCount: number
+    createdAt: timestamp
+    updatedAt: timestamp
+
+    imageURLs: docID
+      docID: string # ○○○ - ○○○
+      imageURL: string
+      createdAt: timestamp
+      updatedAt: timestamp
+
+  categories: UID
+    docID: number
+    categoryName: string
+    createdAt: timestamp
+
 
 users:
   userID: liffID
     - userName: string
-
-
