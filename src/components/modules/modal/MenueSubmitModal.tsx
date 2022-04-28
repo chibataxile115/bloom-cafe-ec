@@ -5,7 +5,7 @@ import { UploadImage, SubmitMenueArgs } from '../../../types/types'
 import { BasicModal } from '.'
 import { ImageDropArea } from '../dnd'
 import { SnackBar } from '../../atoms'
-import { useSubmitMenue } from '../../../hooks/menue/useSetMenue'
+import { useSubmitMenue } from '../../../hooks/menue/useSubmitMenue'
 // Loading
 import Loader from 'react-loader-spinner'
 // バリデーション関連
