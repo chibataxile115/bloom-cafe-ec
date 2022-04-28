@@ -7,7 +7,6 @@ import { useDropzone } from 'react-dropzone'
 import { SnackBar } from '../../atoms'
 // Redux関連
 import { useAppDispatch, useAppSelector } from '../../../redux/app/hooks'
-import { selectMenueRegist } from '../../../redux/features/menue/menueRegistSlice'
 import {
   selectUploadImages,
   addImage,
@@ -26,7 +25,6 @@ const ImageDropArea: React.FC<Props> = (props) => {
   const { maxImagesUpload } = props
 
   const dispatch = useAppDispatch()
-  const menueRegistSelector = useAppSelector(selectMenueRegist)
   const uploadImagesSelector = useAppSelector(selectUploadImages)
   const snackBarSelector = useAppSelector(selectSnackBar)
 
