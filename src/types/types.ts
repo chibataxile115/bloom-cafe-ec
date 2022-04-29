@@ -61,13 +61,13 @@ export interface StoringData {
 }
 
 export interface MenueList {
-  documentId: string
+  docID: string
   id: number
   name: string
   isInCart: boolean
   count: number
   imageURL: string
-  plice: number
+  plice: string
   isInit: boolean
 }
 
