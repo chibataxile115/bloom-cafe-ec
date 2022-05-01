@@ -3,7 +3,11 @@ import React from 'react'
 import { MenueBase } from '../components/pages'
 
 const menue = () => {
-  return <MenueBase />
+  return (
+    <>
+      <MenueBase />
+    </>
+  )
 }
 
 export default menue
