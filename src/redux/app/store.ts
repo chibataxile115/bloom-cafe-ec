@@ -6,6 +6,7 @@ import menueItemsReducer from '../features/menue/menueItemsSlice'
 import stepReducer from '../features/step/stepSlice'
 import storingDataReducer from '../features/storingdateSlice'
 import menueListReducer from '../features/menue/menueListSlice'
+import CartDetailReducer from '../features/cartdetailSlice'
 
 const reducer = {
   user: userReducer,
@@ -13,6 +14,7 @@ const reducer = {
   step: stepReducer,
   storingData: storingDataReducer,
   menueList: menueListReducer,
+  cartDetail: CartDetailReducer,
 }
 
 export const store = configureStore({
