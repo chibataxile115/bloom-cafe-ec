@@ -16,6 +16,7 @@ const initialState: UserState = {
   User: {
     liffID: '',
     userName: '',
+    uuid: '',
   },
 }
 
@@ -24,18 +25,22 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    deAuth: (state) => {
-      state.User = { liffID: '', userName: '' }
+    signin: (state, action: PayloadAction<User>) => {
+      state.User = action.payload
     },
-    auth: (state, action: PayloadAction<User>) => {
+    signout: (state) => {
+      state.User = { liffID: '', userName: '', uuid: '' }
+    },
+    updateUserProf: (state, action: PayloadAction<User>) => {
       state.User.liffID = action.payload.liffID
       state.User.userName = action.payload.userName
+      state.User.uuid = action.payload.uuid
     },
   },
 })
 
 // NOTE: actionsをエクスポートする
-export const { deAuth, auth } = userSlice.actions
+export const { signin, signout, updateUserProf } = userSlice.actions
 // NOTE: selectorをエクスポートする
 export const selectUser = (state: RootState) => state.user.User
 // NOTE: reducerをエクスポートする

@@ -8,10 +8,14 @@
 
 @layer components {
   .admin-side-menu-txt {
-    @apply flex justify-start text-3xl text-gray-100 hover:border-gray-100;
-  }
-
-  .admin-side-menu-icon {
     @apply ml-4 text-gray-100 hover:border-gray-100;
+  }
+  .admin-side-menu-icon {
+    @apply flex justify-start text-gray-100 hover:border-gray-100;
+  }
+  .next-image-div {
+    letter-spacing: 0;
+    word-spacing: 0;
+    font-size: 0;
   }
 }

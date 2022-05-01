@@ -32,18 +32,18 @@ export const menueListSlice = createSlice({
         state.push(action.payload)
       },
       prepare: (
-        documentId: string,
+        docID: string,
         id: number,
         name: string,
         isInCart: boolean,
         count: number,
         imageURL: string,
-        plice: number,
+        plice: string,
         isInit: boolean
       ) => {
         return {
           payload: {
-            documentId,
+            docID,
             id,
             name,
             isInCart,

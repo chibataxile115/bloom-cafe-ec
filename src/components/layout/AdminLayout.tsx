@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -8,6 +9,13 @@ import { GiBowlOfRice } from 'react-icons/gi'
 import { CgLogOut } from 'react-icons/cg'
 import { MdDashboard } from 'react-icons/md'
 import { BsCalendarDate } from 'react-icons/bs'
+// NOTE: Firebase関連
+import { signOut, onAuthStateChanged } from 'firebase/auth'
+import { Auth, DB } from '../../firebase/firebaseConfig'
+import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore'
+// Redux関連
+import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
+import { selectUser, signin, signout } from '../../redux/features/userSlice'
 
 interface Props {
   children: React.ReactNode
@@ -16,16 +24,54 @@ interface Props {
 }
 
 const paths = {
-  menueList: 'menue-list',
-  calendar: 'calendar',
+  menueListAllMenue: '/admin/menue-list/all-menue',
+  menueListByRank: '/admin/menue-list/by-rank',
+  menueListByCategory: '/admin/menue-list/by-category',
+  calendar: '/admin/calendar',
 }
 
 const AdminLayout: React.FC<Props> = (props) => {
   const { children, tabTitle, pageTitle } = props
 
+  const dispatch = useAppDispatch()
+  const userSelector = useAppSelector(selectUser)
+
   const router = useRouter()
 
-  const signoutSubmit = () => {}
+  useEffect(() => {
+    const unSub = onAuthStateChanged(Auth, async (authUser) => {
+      if (authUser) {
+        const pathName = router.pathname
+        // ログイン済みのユーザー情報があるかチェック
+        const userRef = doc(DB, 'admin', authUser.uid)
+        const userDoc = await getDoc(userRef)
+
+        if (!userDoc.exists()) {
+          // Firestoreにユーザー情報のドキュメントが無ければ新規作成
+          await setDoc(userRef, {
+            createdAt: serverTimestamp(),
+            updatedAt: serverTimestamp(),
+          })
+
+          dispatch(signin({ liffID: '', userName: '', uuid: authUser.uid }))
+        } else {
+          dispatch(signin({ liffID: '', userName: '', uuid: authUser.uid }))
+        }
+      } else {
+        router.push('/signin')
+      }
+    })
+
+    return () => {
+      unSub()
+    }
+  }, [dispatch])
+
+  const signoutSubmit = async () => {
+    await signOut(Auth).then(() => {
+      dispatch(signout())
+    })
+  }
 
   return (
     <div className="flex h-screen overflow-hidden rounded-md bg-white">
@@ -37,9 +83,10 @@ const AdminLayout: React.FC<Props> = (props) => {
           <div className="flex flex-grow flex-col overflow-y-auto border-r bg-black bg-opacity-80 pt-5">
             {/* サイドバーの各要素を配置 */}
             <div className="flex flex-shrink-0 flex-col items-center px-4">
-              <Link href={paths.menueList}>
+              <Link href={paths.menueListAllMenue}>
                 <button
-                  className="hidden
+                  className="
+                  hidden
                   xl:block
                   xl:transform
                   xl:cursor-pointer
@@ -67,16 +114,16 @@ const AdminLayout: React.FC<Props> = (props) => {
                 <ul>
                   {/* NOTE: ダッシュボード */}
                   <li>
-                    <Link href={paths.menueList}>
+                    <Link href={paths.menueListAllMenue}>
                       <button
                         className="admin-side-btn"
                         // onClick={() => styleChange('dashboard')}
                       >
-                        <div className="admin-side-menue-icon">
+                        <div className="admin-side-menue-icon text-3xl">
                           <MdDashboard />
                         </div>
                         <div className="hidden xl:flex">
-                          <span className="admin-side-menu-icon">
+                          <span className="admin-side-menu-txt">
                             ダッシュボード
                           </span>
                         </div>
@@ -94,16 +141,16 @@ const AdminLayout: React.FC<Props> = (props) => {
                 <ul>
                   {/* NOTE: 商品/商品一覧 */}
                   <li>
-                    <Link href={paths.menueList}>
+                    <Link href={paths.menueListAllMenue}>
                       <button
                         className="admin-side-btn"
-                        onClick={() => router.push(paths.menueList)}
+                        onClick={() => router.push(paths.menueListAllMenue)}
                       >
-                        <div className="admin-side-menue-icon">
+                        <div className="admin-side-menue-icon text-3xl">
                           <GiBowlOfRice />
                         </div>
                         <div className="hidden xl:flex">
-                          <div className="admin-side-menu-icon">
+                          <div className="admin-side-menu-txt">
                             <span className="ml-4">商品一覧</span>
                           </div>
                         </div>
@@ -127,11 +174,11 @@ const AdminLayout: React.FC<Props> = (props) => {
                         className="admin-side-btn"
                         onClick={() => router.push(paths.calendar)}
                       >
-                        <div className="admin-side-menue-icon">
+                        <div className="admin-side-menue-icon text-3xl">
                           <BsCalendarDate />
                         </div>
                         <div className="hidden xl:flex">
-                          <div className="admin-side-menue-icon">
+                          <div className="admin-side-menue-txt">
                             <span className="ml-4">カレンダー</span>
                           </div>
                         </div>
@@ -144,13 +191,13 @@ const AdminLayout: React.FC<Props> = (props) => {
 
             {/* NOTE: サイドフッター/ログアウト */}
             <div className="flex flex-shrink-0 bg-gray-900 p-4 px-4">
-              <Link href="/">
+              <Link href="/signin">
                 <button
                   className="group block w-full flex-shrink-0"
                   onClick={signoutSubmit}
                 >
                   <div className="flex items-center">
-                    <div className="xl:items-center xl:justify-center">
+                    <div className="text-3xl text-gray-100 xl:items-center xl:justify-center">
                       <CgLogOut />
                     </div>
                   </div>
