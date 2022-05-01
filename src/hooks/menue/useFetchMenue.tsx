@@ -22,7 +22,6 @@ interface dataType {
 
 export const useFetchMenue = () => {
   const dispatch = useAppDispatch()
-  const menueListSelector = useAppSelector(selectMenueList)
 
   const getMenueList = useCallback(async () => {
     const collRef = collection(DB, 'menues').withConverter(
