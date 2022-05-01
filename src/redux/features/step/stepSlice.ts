@@ -3,9 +3,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../app/store'
 import { Step } from '../../../types/types'
 
-// NOTE: Null許可タイプ
-// type Nullable<T> = T | null;
-
 // NOTE: Stateの型を定義する
 interface stepState {
   Step: Step
@@ -15,6 +12,7 @@ interface stepState {
 const initialState: stepState = {
   Step: {
     stepIndex: 0,
+    isCartModal: false,
   },
 }
 
@@ -26,10 +24,13 @@ export const stepSlice = createSlice({
     resetState: (state) => {
       state.Step = {
         stepIndex: 0,
+        isCartModal: false,
       }
     },
     changeState: (state, action: PayloadAction<Step>) => {
       state.Step.stepIndex = action.payload.stepIndex
+      // FIXME: 後で削除する
+      state.Step.isCartModal = action.payload.isCartModal
     },
   },
 })
