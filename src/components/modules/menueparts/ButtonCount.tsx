@@ -9,10 +9,17 @@ import {
   incrementOrder,
   decrementOrder,
 } from '../../../redux/features/storingdateSlice'
+
 import {
   selectMenueList,
   updatedMenue,
 } from '../../../redux/features/menue/menueListSlice'
+
+import {
+  selectCartDetail,
+  cartIncrementOrder,
+  cartDecrementOrder,
+} from '../../../redux/features/cartdetailSlice'
 
 interface Props {
   countButtonID: number
@@ -30,51 +37,59 @@ const ButtonCount: FC<Props> = (props) => {
   const dispatch = useAppDispatch()
   const storingDataSelector = useAppSelector(selectStoringData)
   const menueListSelector = useAppSelector(selectMenueList)
+  const cartDetailSelector = useAppSelector(selectCartDetail)
 
-  const incrementCount = (targetIndex: number) => {
-    if (menueListSelector[countButtonID].isInit == true) {
-      dispatch(addOrder(1, '', true, 1, 'https://jflasj', 1))
-
+  const controlCart = (
+    mode: 'increment' | 'decrement',
+    targetIndex?: number
+  ) => {
+    if (
+      mode === 'increment' &&
+      menueListSelector[countButtonID].isInit == true
+    ) {
+      // 商品を新規登録
+      dispatch(
+        addOrder(
+          menueListSelector[countButtonID].id,
+          menueListSelector[countButtonID].name,
+          false,
+          1,
+          menueListSelector[countButtonID].imageURL,
+          menueListSelector[countButtonID].plice
+        )
+      )
       const updateArg = { targetIndex: countButtonID, updatedState: false }
       dispatch(updatedMenue(updateArg))
-    } else if (menueListSelector[countButtonID].isInit == false) {
+      dispatch(cartIncrementOrder())
+    } else if (
+      mode === 'increment' &&
+      menueListSelector[countButtonID].isInit == false
+    ) {
+      // 商品を更新
       dispatch(
         incrementOrder({
           ...storingDataSelector,
           targetIndex: targetIndex,
         })
       )
+      dispatch(cartIncrementOrder())
     }
-  }
 
-  const decrementCount = (targetIndex: number) => {
-    if (menueListSelector[countButtonID].isInit == true) {
-      //デクリメントできない
-      alert('やればできる')
+    if (
+      mode === 'decrement' &&
+      menueListSelector[countButtonID].isInit == true
+    ) {
       return
-    } else if (menueListSelector[countButtonID].isInit == false) {
+    } else if (
+      mode === 'decrement' &&
+      menueListSelector[countButtonID].isInit == false
+    ) {
       dispatch(
         decrementOrder({
           ...storingDataSelector,
           targetIndex: targetIndex,
         })
       )
-    }
-  }
-
-  const sample = (mode: boolean) => {
-    console.log(menueListSelector[countButtonID].isInit)
-    console.log(`countButtonID : [${countButtonID}]`)
-
-    if (mode) {
-      dispatch(addOrder(1, '', true, 1, 'https://jflasj', 1))
-      // TODO: menueListSelector[countButtonID].isInit をピンポイントで更新する関数を作る
-      // FIXME: とりあえずは代案で試してみる
-
-      const updateArg = { targetIndex: countButtonID, updatedState: false }
-      dispatch(updatedMenue(updateArg))
-    } else {
-      // false
     }
   }
 
@@ -91,7 +106,7 @@ const ButtonCount: FC<Props> = (props) => {
           id={`incrementButton${countButtonID}`}
           color="secondary"
           style={{ margin: '3px', fontSize: '20px', padding: '0' }}
-          onClick={() => incrementCount(countButtonID)}
+          onClick={() => controlCart('increment', countButtonID)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +126,7 @@ const ButtonCount: FC<Props> = (props) => {
           id={`decrementCount${countButtonID}`}
           color="secondary"
           style={{ margin: '3px', fontSize: '20px', padding: '0' }}
-          onClick={() => decrementCount(countButtonID)}
+          onClick={() => controlCart('decrement', countButtonID)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +146,7 @@ const ButtonCount: FC<Props> = (props) => {
           id={`decrementButton${countButtonID}`}
           color="primary"
           style={{ margin: '5px', fontSize: '20px', padding: '0' }}
-          onClick={() => sample(menueListSelector[countButtonID].isInit)}
+          onClick={() => controlCart('increment', countButtonID)}
         >
           カートに入れるデモ
         </Button>
