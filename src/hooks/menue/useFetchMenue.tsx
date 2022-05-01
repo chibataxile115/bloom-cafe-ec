@@ -1,35 +1,48 @@
-import { useEffect, useCallback } from 'react'
+import { useCallback } from 'react'
 // NOTE: Firebase関連
 import { DB } from '../../firebase/firebaseConfig'
 import { getDocs, collection, query, orderBy, where } from 'firebase/firestore'
+import { ConvertFirestoreData } from '../../lib'
 // NOTE: Redux関連
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
 import {
   selectMenueList,
   addMenue as addMenueForMenueList,
-  resetMenue as resetMenueForMenueList,
 } from '../../redux/features/menue/menueListSlice'
-import { consumers } from 'stream'
+interface dataType {
+  createdAt: Date
+  category: string
+  detailImagesCount: number
+  plice: string
+  imageURL: string
+  updatedAt: Date
+  docID: string
+  name: string
+}
 
 export const useFetchMenue = () => {
   const dispatch = useAppDispatch()
-  const menueListSelector = useAppSelector(selectMenueList)
 
   const getMenueList = useCallback(async () => {
-    const querySnap = await getDocs(collection(DB, 'menues'))
+    const collRef = collection(DB, 'menues').withConverter(
+      ConvertFirestoreData<dataType>()
+    )
+    const querySnap = await getDocs(collRef)
+
     let index = 0
     querySnap.forEach((doc) => {
       const docData = doc.data()
-      // console.log(`型 : ${typeof docData.id}`)
+      const data = docData
+
       dispatch(
         addMenueForMenueList(
-          docData.id,
+          data.docID,
           index,
-          docData.name,
+          data.name,
           false,
           0,
-          docData.imageURL,
-          docData.plice,
+          data.imageURL,
+          data.plice,
           true
         )
       )
