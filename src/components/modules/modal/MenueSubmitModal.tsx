@@ -238,6 +238,7 @@ const MenueSubmitModal: React.FC = () => {
                 <div className="flex flex-row justify-between">
                   <div className="mr-2 w-full">
                     <select
+                      defaultValue="選択して下さい"
                       className="
                       focus:shadow-outline
                       w-full
@@ -249,9 +250,7 @@ const MenueSubmitModal: React.FC = () => {
                       name="menueID-left"
                       {...register('menueIDL')}
                     >
-                      <option value="" selected>
-                        選択して下さい
-                      </option>
+                      <option value="">選択して下さい</option>
                       <option value="aaa">aaa</option>
                       <option value="aab">aab</option>
                       <option value="abb">abb</option>
@@ -268,6 +267,7 @@ const MenueSubmitModal: React.FC = () => {
 
                   <div className="ml-2 w-full">
                     <select
+                      defaultValue="選択して下さい"
                       className="
                       focus:shadow-outline
                       w-full
@@ -279,9 +279,7 @@ const MenueSubmitModal: React.FC = () => {
                       name="menueID-right"
                       {...register('menueIDR')}
                     >
-                      <option value="" selected>
-                        選択して下さい
-                      </option>
+                      <option value="">選択して下さい</option>
                       <option value="001">001</option>
                       <option value="002">002</option>
                       <option value="003">003</option>
