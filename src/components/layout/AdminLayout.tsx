@@ -24,8 +24,10 @@ interface Props {
 }
 
 const paths = {
-  menueList: 'menue-list',
-  calendar: 'calendar',
+  menueListAllMenue: '/admin/menue-list/all-menue',
+  menueListByRank: '/admin/menue-list/by-rank',
+  menueListByCategory: '/admin/menue-list/by-category',
+  calendar: '/admin/calendar',
 }
 
 const AdminLayout: React.FC<Props> = (props) => {
@@ -81,7 +83,7 @@ const AdminLayout: React.FC<Props> = (props) => {
           <div className="flex flex-grow flex-col overflow-y-auto border-r bg-black bg-opacity-80 pt-5">
             {/* サイドバーの各要素を配置 */}
             <div className="flex flex-shrink-0 flex-col items-center px-4">
-              <Link href={paths.menueList}>
+              <Link href={paths.menueListAllMenue}>
                 <button
                   className="
                   hidden
@@ -112,7 +114,7 @@ const AdminLayout: React.FC<Props> = (props) => {
                 <ul>
                   {/* NOTE: ダッシュボード */}
                   <li>
-                    <Link href={paths.menueList}>
+                    <Link href={paths.menueListAllMenue}>
                       <button
                         className="admin-side-btn"
                         // onClick={() => styleChange('dashboard')}
@@ -139,10 +141,10 @@ const AdminLayout: React.FC<Props> = (props) => {
                 <ul>
                   {/* NOTE: 商品/商品一覧 */}
                   <li>
-                    <Link href={paths.menueList}>
+                    <Link href={paths.menueListAllMenue}>
                       <button
                         className="admin-side-btn"
-                        onClick={() => router.push(paths.menueList)}
+                        onClick={() => router.push(paths.menueListAllMenue)}
                       >
                         <div className="admin-side-menue-icon text-3xl">
                           <GiBowlOfRice />
