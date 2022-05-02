@@ -8,6 +8,7 @@ import menueItemsReducer from '../features/menue/menueItemsSlice'
 import stepReducer from '../features/step/stepSlice'
 import storingDataReducer from '../features/storingdateSlice'
 import menueListReducer from '../features/menue/menueListSlice'
+import CartDetailReducer from '../features/cartdetailSlice'
 import uploadImagesReducer from '../features/menue/uploadImagesSlice'
 import snackBarReducer from '../features/snackbar/snackbarSlice'
 import categoryItemsReducer from '../features/menue/category/categoryItemsSlice'
@@ -20,6 +21,7 @@ const reducer = {
   step: stepReducer,
   storingData: storingDataReducer,
   menueList: menueListReducer,
+  cartDetail: CartDetailReducer,
   uploadImages: uploadImagesReducer,
   snackBar: snackBarReducer,
   categoryItems: categoryItemsReducer,

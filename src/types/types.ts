@@ -49,6 +49,8 @@ export interface MenueItems {
 
 export interface Step {
   stepIndex: number
+  // FIXME: 後で削除する
+  isCartModal?: boolean
 }
 
 export interface StoringData {
@@ -70,6 +72,10 @@ export interface MenueList {
   imageURL: string
   plice: string
   isInit: boolean
+}
+
+export interface CartDetail {
+  cartdetailTotal: number
 }
 
 export interface SubmitMenueArgs {

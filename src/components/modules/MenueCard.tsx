@@ -18,7 +18,6 @@ const MenueCard: FC = () => {
         {menueListSelector.map((item, index) => (
           <div key={index} className="h-w-full mx-36 my-10 bg-gray-600">
             {/* // TODO: カード毎のデザインはここのclassNameを修正する */}
-
             <ImageViewer imagePath={item.imageURL} />
             <ButtonCount countButtonID={item.id} />
             <CartButton cartButtonID={item.id} />

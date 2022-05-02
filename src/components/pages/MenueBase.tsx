@@ -16,6 +16,7 @@ import {
 // NOTE: original
 import { HomeLayout } from '../layout'
 import { MenueCard } from '../modules'
+import { CartDetailModal } from '../modules/MenueModal'
 import { withCoalescedInvoke } from 'next/dist/lib/coalesced-function'
 
 const MenueBase = () => {
@@ -46,13 +47,20 @@ const MenueBase = () => {
     router.push('/cart')
   }
 
+  const orderClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // stepperの更新
+    dispatch(changeState({ ...selectStep, stepIndex: 3 }))
+    router.push('/order')
+  }
+
   return (
     <div>
       <HomeLayout title="商品一覧">
         <div className="flex">
           <MenueCard />
         </div>
-        <button onClick={cartClick}>注文内容を確認する</button>
+        <button onClick={orderClick}>注文確定へ進む</button>
+        <CartDetailModal />
       </HomeLayout>
     </div>
   )
