@@ -64,6 +64,7 @@ export interface MenueList {
   docID: string
   id: number
   name: string
+  category: string
   isInCart: boolean
   count: number
   imageURL: string
@@ -74,4 +75,20 @@ export interface MenueList {
 export interface SubmitMenueArgs {
   uploadImages: UploadImage[]
   menueDetail: SubmitMenue
+}
+
+export interface MenueFromFirestore {
+  createdAt: Date
+  category: string
+  detailImagesCount: number
+  plice: string
+  imageURL: string
+  updatedAt: Date
+  docID: string
+  name: string
+}
+
+export interface CategoryItemsFromFirestore {
+  // createdAt: Date
+  categoryName: string
 }

@@ -3,34 +3,27 @@ import { useEffect } from 'react'
 import { AdminLayout } from '../../../../layout'
 import { MenueSubmitModal } from '../../../../modules/modal'
 import { Tabs } from '../../../../atoms'
+import { ByCategoryMenueView } from '../../../../modules/menue/menueList'
 // Custom Hook
-import { useFetchMenue } from '../../../../../hooks/menue/useFetchMenue'
+import { useFetchByCategory } from '../../../../../hooks/menue/useFetchByCategory'
 // Redux関連
 import { useAppDispatch, useAppSelector } from '../../../../../redux/app/hooks'
 import {
   selectAdminPage,
   changeState as changeStateForAdminPage,
 } from '../../../../../redux/features/adminPageSlice'
-import {
-  selectMenueList,
-  resetMenue as resetMenueForMenueList,
-} from '../../../../../redux/features/menue/menueListSlice'
+import { selectCategoryItems } from '../../../../../redux/features/menue/category/categoryItemsSlice'
 
 const ByCategoryBase = () => {
   const dispatch = useAppDispatch()
   const adminPageSelector = useAppSelector(selectAdminPage)
-  const menueListSelector = useAppSelector(selectMenueList)
+  const categoryItemsSelector = useAppSelector(selectCategoryItems)
 
-  const { getMenueList } = useFetchMenue()
+  const { getCategoryList } = useFetchByCategory()
 
-  // useEffect(() => {
-  //   if (menueListSelector.length !== 0) {
-  //     dispatch(resetMenueForMenueList())
-  //     getMenueList()
-  //   } else {
-  //     getMenueList()
-  //   }
-  // }, [])
+  useEffect(() => {
+    getCategoryList()
+  }, [])
 
   return (
     <AdminLayout tabTitle="商品一覧" pageTitle="商品一覧">
@@ -57,7 +50,15 @@ const ByCategoryBase = () => {
       </button>
       <div className="mt-5">
         <Tabs currentTabTitle={'カテゴリー順'}>
-          <p>カテゴリー別</p>
+          <ul className="mt-4">
+            {categoryItemsSelector.map((item, index) => (
+              <li key={index} className="mt-10 first:mt-2">
+                <h3 className="text-2xl">{item.categoryName}</h3>
+                <div className="mb-2 mt-2 border-t-[1px] border-gray-400"></div>
+                <ByCategoryMenueView targetCategory={item.categoryName} />
+              </li>
+            ))}
+          </ul>
         </Tabs>
       </div>
       <MenueSubmitModal />

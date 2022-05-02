@@ -2,17 +2,17 @@ import React, { FC, useState, useCallback } from 'react'
 import { Button } from '@material-ui/core'
 
 // NOTE: Redux関連
-import { useAppDispatch, useAppSelector } from '../../../redux/app/hooks'
+import { useAppDispatch, useAppSelector } from '../../../../redux/app/hooks'
 import {
   selectStoringData,
   addOrder,
   incrementOrder,
   decrementOrder,
-} from '../../../redux/features/storingdateSlice'
+} from '../../../../redux/features/storingdateSlice'
 import {
   selectMenueList,
   updatedMenue,
-} from '../../../redux/features/menue/menueListSlice'
+} from '../../../../redux/features/menue/menueListSlice'
 
 interface Props {
   countButtonID: number

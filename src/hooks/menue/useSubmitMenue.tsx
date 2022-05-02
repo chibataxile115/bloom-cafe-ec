@@ -100,7 +100,6 @@ export const useSubmitMenue = () => {
         await setDoc(
           doc(DB, 'menues', 'categories', 'categoryItems', category),
           {
-            docID: 0,
             categoryName: category,
             createdAt: serverTimestamp(),
           }
