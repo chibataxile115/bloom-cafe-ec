@@ -29,7 +29,7 @@ export const storingDataSlice = createSlice({
         isInCart: boolean,
         count: number,
         imageURL: string,
-        plice: number
+        plice: string
       ) => {
         return {
           payload: {

@@ -59,7 +59,7 @@ export interface StoringData {
   isInCart: boolean
   count: number
   imageURL: string
-  plice: number
+  plice: string
 }
 
 export interface MenueList {

@@ -43,12 +43,10 @@ const ButtonCount: FC<Props> = (props) => {
         addOrder(
           menueListSelector[countButtonID].id,
           menueListSelector[countButtonID].name,
-          menueListSelector[countButtonID].category,
           false,
           1,
           menueListSelector[countButtonID].imageURL,
-          menueListSelector[countButtonID].plice,
-          false
+          menueListSelector[countButtonID].plice
         )
       )
       const updateArg = { targetIndex: countButtonID, updatedState: false }
