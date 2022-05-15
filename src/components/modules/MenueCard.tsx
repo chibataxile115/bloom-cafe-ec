@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import { ButtonCount, CartButton, ImageViewer } from './menue/menueParts'
+import { ButtonCount, CartButton, ImageViewer } from './menue/menueparts'
 // Redux関連
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
 import {

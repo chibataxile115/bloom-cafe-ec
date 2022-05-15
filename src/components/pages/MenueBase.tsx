@@ -16,7 +16,7 @@ import {
 // NOTE: original
 import { HomeLayout } from '../layout'
 import { MenueCard } from '../modules'
-import { CartDetailModal } from '../modules/MenueModal'
+import { CartDetailModal } from '../modules/modal'
 import { withCoalescedInvoke } from 'next/dist/lib/coalesced-function'
 
 const MenueBase = () => {
