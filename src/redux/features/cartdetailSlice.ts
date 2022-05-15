@@ -27,7 +27,8 @@ export const cartdetailSlice = createSlice({
       state.CartDetail.cartdetailTotal = state.CartDetail.cartdetailTotal + 1
     },
     cartDecrementOrder: (state) => {
-      state.CartDetail.cartdetailTotal -= 1
+      if (state.CartDetail.cartdetailTotal > 0)
+        state.CartDetail.cartdetailTotal = state.CartDetail.cartdetailTotal - 1
     },
   },
 })
