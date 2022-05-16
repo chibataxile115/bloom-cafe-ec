@@ -23,5 +23,19 @@ menues:
 
 
 users:
-  userID: liffID
+  userID: lineID
     - userName: string
+    - lineID: lineID
+    - createdAt: timestamp
+
+    cartItems:
+      docID: string
+        - docID: string
+        - imageURL: string
+        - name: string
+        - plice: number
+        - category: string
+        - detailImageCount: number
+        - createdAt: timestamp
+        - updatedAt: timestamp
+

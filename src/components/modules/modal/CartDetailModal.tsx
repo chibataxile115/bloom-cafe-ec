@@ -1,25 +1,13 @@
-import React, { useState } from 'react'
-import Box from '@mui/material/Box'
-import Stack from '@mui/material/Stack'
-import Badge from '@mui/material/Badge'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
-
-import { BaseModal } from '.'
-import { ImageCartModal } from '.'
-
+import React, { useState, useEffect } from 'react'
+// originals
+import { BasicModal, ImageCartModal } from '../modal'
+import { DeleteButton } from '../button'
+import { CartDetailView } from './modalView'
+// types
+import { StoringData } from '../../../types/types'
 // NOTE: Redux関連
 import { useAppDispatch, useAppSelector } from '../../../redux/app/hooks'
-import {
-  selectStoringData,
-  addOrder,
-  incrementOrder,
-  decrementOrder,
-} from '../../../redux/features/storingdateSlice'
-import {
-  selectMenueList,
-  updatedMenue,
-} from '../../../redux/features/menue/menueListSlice'
-// FIXME: 後で消す
+import { selectStoringData } from '../../../redux/features/storingdateSlice'
 import {
   selectStep,
   changeState as stepChangeState,
@@ -30,12 +18,20 @@ const CartDetailModal: React.FC = () => {
   const storingDataSelector = useAppSelector(selectStoringData)
   const stepSelector = useAppSelector(selectStep)
 
+  const [demoStorignData, setDemoStorigData] = useState<StoringData[]>([])
+
   const modalClose = () => {
     dispatch(stepChangeState({ ...stepSelector, isCartModal: false }))
   }
 
+  useEffect(() => {
+    console.log('レンダリングされたよ')
+    setDemoStorigData(storingDataSelector)
+    demoStorignData.map((item) => console.log(item.name))
+  }, [storingDataSelector])
+
   return (
-    <BaseModal isOpenModal={stepSelector.isCartModal} count={0}>
+    <BasicModal isOpenModal={stepSelector.isCartModal}>
       <div className="relative flex items-center justify-center">
         <h1 className="items-center justify-center text-center text-2xl font-bold">
           カート
@@ -65,18 +61,20 @@ const CartDetailModal: React.FC = () => {
           </button>
         </div>
       </div>
-      <div className="flex flex-col p-10">
-        {storingDataSelector.map((item, index) => (
-          <div key={index}>
-            <p>{`${item.id} : `}</p>
-            <p>{`値段:${item.plice} 円 `}</p>
-            <p>{item.name}</p>
-            <ImageCartModal imagePath={item.imageURL} />
-          </div>
-        ))}
-        <div></div>
-      </div>
-    </BaseModal>
+      <CartDetailView />
+      {/* <div className="flex flex-col p-10">
+        {storingDataSelector.map((item) => {
+          {
+            item.isInCart && (
+              <li key={item.id}>
+                <p>{item.name}</p>
+                <DeleteButton deleteButtonID={item.id} />
+              </li>
+            )
+          }
+        })}
+      </div> */}
+    </BasicModal>
   )
 }
 export default CartDetailModal

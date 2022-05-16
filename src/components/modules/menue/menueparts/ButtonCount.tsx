@@ -6,17 +6,18 @@ import { useAppDispatch, useAppSelector } from '../../../../redux/app/hooks'
 import {
   selectStoringData,
   addOrder,
-  incrementOrder,
-  decrementOrder,
 } from '../../../../redux/features/storingdateSlice'
 import {
   selectMenueList,
-  updatedMenue,
+  updateCart,
+  incrementOrder,
+  decrementOrder,
 } from '../../../../redux/features/menue/menueListSlice'
 
 import {
   selectCartDetail,
   cartIncrementOrder,
+  cartDecrementOrder,
 } from '../../../../redux/features/cartdetailSlice'
 
 interface Props {
@@ -39,30 +40,21 @@ const ButtonCount: FC<Props> = (props) => {
       menueListSelector[countButtonID].isInit == true
     ) {
       // 商品を新規登録
+      const updateCartArg = {
+        targetIndex: countButtonID,
+        isInCartState: true,
+        countState: 1,
+      }
       dispatch(
-        addOrder(
-          menueListSelector[countButtonID].id,
-          menueListSelector[countButtonID].name,
-          false,
-          1,
-          menueListSelector[countButtonID].imageURL,
-          menueListSelector[countButtonID].plice
-        )
-      )
-      const updateArg = { targetIndex: countButtonID, updatedState: false }
-      dispatch(updatedMenue(updateArg))
-      dispatch(cartIncrementOrder())
-    } else if (
-      mode === 'increment' &&
-      menueListSelector[countButtonID].isInit == false
-    ) {
-      // 商品を更新
-      dispatch(
-        incrementOrder({
-          ...storingDataSelector,
-          targetIndex: targetIndex,
+        updateCart({
+          ...menueListSelector,
+          targetIndex: countButtonID,
+          isInCartState: true,
+          countState: menueListSelector[targetIndex].count + 1,
         })
       )
+
+      // dispatch(updateCart(updateCartArg))
       dispatch(cartIncrementOrder())
     }
 
@@ -70,27 +62,31 @@ const ButtonCount: FC<Props> = (props) => {
       mode === 'decrement' &&
       menueListSelector[countButtonID].isInit == true
     ) {
-      return
-    } else if (
-      mode === 'decrement' &&
-      menueListSelector[countButtonID].isInit == false
-    ) {
       dispatch(
-        decrementOrder({
-          ...storingDataSelector,
-          targetIndex: targetIndex,
+        updateCart({
+          ...menueListSelector,
+          targetIndex: countButtonID,
+          isInCartState:
+            menueListSelector[targetIndex].count <= 1 ? false : true,
+          countState:
+            menueListSelector[targetIndex].count <= 1
+              ? 0
+              : menueListSelector[targetIndex].count - 1,
         })
       )
+      dispatch(cartDecrementOrder())
     }
   }
 
   return (
     <div className="flex flex-col">
-      <ul>
-        {storingDataSelector.map((item, index: number) => {
-          return <li key={index}>{`個数: ${item.count} : ${item.count}`}</li>
-        })}
-      </ul>
+      {storingDataSelector.length !== 0 && (
+        <ul>
+          {storingDataSelector.map((item, index: number) => {
+            return <li key={index}>{`個数: ${item.count} : ${item.count}`}</li>
+          })}
+        </ul>
+      )}
       <div className="flex flex-row">
         {/* プラスボタン */}
         <Button
