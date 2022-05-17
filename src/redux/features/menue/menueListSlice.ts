@@ -8,6 +8,12 @@ interface UpdateArg {
   updatedState: boolean
 }
 
+interface UpdateCartArg {
+  targetIndex: number
+  isInCartState: boolean
+  countState: number
+}
+
 // NOTE: initialStateを定義
 const initialState: MenueList[] = []
 
@@ -19,14 +25,6 @@ export const menueListSlice = createSlice({
     resetMenue: (state) => {
       state.splice(0)
     },
-    // TODO: 新しい関数を作成する
-    // TODO: 受け取った引数に応じてtrue or falseを代入するようにする
-    // TODO: state[targetIndex].isInit = updatedState
-
-    updatedMenue: (state, action: PayloadAction<UpdateArg>) => {
-      state[action.payload.targetIndex].isInit = action.payload.updatedState
-    },
-
     addMenue: {
       reducer: (state, action: PayloadAction<MenueList>) => {
         state.push(action.payload)
@@ -57,11 +55,38 @@ export const menueListSlice = createSlice({
         }
       },
     },
+
+    // 商品を更新
+    updateCart: (state, action: PayloadAction<UpdateCartArg>) => {
+      const { targetIndex, isInCartState, countState } = action.payload
+      state[targetIndex].isInCart = isInCartState
+      state[targetIndex].count = countState
+    },
+    // 商品の注文数を加算
+    incrementOrder: (state, action: PayloadAction<UpdateCartArg>) => {
+      if (state.length !== 0) {
+        state[action.payload.targetIndex].count =
+          state[action.payload.targetIndex].count + 1
+      }
+    },
+    // 商品の注文数を減算
+    decrementOrder: (state, action: PayloadAction<UpdateArg>) => {
+      if (state[action.payload.targetIndex].count > 0) {
+        state[action.payload.targetIndex].count =
+          state[action.payload.targetIndex].count - 1
+      }
+    },
   },
 })
 
 // NOTE: actionsをエクスポートする
-export const { resetMenue, addMenue, updatedMenue } = menueListSlice.actions
+export const {
+  resetMenue,
+  addMenue,
+  updateCart,
+  incrementOrder,
+  decrementOrder,
+} = menueListSlice.actions
 // NOTE: reducerをエクスポートする
 export const selectMenueList = (state: RootState) => state.menueList
 // NOTE: selectorをエクスポートする

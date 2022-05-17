@@ -5,10 +5,10 @@ interface Props {
   imagePath: string
 }
 
-const ImageCartModal: FC<Props> = (props) => {
+const CartDetailImage: FC<Props> = (props) => {
   const { imagePath } = props
 
-  return <img src={imagePath} width="100"></img>
+  return <img src={imagePath} width="100" />
 }
 
-export default ImageCartModal
+export default CartDetailImage

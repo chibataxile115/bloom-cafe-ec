@@ -62,6 +62,7 @@ export interface StoringData {
   count: number
   imageURL: string
   plice: string
+  // isInit: boolean
 }
 
 export interface MenueList {

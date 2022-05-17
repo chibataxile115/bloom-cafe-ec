@@ -7,6 +7,11 @@ interface UpdateArg {
   targetIndex: number
 }
 
+interface UpdateArg2 {
+  targetIndex: number
+  updateCart: boolean
+}
+
 // NOTE: initialStateを定義
 const initialState: StoringData[] = []
 
@@ -18,6 +23,10 @@ export const storingDataSlice = createSlice({
     resetOrder: (state) => {
       state.splice(0)
     },
+    updatedCart: (state, action: PayloadAction<UpdateArg2>) => {
+      state[action.payload.targetIndex].isInCart = action.payload.updateCart
+    },
+
     // 商品を登録
     addOrder: {
       reducer: (state, action: PayloadAction<StoringData>) => {
@@ -43,27 +52,11 @@ export const storingDataSlice = createSlice({
         }
       },
     },
-
-    // 商品の注文数を加算
-    incrementOrder: (state, action: PayloadAction<UpdateArg>) => {
-      if (state.length !== 0) {
-        state[action.payload.targetIndex].count =
-          state[action.payload.targetIndex].count + 1
-      }
-    },
-    //商品の注文数を減算
-    decrementOrder: (state, action: PayloadAction<UpdateArg>) => {
-      if (state[action.payload.targetIndex].count > 0) {
-        state[action.payload.targetIndex].count =
-          state[action.payload.targetIndex].count - 1
-      }
-    },
   },
 })
 
 // NOTE: actionsをエクスポートする
-export const { resetOrder, addOrder, incrementOrder, decrementOrder } =
-  storingDataSlice.actions
+export const { resetOrder, addOrder, updatedCart } = storingDataSlice.actions
 // NOTE: reducerをエクスポートする
 export const selectStoringData = (state: RootState) => state.storingData
 // NOTE: selectorをエクスポートする
