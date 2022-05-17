@@ -17,6 +17,8 @@ export interface AuthPage {
 export interface AdminPage {
   isMenueSubmitModal: boolean
   isMenueSubmitLoading: boolean
+  isMenueDetailModal: boolean
+  isMenueDeleteModal: boolean
 }
 
 export interface SnackBar {
@@ -74,6 +76,16 @@ export interface MenueList {
   isInit: boolean
 }
 
+export interface AdminMenueDetail {
+  docID: string
+  id: number
+  name: string
+  category: string
+  count: number
+  imageURL: string
+  plice: string
+}
+
 export interface CartDetail {
   cartdetailTotal: number
 }
@@ -97,4 +109,12 @@ export interface MenueFromFirestore {
 export interface CategoryItemsFromFirestore {
   // createdAt: Date
   categoryName: string
+}
+
+export interface SubImagesFromFirestore {
+  createdAt: Date
+  docID: number
+  imageName: string
+  imageURL: string
+  updatedAt: Date
 }
