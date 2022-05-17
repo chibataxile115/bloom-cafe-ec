@@ -1,7 +1,7 @@
 // NOTE: 必要なコンポーネントをインポート
 import { createSlice, PayloadAction, configureStore } from '@reduxjs/toolkit'
-import { RootState } from '../../../app/store'
-import { CategoryItemsFromFirestore } from '../../../../types/types'
+import { RootState } from '../../../../app/store'
+import { CategoryItemsFromFirestore } from '../../../../../types/types'
 
 // NOTE: initialStateを定義
 const initialState: CategoryItemsFromFirestore[] = []
@@ -11,11 +11,14 @@ export const categoryItemsSlice = createSlice({
   name: 'categoryItems',
   initialState,
   reducers: {
-    resetCategories: (state) => {
+    resetCategories: (state: CategoryItemsFromFirestore[]) => {
       state.splice(0)
     },
     addCategory: {
-      reducer: (state, action: PayloadAction<CategoryItemsFromFirestore>) => {
+      reducer: (
+        state: CategoryItemsFromFirestore[],
+        action: PayloadAction<CategoryItemsFromFirestore>
+      ) => {
         state.push(action.payload)
       },
       prepare: (categoryName: string) => {

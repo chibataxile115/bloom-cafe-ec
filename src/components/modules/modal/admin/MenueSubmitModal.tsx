@@ -1,28 +1,29 @@
 // types
-import { SubmitMenue } from '../../../types/types'
+import { SubmitMenue } from '../../../../types/types'
 // Originals
-import { UploadImage, SubmitMenueArgs } from '../../../types/types'
-import { BasicModal } from '.'
-import { ImageDropArea } from '../dnd'
-import { SnackBar } from '../../atoms'
-import { useSubmitMenue } from '../../../hooks/menue/useSubmitMenue'
+import { UploadImage, SubmitMenueArgs } from '../../../../types/types'
+import { BasicModal } from '../'
+import { ImageDropArea } from '../../dnd'
+import { SnackBar } from '../../../atoms'
+import { useSubmitMenue } from '../../../../hooks/menue/useSubmitMenue'
+import { MenueIDList } from '../../../../lib/MenueIDList'
 // Loading
 import Loader from 'react-loader-spinner'
 // バリデーション関連
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { MenueRegistFormSchema } from '../../../lib'
+import { MenueRegistFormSchema } from '../../../../lib'
 // Redux関連
-import { useAppDispatch, useAppSelector } from '../../../redux/app/hooks'
+import { useAppDispatch, useAppSelector } from '../../../../redux/app/hooks'
 import {
   selectAdminPage,
   changeState as changeStateForAdminPage,
-} from '../../../redux/features/adminPageSlice'
+} from '../../../../redux/features/adminPageSlice'
 import {
   selectUploadImages,
   resetImages,
-} from '../../../redux/features/menue/uploadImagesSlice'
-import { selectSnackBar } from '../../../redux/features/snackbar/snackbarSlice'
+} from '../../../../redux/features/menue/uploadImagesSlice'
+import { selectSnackBar } from '../../../../redux/features/snackbar/snackbarSlice'
 
 const MenueSubmitModal: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -31,6 +32,8 @@ const MenueSubmitModal: React.FC = () => {
   const snackBarSelector = useAppSelector(selectSnackBar)
 
   const maxImagesUpload = 3
+  const leftMenueIDs = MenueIDList('left')
+  const rightMenueIDs = MenueIDList('right')
 
   // NOTE: Validation
   const menueRegistFormSchema = MenueRegistFormSchema()
@@ -251,13 +254,11 @@ const MenueSubmitModal: React.FC = () => {
                       {...register('menueIDL')}
                     >
                       <option value="">選択して下さい</option>
-                      <option value="aaa">aaa</option>
-                      <option value="aab">aab</option>
-                      <option value="abb">abb</option>
-                      <option value="bbb">bbb</option>
-                      <option value="bbc">bbc</option>
-                      <option value="bcc">bcc</option>
-                      <option value="ccc">ccc</option>
+                      {leftMenueIDs.map((item) => (
+                        <option key={item.id} value={item.value}>
+                          {item.value.replaceAll(/"/g, '')}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
@@ -280,15 +281,11 @@ const MenueSubmitModal: React.FC = () => {
                       {...register('menueIDR')}
                     >
                       <option value="">選択して下さい</option>
-                      <option value="001">001</option>
-                      <option value="002">002</option>
-                      <option value="003">003</option>
-                      <option value="011">011</option>
-                      <option value="012">012</option>
-                      <option value="013">013</option>
-                      <option value="021">021</option>
-                      <option value="022">022</option>
-                      <option value="023">023</option>
+                      {rightMenueIDs.map((item) => (
+                        <option key={item.id} value={item.value}>
+                          {item.value.replaceAll(/"/g, '')}
+                        </option>
+                      ))}
                     </select>
                   </div>
                 </div>
