@@ -134,6 +134,7 @@ export const useSubmitMenue = () => {
         .then(async (imageURL) => {
           await setDoc(doc(DB, 'menues', menueID, 'imageURLs', String(id)), {
             docID: id,
+            imageName: imageName,
             imageURL: imageURL,
             createdAt: serverTimestamp(),
             updatedAt: serverTimestamp(),

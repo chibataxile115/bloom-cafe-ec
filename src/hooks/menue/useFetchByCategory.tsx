@@ -10,7 +10,7 @@ import { useAppDispatch } from '../../redux/app/hooks'
 import {
   resetCategories,
   addCategory,
-} from '../../redux/features/menue/category/categoryItemsSlice'
+} from '../../redux/features/menue/admin/category/categoryItemsSlice'
 
 export const useFetchByCategory = () => {
   const dispatch = useAppDispatch()
@@ -24,14 +24,11 @@ export const useFetchByCategory = () => {
     ).withConverter(ConvertFirestoreData<CategoryItemsFromFirestore>())
     const querySnap = await getDocs(collRef)
 
-    let categoryList: CategoryItemsFromFirestore[] = []
     querySnap.forEach((doc) => {
       const docData = doc.data()
 
       dispatch(addCategory(docData.categoryName))
     })
-
-    return categoryList
   }, [])
 
   return { getCategoryList }

@@ -1,7 +1,25 @@
 import Image from 'next/image'
+// originals
+import { ImageLoader } from '../../../../lib'
+// Custom Hook
+import { useFetchSubImages } from '../../../../hooks/menue/useFetchSubImages'
+// types
+import { AdminMenueDetail } from '../../../../types/types'
 // Redux関連
-import { useAppSelector } from '../../../../redux/app/hooks'
-import { selectMenueList } from '../../../../redux/features/menue/menueListSlice'
+import { useAppDispatch, useAppSelector } from '../../../../redux/app/hooks'
+import {
+  selectAdminPage,
+  changeState as changeStateForAdminPage,
+} from '../../../../redux/features/adminPageSlice'
+import {
+  selectMenueList,
+  resetMenue as resetMenueForMenueList,
+} from '../../../../redux/features/menue/menueListSlice'
+import {
+  selectAdminMenueDetail,
+  changeState as changeStateForAdminMenueDetailModal,
+} from '../../../../redux/features/menue/admin/adminMenueDetailSlice'
+import { resetImages } from '../../../../redux/features/menue/subImagesSlice'
 
 interface Props {
   targetCategory: string
@@ -10,11 +28,38 @@ interface Props {
 const ByCategoryMenueView: React.FC<Props> = (props) => {
   const { targetCategory } = props
 
+  const dispatch = useAppDispatch()
+  const adminPageSelector = useAppSelector(selectAdminPage)
   const menueListSelector = useAppSelector(selectMenueList)
+  const adminMenueDetailSelector = useAppSelector(selectAdminMenueDetail)
 
-  const myLoader = (src?: string, width?: number, quality?: number) => {
-    const url = `${src}?w=${width}&q=${quality || 75}`
-    return url
+  const { getSubImages } = useFetchSubImages()
+
+  const openDetails = (menueDetailData: AdminMenueDetail) => {
+    const { docID, id, name, category, count, imageURL, plice } =
+      menueDetailData
+
+    dispatch(resetImages())
+
+    dispatch(
+      changeStateForAdminMenueDetailModal({
+        ...adminMenueDetailSelector,
+        docID: docID,
+        id: id,
+        name: name,
+        category: category,
+        count: count,
+        imageURL: imageURL,
+        plice: plice,
+      })
+    )
+    getSubImages(docID)
+    dispatch(
+      changeStateForAdminPage({
+        ...adminPageSelector,
+        isMenueDetailModal: true,
+      })
+    )
   }
 
   return (
@@ -22,7 +67,20 @@ const ByCategoryMenueView: React.FC<Props> = (props) => {
       {menueListSelector.map((item) => {
         if (item.category === targetCategory) {
           return (
-            <li key={item.id}>
+            <li
+              key={item.id}
+              onClick={() =>
+                openDetails({
+                  docID: item.docID,
+                  id: item.id,
+                  name: item.name,
+                  category: item.category,
+                  count: item.count,
+                  imageURL: item.imageURL,
+                  plice: item.plice,
+                })
+              }
+            >
               <div
                 className="
                   mt-4 mr-4 flex
@@ -42,8 +100,8 @@ const ByCategoryMenueView: React.FC<Props> = (props) => {
                     "
                 >
                   <Image
-                    loader={() => myLoader()}
-                    src={myLoader(item.imageURL, 190)}
+                    loader={() => ImageLoader()}
+                    src={ImageLoader(item.imageURL, 190)}
                     width={190}
                     height={190}
                     className="m-0 items-center justify-center rounded-md p-0"

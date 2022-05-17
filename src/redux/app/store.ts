@@ -8,10 +8,12 @@ import menueItemsReducer from '../features/menue/menueItemsSlice'
 import stepReducer from '../features/step/stepSlice'
 import storingDataReducer from '../features/storingdateSlice'
 import menueListReducer from '../features/menue/menueListSlice'
+import adminMenueDetailReducer from '../features/menue/admin/adminMenueDetailSlice'
 import CartDetailReducer from '../features/cartdetailSlice'
 import uploadImagesReducer from '../features/menue/uploadImagesSlice'
 import snackBarReducer from '../features/snackbar/snackbarSlice'
-import categoryItemsReducer from '../features/menue/category/categoryItemsSlice'
+import categoryItemsReducer from '../features/menue/admin/category/categoryItemsSlice'
+import subImagesReducer from '../features/menue/subImagesSlice'
 
 const reducer = {
   adminPage: adminPageReducer,
@@ -25,6 +27,8 @@ const reducer = {
   uploadImages: uploadImagesReducer,
   snackBar: snackBarReducer,
   categoryItems: categoryItemsReducer,
+  adminMenueDetail: adminMenueDetailReducer,
+  subImages: subImagesReducer,
 }
 
 export const store = configureStore({

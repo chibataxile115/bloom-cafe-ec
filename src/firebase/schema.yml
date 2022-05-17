@@ -12,6 +12,7 @@ menues:
 
     imageURLs: docID
       docID: string # ○○○ - ○○○
+      imageName: string
       imageURL: string
       createdAt: timestamp
       updatedAt: timestamp

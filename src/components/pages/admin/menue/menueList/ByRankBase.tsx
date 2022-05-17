@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 // Originals
 import { AdminLayout } from '../../../../layout'
-import { MenueSubmitModal } from '../../../../modules/modal'
+import { MenueSubmitModal } from '../../../../modules/modal/admin'
 import { Tabs } from '../../../../atoms'
 // Custom Hook
 import { useFetchMenue } from '../../../../../hooks/menue/useFetchMenue'
