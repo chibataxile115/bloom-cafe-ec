@@ -1,11 +1,17 @@
 import { useEffect } from 'react'
 import Image from 'next/image'
+// types
+import { AdminMenueDetail } from '../../../../../types/types'
 // Originals
 import { AdminLayout } from '../../../../layout'
-import { MenueSubmitModal } from '../../../../modules/modal'
+import { MenueSubmitModal } from '../../../../modules/modal/admin'
+import { MenueDetailModal } from '../../../../modules/modal/admin'
+import { MenueDeleteModal } from '../../../../modules/modal/admin'
 import { Tabs } from '../../../../atoms'
+import { ImageLoader } from '../../../../../lib'
 // Custom Hook
 import { useFetchMenue } from '../../../../../hooks/menue/useFetchMenue'
+import { useFetchSubImages } from '../../../../../hooks/menue/useFetchSubImages'
 // Redux関連
 import { useAppDispatch, useAppSelector } from '../../../../../redux/app/hooks'
 import {
@@ -16,13 +22,20 @@ import {
   selectMenueList,
   resetMenue as resetMenueForMenueList,
 } from '../../../../../redux/features/menue/menueListSlice'
+import {
+  selectAdminMenueDetail,
+  changeState as changeStateForAdminMenueDetailModal,
+} from '../../../../../redux/features/menue/admin/adminMenueDetailSlice'
+import { resetImages } from '../../../../../redux/features/menue/subImagesSlice'
 
 const AllMenueBase = () => {
   const dispatch = useAppDispatch()
   const adminPageSelector = useAppSelector(selectAdminPage)
   const menueListSelector = useAppSelector(selectMenueList)
+  const adminMenueDetailSelector = useAppSelector(selectAdminMenueDetail)
 
   const { getMenueList } = useFetchMenue()
+  const { getSubImages } = useFetchSubImages()
 
   useEffect(() => {
     if (menueListSelector.length !== 0) {
@@ -33,9 +46,31 @@ const AllMenueBase = () => {
     }
   }, [])
 
-  const myLoader = (src?: string, width?: number, quality?: number) => {
-    const url = `${src}?w=${width}&q=${quality || 75}`
-    return url
+  const openDetails = (menueDetailData: AdminMenueDetail) => {
+    const { docID, id, name, category, count, imageURL, plice } =
+      menueDetailData
+
+    dispatch(resetImages())
+
+    dispatch(
+      changeStateForAdminMenueDetailModal({
+        ...adminMenueDetailSelector,
+        docID: docID,
+        id: id,
+        name: name,
+        category: category,
+        count: count,
+        imageURL: imageURL,
+        plice: plice,
+      })
+    )
+    getSubImages(docID)
+    dispatch(
+      changeStateForAdminPage({
+        ...adminPageSelector,
+        isMenueDetailModal: true,
+      })
+    )
   }
 
   return (
@@ -65,7 +100,20 @@ const AllMenueBase = () => {
         <Tabs currentTabTitle={'すべて'}>
           <ul className="flex flex-wrap">
             {menueListSelector.map((item) => (
-              <li key={item.id}>
+              <li
+                key={item.id}
+                onClick={() =>
+                  openDetails({
+                    docID: item.docID,
+                    id: item.id,
+                    name: item.name,
+                    category: item.category,
+                    count: item.count,
+                    imageURL: item.imageURL,
+                    plice: item.plice,
+                  })
+                }
+              >
                 <div
                   className="
                   mt-4 mr-4 flex
@@ -77,7 +125,7 @@ const AllMenueBase = () => {
                 >
                   <div
                     className="
-                    font-size-0 next-image-div m-0
+                    next-image-div m-0
                     h-full w-full rounded-md
                     border-[1px]
                     border-gray-400
@@ -85,8 +133,8 @@ const AllMenueBase = () => {
                     "
                   >
                     <Image
-                      loader={() => myLoader()}
-                      src={myLoader(item.imageURL, 190)}
+                      loader={() => ImageLoader()}
+                      src={ImageLoader(item.imageURL, 190)}
                       width={190}
                       height={190}
                       className="m-0 items-center justify-center rounded-md p-0"
@@ -111,6 +159,8 @@ const AllMenueBase = () => {
         </Tabs>
       </div>
       <MenueSubmitModal />
+      <MenueDetailModal />
+      <MenueDeleteModal />
     </AdminLayout>
   )
 }

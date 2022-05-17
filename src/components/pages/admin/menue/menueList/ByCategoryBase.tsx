@@ -1,7 +1,9 @@
 import { useEffect } from 'react'
 // Originals
 import { AdminLayout } from '../../../../layout'
-import { MenueSubmitModal } from '../../../../modules/modal'
+import { MenueSubmitModal } from '../../../../modules/modal/admin'
+import { MenueDetailModal } from '../../../../modules/modal/admin'
+import { MenueDeleteModal } from '../../../../modules/modal/admin'
 import { Tabs } from '../../../../atoms'
 import { ByCategoryMenueView } from '../../../../modules/menue/menueList'
 // Custom Hook
@@ -12,7 +14,7 @@ import {
   selectAdminPage,
   changeState as changeStateForAdminPage,
 } from '../../../../../redux/features/adminPageSlice'
-import { selectCategoryItems } from '../../../../../redux/features/menue/category/categoryItemsSlice'
+import { selectCategoryItems } from '../../../../../redux/features/menue/admin/category/categoryItemsSlice'
 
 const ByCategoryBase = () => {
   const dispatch = useAppDispatch()
@@ -62,6 +64,8 @@ const ByCategoryBase = () => {
         </Tabs>
       </div>
       <MenueSubmitModal />
+      <MenueDetailModal />
+      <MenueDeleteModal />
     </AdminLayout>
   )
 }
