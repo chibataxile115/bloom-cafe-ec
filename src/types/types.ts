@@ -24,6 +24,7 @@ export interface AdminPage {
 export interface SnackBar {
   isOpenTheMenueRegistSnackbar: boolean
   isOpenTheImageUploadSnacbar: boolean
+  isOpenTheMenueDeleteSnackbar: boolean
   mode: 'success' | 'error'
   // TODO: 余裕があったらtransitionさせる方向をdirectionで指定できるようにする
   // direction: 'up' | 'down' | 'right' | 'left'

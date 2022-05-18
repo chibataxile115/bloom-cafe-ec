@@ -9,6 +9,7 @@ import { MenueDetailModal } from '../../../../modules/modal/admin'
 import { MenueDeleteModal } from '../../../../modules/modal/admin'
 import { Tabs } from '../../../../atoms'
 import { ImageLoader } from '../../../../../lib'
+import { SnackBar } from '../../../../atoms'
 // Custom Hook
 import { useFetchMenue } from '../../../../../hooks/menue/useFetchMenue'
 import { useFetchSubImages } from '../../../../../hooks/menue/useFetchSubImages'
@@ -27,12 +28,14 @@ import {
   changeState as changeStateForAdminMenueDetailModal,
 } from '../../../../../redux/features/menue/admin/adminMenueDetailSlice'
 import { resetImages } from '../../../../../redux/features/menue/subImagesSlice'
+import { selectSnackBar } from '../../../../../redux/features/snackbar/snackbarSlice'
 
 const AllMenueBase = () => {
   const dispatch = useAppDispatch()
   const adminPageSelector = useAppSelector(selectAdminPage)
   const menueListSelector = useAppSelector(selectMenueList)
   const adminMenueDetailSelector = useAppSelector(selectAdminMenueDetail)
+  const snackBarSelector = useAppSelector(selectSnackBar)
 
   const { getMenueList } = useFetchMenue()
   const { getSubImages } = useFetchSubImages()
@@ -161,6 +164,17 @@ const AllMenueBase = () => {
       <MenueSubmitModal />
       <MenueDetailModal />
       <MenueDeleteModal />
+
+      {/* メニュー削除用スナックバー */}
+      <SnackBar
+        message={
+          snackBarSelector.mode === 'success'
+            ? '削除が完了しました！'
+            : '削除に失敗しました。もう一度お試し下さい。'
+        }
+        isOpen={snackBarSelector.isOpenTheMenueDeleteSnackbar}
+        mode={snackBarSelector.mode}
+      />
     </AdminLayout>
   )
 }

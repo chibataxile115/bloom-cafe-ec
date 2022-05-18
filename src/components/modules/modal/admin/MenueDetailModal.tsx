@@ -12,7 +12,7 @@ import { selectSubImages } from '../../../../redux/features/menue/subImagesSlice
 import { selectAdminMenueDetail } from '../../../../redux/features/menue/admin/adminMenueDetailSlice'
 import { resetImages } from '../../../../redux/features/menue/subImagesSlice'
 
-const MenueDetailModal = () => {
+const MenueDetailModal: React.FC = () => {
   const dispatch = useAppDispatch()
   const adminPageSelector = useAppSelector(selectAdminPage)
   const adminMenueDetailSelector = useAppSelector(selectAdminMenueDetail)
