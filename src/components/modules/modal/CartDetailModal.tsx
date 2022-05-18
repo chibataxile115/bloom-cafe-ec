@@ -12,19 +12,21 @@ import {
   resetOrder,
 } from '../../../redux/features/storingdateSlice'
 import {
-  selectStep,
-  changeState as stepChangeState,
-} from '../../../redux/features/step/stepSlice'
+  selectMenuePage,
+  changeState as changeStateForMenuePage,
+} from '../../../redux/features/menuePageSlice'
 
 const CartDetailModal: React.FC = () => {
   const dispatch = useAppDispatch()
   const storingDataSelector = useAppSelector(selectStoringData)
-  const stepSelector = useAppSelector(selectStep)
+  const menuPageSelector = useAppSelector(selectMenuePage)
 
   const [demoStorignData, setDemoStorigData] = useState<StoringData[]>([])
 
   const modalClose = () => {
-    dispatch(stepChangeState({ ...stepSelector, isCartModal: false }))
+    dispatch(
+      changeStateForMenuePage({ ...menuPageSelector, isOpenCartModal: false })
+    )
     dispatch(resetOrder())
   }
 
@@ -35,7 +37,7 @@ const CartDetailModal: React.FC = () => {
   }, [storingDataSelector])
 
   return (
-    <BasicModal isOpenModal={stepSelector.isCartModal}>
+    <BasicModal isOpenModal={menuPageSelector.isOpenCartModal}>
       <div className="relative flex items-center justify-center">
         <h1 className="items-center justify-center text-center text-2xl font-bold">
           カート
