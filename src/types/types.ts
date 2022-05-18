@@ -122,3 +122,7 @@ export interface SubImagesFromFirestore {
   imageURL: string
   updatedAt: Date
 }
+
+export interface MenuePage {
+  isOpenCartModal: boolean
+}
