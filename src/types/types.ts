@@ -54,13 +54,15 @@ export interface Step {
 }
 
 export interface StoringData {
+  docID: string
   id: number
   name: string
+  category: string
   isInCart: boolean
   count: number
   imageURL: string
   plice: string
-  // isInit: boolean
+  isInit: boolean
 }
 
 export interface MenueList {

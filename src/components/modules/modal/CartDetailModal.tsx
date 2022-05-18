@@ -7,7 +7,10 @@ import { CartDetailView } from './modalView'
 import { StoringData } from '../../../types/types'
 // NOTE: Redux関連
 import { useAppDispatch, useAppSelector } from '../../../redux/app/hooks'
-import { selectStoringData } from '../../../redux/features/storingdateSlice'
+import {
+  selectStoringData,
+  resetOrder,
+} from '../../../redux/features/storingdateSlice'
 import {
   selectStep,
   changeState as stepChangeState,
@@ -22,6 +25,7 @@ const CartDetailModal: React.FC = () => {
 
   const modalClose = () => {
     dispatch(stepChangeState({ ...stepSelector, isCartModal: false }))
+    dispatch(resetOrder())
   }
 
   useEffect(() => {
@@ -62,18 +66,6 @@ const CartDetailModal: React.FC = () => {
         </div>
       </div>
       <CartDetailView />
-      {/* <div className="flex flex-col p-10">
-        {storingDataSelector.map((item) => {
-          {
-            item.isInCart && (
-              <li key={item.id}>
-                <p>{item.name}</p>
-                <DeleteButton deleteButtonID={item.id} />
-              </li>
-            )
-          }
-        })}
-      </div> */}
     </BasicModal>
   )
 }
