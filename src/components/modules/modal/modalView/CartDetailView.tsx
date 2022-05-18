@@ -19,16 +19,12 @@ const CartDetailView: React.FC = () => {
 
   return (
     <div className="flex flex-col p-10">
-      {demoStorignData.map((item) => {
-        {
-          item.isInCart && (
-            <li key={item.id}>
-              <p>{item.name}</p>
-              <DeleteButton deleteButtonID={item.id} />
-            </li>
-          )
-        }
-      })}
+      {storingDataSelector.map((item) => (
+        <li key={item.id}>
+          <p>{item.name}</p>
+          <DeleteButton deleteButtonID={item.id} />
+        </li>
+      ))}
     </div>
   )
 }

@@ -5,11 +5,12 @@ import Badge from '@mui/material/Badge'
 // NOTE: Redux関連
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
 import { selectStep, changeState } from '../../redux/features/step/stepSlice'
+import { selectCartDetail } from '../../redux/features/cartdetailSlice'
 import {
-  selectCartDetail,
-  cartIncrementOrder,
-  cartDecrementOrder,
-} from '../../redux/features/cartdetailSlice'
+  selectStoringData,
+  addOrder,
+} from '../../redux/features/storingdateSlice'
+import { selectMenueList } from '../../redux/features/menue/menueListSlice'
 
 interface Props {
   children: ReactNode
@@ -28,8 +29,28 @@ const HomeLayout: FC<Props> = (props) => {
   const dispatch = useAppDispatch()
   const stepSelector = useAppSelector(selectStep)
   const cartDetailSelector = useAppSelector(selectCartDetail)
+  const storingDataSelector = useAppSelector(selectStoringData)
+  const menueListSelector = useAppSelector(selectMenueList)
 
   const openModal = () => {
+    menueListSelector.map((item) => {
+      if (item.isInCart) {
+        dispatch(
+          addOrder(
+            item.docID,
+            item.id,
+            item.name,
+            item.category,
+            item.isInCart,
+            item.count,
+            item.imageURL,
+            item.plice,
+            item.isInit
+          )
+        )
+      }
+    })
+
     dispatch(
       changeState({
         ...stepSelector,
