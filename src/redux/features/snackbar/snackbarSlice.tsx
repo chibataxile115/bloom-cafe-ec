@@ -13,12 +13,11 @@ interface SnackBarState {
 }
 
 // NOTE: initialStateを定義
-const initialState: SnackBarState = {
-  SnackBar: {
-    isOpenTheMenueRegistSnackbar: false,
-    isOpenTheImageUploadSnacbar: false,
-    mode: 'success',
-  },
+const initialState: SnackBar = {
+  isOpenTheMenueRegistSnackbar: false,
+  isOpenTheImageUploadSnacbar: false,
+  isOpenTheMenueDeleteSnackbar: false,
+  mode: 'success',
 }
 
 // NOTE: Sliceを定義する
@@ -26,19 +25,22 @@ export const snackbarSlice = createSlice({
   name: 'snackbar',
   initialState,
   reducers: {
-    resetState: (state) => {
-      state.SnackBar = {
+    resetState: (state: SnackBar) => {
+      state = {
         isOpenTheMenueRegistSnackbar: false,
         isOpenTheImageUploadSnacbar: false,
+        isOpenTheMenueDeleteSnackbar: false,
         mode: 'success',
       }
     },
-    changeState: (state, action: PayloadAction<SnackBar>) => {
-      state.SnackBar.isOpenTheMenueRegistSnackbar =
+    changeState: (state: SnackBar, action: PayloadAction<SnackBar>) => {
+      state.isOpenTheMenueRegistSnackbar =
         action.payload.isOpenTheMenueRegistSnackbar
-      state.SnackBar.isOpenTheImageUploadSnacbar =
+      state.isOpenTheImageUploadSnacbar =
         action.payload.isOpenTheImageUploadSnacbar
-      state.SnackBar.mode = action.payload.mode
+      state.isOpenTheMenueDeleteSnackbar =
+        action.payload.isOpenTheMenueDeleteSnackbar
+      state.mode = action.payload.mode
     },
   },
 })
@@ -46,6 +48,6 @@ export const snackbarSlice = createSlice({
 // NOTE: actionsをエクスポートする
 export const { resetState, changeState } = snackbarSlice.actions
 // NOTE: selectorをエクスポートする
-export const selectSnackBar = (state: RootState) => state.snackBar.SnackBar
+export const selectSnackBar = (state: RootState) => state.snackBar
 // NOTE: reducerをエクスポートする
 export default snackbarSlice.reducer

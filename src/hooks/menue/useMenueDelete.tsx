@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 // Firebase関連
 import { DB, Storage } from '../../firebase/firebaseConfig'
-import { doc, getDocs, deleteDoc, collection, query } from 'firebase/firestore'
+import { doc, deleteDoc } from 'firebase/firestore'
 import { ref, deleteObject } from 'firebase/storage'
 // Redux関連
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
@@ -9,17 +9,40 @@ import {
   selectAdminPage,
   changeState as changeStateForAdminPage,
 } from '../../redux/features/adminPageSlice'
+import {
+  selectSnackBar,
+  changeState as changeStateForSnackBar,
+} from '../../redux/features/snackbar/snackbarSlice'
 
 export const useMenueDelete = () => {
   const dispatch = useAppDispatch()
   const adminPageSelector = useAppSelector(selectAdminPage)
+  const snackBarSelector = useAppSelector(selectSnackBar)
 
   const menueDelete = useCallback(
     async (docID: string, imageNames: string[]) => {
       const docRef = doc(DB, `menues/${docID}`)
       await deleteDoc(docRef)
-
-      deleteImages(imageNames)
+        .then(() => {
+          deleteImages(imageNames)
+        })
+        .catch((error) => {
+          dispatch(
+            changeStateForSnackBar({
+              ...snackBarSelector,
+              isOpenTheMenueDeleteSnackbar: true,
+              mode: 'error',
+            })
+          )
+          setTimeout(() => {
+            dispatch(
+              changeStateForSnackBar({
+                ...snackBarSelector,
+                isOpenTheMenueDeleteSnackbar: false,
+              })
+            )
+          }, 3000)
+        })
     },
     []
   )
@@ -28,16 +51,49 @@ export const useMenueDelete = () => {
     imageNames.forEach((imageName, index) => {
       const imageRef = ref(Storage, `menueImages/${imageName}`)
       deleteObject(imageRef)
-
-      if (imageNames.length === index + 1) {
-        dispatch(
-          changeStateForAdminPage({
-            ...adminPageSelector,
-            isMenueDetailModal: false,
-            isMenueDeleteModal: false,
-          })
-        )
-      }
+        .then(() => {
+          if (imageNames.length === index + 1) {
+            dispatch(
+              changeStateForSnackBar({
+                ...snackBarSelector,
+                isOpenTheMenueDeleteSnackbar: true,
+                mode: 'success',
+              })
+            )
+            dispatch(
+              changeStateForAdminPage({
+                ...adminPageSelector,
+                isMenueDetailModal: false,
+                isMenueDeleteModal: false,
+              })
+            )
+            setTimeout(() => {
+              dispatch(
+                changeStateForSnackBar({
+                  ...snackBarSelector,
+                  isOpenTheMenueDeleteSnackbar: false,
+                })
+              )
+            }, 3000)
+          }
+        })
+        .catch((error) => {
+          dispatch(
+            changeStateForSnackBar({
+              ...snackBarSelector,
+              isOpenTheMenueDeleteSnackbar: true,
+              mode: 'error',
+            })
+          )
+          setTimeout(() => {
+            dispatch(
+              changeStateForSnackBar({
+                ...snackBarSelector,
+                isOpenTheMenueDeleteSnackbar: false,
+              })
+            )
+          }, 3000)
+        })
     })
   }
 
