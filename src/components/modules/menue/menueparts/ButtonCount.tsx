@@ -1,16 +1,12 @@
 import React, { FC } from 'react'
 import { Button } from '@material-ui/core'
-
-// NOTE: Redux関連
+// Redux関連
 import { useAppDispatch, useAppSelector } from '../../../../redux/app/hooks'
-import { selectStoringData } from '../../../../redux/features/storingdateSlice'
 import {
   selectMenueList,
   updateCart,
 } from '../../../../redux/features/menue/menueListSlice'
-
 import {
-  selectCartDetail,
   cartIncrementOrder,
   cartDecrementOrder,
 } from '../../../../redux/features/cartdetailSlice'
@@ -23,7 +19,6 @@ const ButtonCount: FC<Props> = (props) => {
   const { countButtonID } = props
 
   const dispatch = useAppDispatch()
-  const storingDataSelector = useAppSelector(selectStoringData)
   const menueListSelector = useAppSelector(selectMenueList)
 
   const controlCart = (
@@ -75,13 +70,6 @@ const ButtonCount: FC<Props> = (props) => {
 
   return (
     <div className="flex flex-col">
-      {storingDataSelector.length !== 0 && (
-        <ul>
-          {storingDataSelector.map((item, index: number) => {
-            return <li key={index}>{`個数: ${item.count} : ${item.count}`}</li>
-          })}
-        </ul>
-      )}
       <div className="flex flex-row">
         {/* プラスボタン */}
         <Button
