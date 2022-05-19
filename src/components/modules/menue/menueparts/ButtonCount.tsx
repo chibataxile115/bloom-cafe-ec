@@ -3,15 +3,10 @@ import { Button } from '@material-ui/core'
 
 // NOTE: Redux関連
 import { useAppDispatch, useAppSelector } from '../../../../redux/app/hooks'
-import {
-  selectStoringData,
-  addOrder,
-} from '../../../../redux/features/storingdateSlice'
+import { selectStoringData } from '../../../../redux/features/storingdateSlice'
 import {
   selectMenueList,
   updateCart,
-  incrementOrder,
-  decrementOrder,
 } from '../../../../redux/features/menue/menueListSlice'
 
 import {
