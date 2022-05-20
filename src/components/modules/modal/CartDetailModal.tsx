@@ -7,21 +7,27 @@ import { CartDetailView } from './modalView'
 import { StoringData } from '../../../types/types'
 // NOTE: Redux関連
 import { useAppDispatch, useAppSelector } from '../../../redux/app/hooks'
-import { selectStoringData } from '../../../redux/features/storingdateSlice'
 import {
-  selectStep,
-  changeState as stepChangeState,
-} from '../../../redux/features/step/stepSlice'
+  selectStoringData,
+  resetOrder,
+} from '../../../redux/features/storingdateSlice'
+import {
+  selectMenuePage,
+  changeState as changeStateForMenuePage,
+} from '../../../redux/features/menuePageSlice'
 
 const CartDetailModal: React.FC = () => {
   const dispatch = useAppDispatch()
   const storingDataSelector = useAppSelector(selectStoringData)
-  const stepSelector = useAppSelector(selectStep)
+  const menuPageSelector = useAppSelector(selectMenuePage)
 
   const [demoStorignData, setDemoStorigData] = useState<StoringData[]>([])
 
   const modalClose = () => {
-    dispatch(stepChangeState({ ...stepSelector, isCartModal: false }))
+    dispatch(
+      changeStateForMenuePage({ ...menuPageSelector, isOpenCartModal: false })
+    )
+    dispatch(resetOrder())
   }
 
   useEffect(() => {
@@ -31,7 +37,7 @@ const CartDetailModal: React.FC = () => {
   }, [storingDataSelector])
 
   return (
-    <BasicModal isOpenModal={stepSelector.isCartModal}>
+    <BasicModal isOpenModal={menuPageSelector.isOpenCartModal}>
       <div className="relative flex items-center justify-center">
         <h1 className="items-center justify-center text-center text-2xl font-bold">
           カート
@@ -62,18 +68,6 @@ const CartDetailModal: React.FC = () => {
         </div>
       </div>
       <CartDetailView />
-      {/* <div className="flex flex-col p-10">
-        {storingDataSelector.map((item) => {
-          {
-            item.isInCart && (
-              <li key={item.id}>
-                <p>{item.name}</p>
-                <DeleteButton deleteButtonID={item.id} />
-              </li>
-            )
-          }
-        })}
-      </div> */}
     </BasicModal>
   )
 }

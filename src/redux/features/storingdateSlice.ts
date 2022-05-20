@@ -33,21 +33,27 @@ export const storingDataSlice = createSlice({
         state.push(action.payload)
       },
       prepare: (
+        docID: string,
         id: number,
         name: string,
+        category: string,
         isInCart: boolean,
         count: number,
         imageURL: string,
-        plice: string
+        plice: string,
+        isInit: boolean
       ) => {
         return {
           payload: {
+            docID,
             id,
             name,
+            category,
             isInCart,
             count,
             imageURL,
             plice,
+            isInit,
           },
         }
       },

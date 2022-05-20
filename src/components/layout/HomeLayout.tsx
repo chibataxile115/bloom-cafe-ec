@@ -4,12 +4,13 @@ import { Steper } from '../atoms'
 import Badge from '@mui/material/Badge'
 // NOTE: Redux関連
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
-import { selectStep, changeState } from '../../redux/features/step/stepSlice'
+import { selectCartDetail } from '../../redux/features/cartdetailSlice'
+import { addOrder } from '../../redux/features/storingdateSlice'
+import { selectMenueList } from '../../redux/features/menue/menueListSlice'
 import {
-  selectCartDetail,
-  cartIncrementOrder,
-  cartDecrementOrder,
-} from '../../redux/features/cartdetailSlice'
+  selectMenuePage,
+  changeState as changeStateForMenuePage,
+} from '../../redux/features/menuePageSlice'
 
 interface Props {
   children: ReactNode
@@ -26,15 +27,31 @@ const HomeLayout: FC<Props> = (props) => {
   const { children, title } = props
 
   const dispatch = useAppDispatch()
-  const stepSelector = useAppSelector(selectStep)
   const cartDetailSelector = useAppSelector(selectCartDetail)
+  const menueListSelector = useAppSelector(selectMenueList)
+  const menuPageSelector = useAppSelector(selectMenuePage)
 
   const openModal = () => {
+    menueListSelector.map((item) => {
+      if (item.isInCart) {
+        dispatch(
+          addOrder(
+            item.docID,
+            item.id,
+            item.name,
+            item.category,
+            item.isInCart,
+            item.count,
+            item.imageURL,
+            item.plice,
+            item.isInit
+          )
+        )
+      }
+    })
+
     dispatch(
-      changeState({
-        ...stepSelector,
-        isCartModal: true,
-      })
+      changeStateForMenuePage({ ...menuPageSelector, isOpenCartModal: true })
     )
   }
 
