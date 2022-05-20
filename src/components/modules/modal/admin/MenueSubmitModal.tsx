@@ -4,7 +4,7 @@ import { SubmitMenue } from '../../../../types/types'
 import { UploadImage, SubmitMenueArgs } from '../../../../types/types'
 import { BasicModal } from '../'
 import { ImageDropArea } from '../../dnd'
-import { SnackBar } from '../../../atoms'
+import { Spinner, SnackBar } from '../../../atoms'
 import { useSubmitMenue } from '../../../../hooks/menue/useSubmitMenue'
 import { MenueIDList } from '../../../../lib/MenueIDList'
 // Loading
@@ -153,13 +153,7 @@ const MenueSubmitModal: React.FC = () => {
             "
         >
           {adminPageSelector.isMenueSubmitLoading ? (
-            <Loader
-              type="Oval"
-              color="#2563EB"
-              height={70}
-              width={70}
-              timeout={5000} //3 secs
-            />
+            <Spinner />
           ) : (
             <form
               className="mb-4 rounded bg-gray-100 px-8 pt-6 pb-8 shadow-md"

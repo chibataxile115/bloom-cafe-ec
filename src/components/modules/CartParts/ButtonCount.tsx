@@ -6,8 +6,8 @@ import { useAppDispatch, useAppSelector } from '../../../redux/app/hooks'
 import {
   selectStoringData,
   addOrder,
-  incrementOrder,
-  decrementOrder,
+  // incrementOrder,
+  // decrementOrder,
 } from '../../../redux/features/storingdateSlice'
 
 interface Props {
@@ -24,23 +24,23 @@ const ButtonCount: FC<Props> = (props) => {
   // dispatch(addOrder(1, 1500, 'https://github.com/', 'おにぎり'))
 
   const incrementCount = (updatedCount: number, targetIndex: number) => {
-    dispatch(
-      incrementOrder({
-        ...storingDataSelector,
-        targetIndex: targetIndex,
-        updatedCount: updatedCount,
-      })
-    )
+    // dispatch(
+    //   incrementOrder({
+    //     ...storingDataSelector,
+    //     targetIndex: targetIndex,
+    //     updatedCount: updatedCount,
+    //   })
+    // )
   }
 
   const decrementCount = (updatedCount: number, targetIndex: number) => {
-    dispatch(
-      decrementOrder({
-        ...storingDataSelector,
-        targetIndex: targetIndex,
-        updatedCount: updatedCount,
-      })
-    )
+    // dispatch(
+    //   decrementOrder({
+    //     ...storingDataSelector,
+    //     targetIndex: targetIndex,
+    //     updatedCount: updatedCount,
+    //   })
+    // )
   }
 
   return (
