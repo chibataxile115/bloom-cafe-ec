@@ -10,10 +10,7 @@ import {
 import {
   selectMenueList,
   updateCart,
-  incrementOrder,
-  decrementOrder,
 } from '../../../../redux/features/menue/menueListSlice'
-
 import {
   selectCartDetail,
   cartIncrementOrder,
@@ -80,13 +77,6 @@ const ButtonCount: FC<Props> = (props) => {
 
   return (
     <div className="flex flex-col">
-      {storingDataSelector.length !== 0 && (
-        <ul>
-          {storingDataSelector.map((item, index: number) => {
-            return <li key={index}>{`個数: ${item.count} : ${item.count}`}</li>
-          })}
-        </ul>
-      )}
       <div className="flex flex-row">
         {/* プラスボタン */}
         <Button
