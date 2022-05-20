@@ -22,11 +22,11 @@ export const menueListSlice = createSlice({
   name: 'menueList',
   initialState,
   reducers: {
-    resetMenue: (state) => {
+    resetMenue: (state: MenueList[]) => {
       state.splice(0)
     },
     addMenue: {
-      reducer: (state, action: PayloadAction<MenueList>) => {
+      reducer: (state: MenueList[], action: PayloadAction<MenueList>) => {
         state.push(action.payload)
       },
       prepare: (
@@ -57,20 +57,23 @@ export const menueListSlice = createSlice({
     },
 
     // 商品を更新
-    updateCart: (state, action: PayloadAction<UpdateCartArg>) => {
+    updateCart: (state: MenueList[], action: PayloadAction<UpdateCartArg>) => {
       const { targetIndex, isInCartState, countState } = action.payload
       state[targetIndex].isInCart = isInCartState
       state[targetIndex].count = countState
     },
     // 商品の注文数を加算
-    incrementOrder: (state, action: PayloadAction<UpdateCartArg>) => {
+    incrementOrder: (
+      state: MenueList[],
+      action: PayloadAction<UpdateCartArg>
+    ) => {
       if (state.length !== 0) {
         state[action.payload.targetIndex].count =
           state[action.payload.targetIndex].count + 1
       }
     },
     // 商品の注文数を減算
-    decrementOrder: (state, action: PayloadAction<UpdateArg>) => {
+    decrementOrder: (state: MenueList[], action: PayloadAction<UpdateArg>) => {
       if (state[action.payload.targetIndex].count > 0) {
         state[action.payload.targetIndex].count =
           state[action.payload.targetIndex].count - 1
