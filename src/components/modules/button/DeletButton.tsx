@@ -1,12 +1,12 @@
 import React, { FC } from 'react'
-import { Button } from '@material-ui/core'
 
 // NOTE: Redux関連
 import { useAppDispatch, useAppSelector } from '../../../redux/app/hooks'
+import { resetOrder, addOrder } from '../../../redux/features/storingdateSlice'
 import {
-  selectStoringData,
-  updatedCart,
-} from '../../../redux/features/storingdateSlice'
+  selectMenueList,
+  updateCart,
+} from '../../../redux/features/menue/menueListSlice'
 
 interface Props {
   deleteButtonID: number
@@ -16,43 +16,62 @@ const DeletButton: FC<Props> = (props) => {
   const { deleteButtonID } = props
 
   const dispatch = useAppDispatch()
-  const storingDataSelector = useAppSelector(selectStoringData)
+  const menueListSelector = useAppSelector(selectMenueList)
   const targetDeletecart = (targetIndex: number) => {
-    if (storingDataSelector[deleteButtonID].isInCart == true) {
-      //isIncartがtrueだったら商品が登録されている状態なので、削除する
-      const updateArg2 = { targetIndex: deleteButtonID, updateCart: false }
-      dispatch(updatedCart(updateArg2))
+    if (menueListSelector[deleteButtonID].isInCart == true) {
+      //menueListsliceをfalse
+      dispatch(
+        updateCart({
+          ...menueListSelector,
+          targetIndex: deleteButtonID,
+          isInCartState: false,
+          countState: 0,
+        })
+      )
+      dispatch(resetOrder())
+      menueListSelector.map((item) => {
+        if (item.isInCart && deleteButtonID !== item.id) {
+          dispatch(
+            addOrder(
+              item.docID,
+              item.id,
+              item.name,
+              item.category,
+              item.isInCart,
+              item.count,
+              item.imageURL,
+              item.plice,
+              item.isInit
+            )
+          )
+        }
+      })
     }
   }
 
   return (
     <div>
       {/* カートに追加する */}
-      <Button
+      <button
         id={`decrementButton${deleteButtonID}`}
-        color="primary"
-        style={{ margin: '5px', fontSize: '20px', padding: '0' }}
+        className="
+        focus:shadow-outline
+        mx-auto mb-2
+        min-w-[150px] rounded-md
+        border-2
+        border-red-500
+        bg-white
+        py-2 px-4 font-bold
+        text-gray-400
+        hover:bg-red-400
+        hover:text-gray-100
+        focus:outline-none
+        "
         onClick={() => targetDeletecart(deleteButtonID)}
       >
         削除
-      </Button>
+      </button>
     </div>
   )
 }
 export default DeletButton
-
-// // FIXME: 注文確認画面
-
-// {storingDataSelector.map((item) => (
-//     {!item.isInCart && (  // isIncartがfalseだったら表示しない
-//       <li key={item.id}>
-//       <p>{item.name}</p>
-//     </li>
-//   )}
-
-// ))}
-
-// 注文内容はこちら
-// // ・商品１ isIncartがfalseだったらか出力しない
-// ・商品２
-// ・商品３
