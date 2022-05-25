@@ -21,13 +21,16 @@ export const storingDataSlice = createSlice({
   name: 'storingData',
   initialState,
   reducers: {
-    resetOrder: (state) => {
+    resetOrder: (state: StoringData[]) => {
       state.splice(0)
+    },
+    updatedCart: (state: StoringData[], action: PayloadAction<UpdateArg2>) => {
+      state[action.payload.targetIndex].isInCart = action.payload.updateCart
     },
 
     // 商品を登録
     addOrder: {
-      reducer: (state, action: PayloadAction<StoringData>) => {
+      reducer: (state: StoringData[], action: PayloadAction<StoringData>) => {
         state.push(action.payload)
       },
       prepare: (

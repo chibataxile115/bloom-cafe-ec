@@ -6,8 +6,8 @@ import { AuthLoadingLayout } from '../layout/AuthLoadingLayout'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-// Loading
-import Loader from 'react-loader-spinner'
+// Originals
+import { Spinner } from '../atoms'
 // Redux関連
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
 import { selectAuthPage, changeState } from '../../redux/features/authPageSlice'
@@ -92,13 +92,7 @@ const SigninBase: React.FC = () => {
       <AuthLoadingLayout tabTitle="処理中">
         <div className="flex min-h-screen w-full flex-col items-center justify-center">
           <p className="mt-0 mb-5 text-2xl">認証処理中です・・・</p>
-          <Loader
-            type="Oval"
-            color="#2563EB"
-            height={100}
-            width={100}
-            // timeout={3000} //3 secs
-          />
+          <Spinner />
         </div>
       </AuthLoadingLayout>
     )
