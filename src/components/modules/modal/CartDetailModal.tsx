@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from 'react'
 // originals
 import { BasicModal, ImageCartModal } from '../modal'
-import { DeleteButton } from '../button'
 import { CartDetailView } from './modalView'
-// types
-import { StoringData } from '../../../types/types'
 // NOTE: Redux関連
 import { useAppDispatch, useAppSelector } from '../../../redux/app/hooks'
-import {
-  selectStoringData,
-  resetOrder,
-} from '../../../redux/features/storingdateSlice'
+import { resetOrder } from '../../../redux/features/storingdateSlice'
 import {
   selectMenuePage,
   changeState as changeStateForMenuePage,
@@ -18,11 +12,7 @@ import {
 
 const CartDetailModal: React.FC = () => {
   const dispatch = useAppDispatch()
-  const storingDataSelector = useAppSelector(selectStoringData)
   const menuPageSelector = useAppSelector(selectMenuePage)
-
-  const [demoStorignData, setDemoStorigData] = useState<StoringData[]>([])
-
   const modalClose = () => {
     dispatch(
       changeStateForMenuePage({ ...menuPageSelector, isOpenCartModal: false })
@@ -30,20 +20,12 @@ const CartDetailModal: React.FC = () => {
     dispatch(resetOrder())
   }
 
-  useEffect(() => {
-    console.log('レンダリングされたよ')
-    setDemoStorigData(storingDataSelector)
-    demoStorignData.map((item) => console.log(item.name))
-  }, [storingDataSelector])
-
   return (
     <BasicModal isOpenModal={menuPageSelector.isOpenCartModal}>
       <div className="relative flex items-center justify-center">
         <h1 className="items-center justify-center text-center text-2xl font-bold">
           カート
         </h1>
-
-        {/* Modal content */}
 
         <div className="absolute right-0 p-2">
           <button

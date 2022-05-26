@@ -6,8 +6,6 @@ import { useAppDispatch, useAppSelector } from '../../../redux/app/hooks'
 import {
   selectStoringData,
   addOrder,
-  // incrementOrder,
-  // decrementOrder,
 } from '../../../redux/features/storingdateSlice'
 
 interface Props {
