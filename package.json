@@ -5,7 +5,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "unit": "vitest run",
+    "unit": "vitest",
     "unit:cov": "vitest run --coverage",
     "lint": "next lint"
   },
