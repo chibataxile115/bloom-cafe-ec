@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import { store } from '../redux/app/store'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <Provider store={store}>
       <Component {...pageProps} />
