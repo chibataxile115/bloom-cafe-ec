@@ -11,10 +11,13 @@ type UseLiff = {
   login?: () => void
   logout?: () => void
 }
+interface Props {
+  children: React.ReactNode
+}
 
 export const LiffContext = createContext<typeof Liff>(undefined)
 
-export const LiffProvider: React.FC = ({ children }) => {
+export const LiffProvider: React.FC<Props> = ({ children }) => {
   const [liff, setLiff] = useState<typeof Liff>(undefined)
 
   useEffect(() => {
