@@ -211,13 +211,13 @@ const SigninBase: React.FC = () => {
           </div>
 
           <div className="text-sm">
-            <a
-              href="#"
+            <button
+              // href="#"
               // onClick={openThaResetPasswordModal}
               className="font-medium text-blue-600 hover:text-blue-500"
             >
               パスワードを忘れてしまいましたか?
-            </a>
+            </button>
           </div>
         </div>
 
