@@ -8,11 +8,6 @@ import {
 } from '../../../redux/features/menue/menueListSlice'
 
 import {
-  selectStoringData,
-  updateDetail,
-} from '../../../redux/features/storingdateSlice'
-
-import {
   cartIncrementOrder,
   cartDecrementOrder,
 } from '../../../redux/features/cartdetailSlice'
@@ -26,7 +21,6 @@ const CountButton: FC<Props> = (props) => {
 
   const dispatch = useAppDispatch()
   const menueListSelector = useAppSelector(selectMenueList)
-  const storingDataSelector = useAppSelector(selectStoringData)
 
   const controlCart = (
     mode: 'increment' | 'decrement',
@@ -45,16 +39,7 @@ const CountButton: FC<Props> = (props) => {
           countState: menueListSelector[targetIndex].count + 1,
         })
       )
-      dispatch(
-        updateDetail({
-          ...storingDataSelector,
-          targetIndex: countButtonID,
-          isInCartState: true,
-          countState: storingDataSelector[targetIndex].count + 1,
-        })
-      )
 
-      // dispatch(updateCart(updateCartArg))
       dispatch(cartIncrementOrder())
     }
 
@@ -74,18 +59,7 @@ const CountButton: FC<Props> = (props) => {
               : menueListSelector[targetIndex].count - 1,
         })
       )
-      dispatch(
-        updateDetail({
-          ...storingDataSelector,
-          targetIndex: countButtonID,
-          isInCartState:
-            storingDataSelector[targetIndex].count <= 1 ? false : true,
-          countState:
-            storingDataSelector[targetIndex].count <= 1
-              ? 0
-              : storingDataSelector[targetIndex].count - 1,
-        })
-      )
+
       dispatch(cartDecrementOrder())
     }
   }

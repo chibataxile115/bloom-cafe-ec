@@ -2,21 +2,24 @@ import React, { FC } from 'react'
 
 // NOTE: Redux関連
 import { useAppDispatch, useAppSelector } from '../../../redux/app/hooks'
-import { resetOrder, addOrder } from '../../../redux/features/storingdateSlice'
+// import { resetOrder, addOrder } from '../../../redux/features/storingdateSlice'
 import {
   selectMenueList,
   updateCart,
 } from '../../../redux/features/menue/menueListSlice'
+import { updateCount as CartDetailForUpdateCount } from '../../../redux/features/cartdetailSlice'
 
 interface Props {
   deleteButtonID: number
+  deleteDocID: string
 }
 
 const DeletButton: FC<Props> = (props) => {
-  const { deleteButtonID } = props
+  const { deleteButtonID, deleteDocID } = props
 
   const dispatch = useAppDispatch()
   const menueListSelector = useAppSelector(selectMenueList)
+
   const targetDeletecart = (targetIndex: number) => {
     if (menueListSelector[deleteButtonID].isInCart == true) {
       //menueListsliceをfalse
@@ -28,24 +31,12 @@ const DeletButton: FC<Props> = (props) => {
           countState: 0,
         })
       )
-      dispatch(resetOrder())
-      menueListSelector.map((item) => {
-        if (item.isInCart && deleteButtonID !== item.id) {
-          dispatch(
-            addOrder(
-              item.docID,
-              item.id,
-              item.name,
-              item.category,
-              item.isInCart,
-              item.count,
-              item.imageURL,
-              item.plice,
-              item.isInit
-            )
-          )
-        }
-      })
+      // dispatch(resetOrder())
+      dispatch(
+        CartDetailForUpdateCount({
+          targetMenueCount: menueListSelector[deleteButtonID].count,
+        })
+      )
     }
   }
 
