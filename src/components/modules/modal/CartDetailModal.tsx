@@ -4,7 +4,6 @@ import { BasicModal, ImageCartModal } from '../modal'
 import { CartDetailView } from './modalView'
 // NOTE: Redux関連
 import { useAppDispatch, useAppSelector } from '../../../redux/app/hooks'
-import { resetOrder } from '../../../redux/features/storingdateSlice'
 import {
   selectMenuePage,
   changeState as changeStateForMenuePage,
@@ -17,7 +16,6 @@ const CartDetailModal: React.FC = () => {
     dispatch(
       changeStateForMenuePage({ ...menuPageSelector, isOpenCartModal: false })
     )
-    dispatch(resetOrder())
   }
 
   return (
