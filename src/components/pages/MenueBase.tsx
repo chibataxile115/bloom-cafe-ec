@@ -54,15 +54,13 @@ const MenueBase = () => {
   }
 
   return (
-    <div>
-      <HomeLayout title="商品一覧">
-        <div className="flex">
-          <MenueCard />
-        </div>
-        <button onClick={orderClick}>注文確定へ進む</button>
-        <CartDetailModal />
-      </HomeLayout>
-    </div>
+    <HomeLayout title="商品一覧">
+      <div className="flex flex-row justify-center">
+        <MenueCard />
+      </div>
+      <button onClick={orderClick}>注文確定へ進む</button>
+      <CartDetailModal />
+    </HomeLayout>
   )
 }
 

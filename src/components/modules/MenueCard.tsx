@@ -13,18 +13,27 @@ const MenueCard: FC = () => {
   const menueListSelector = useAppSelector(selectMenueList)
 
   return (
-    <div className="h-w-full">
-      <div className="w-full">
-        {menueListSelector.map((item, index) => (
-          <div key={index} className="h-w-full mx-36 my-10 bg-gray-600">
-            {/* // TODO: カード毎のデザインはここのclassNameを修正する */}
-            <ImageViewer imagePath={item.imageURL} />
-            <ButtonCount countButtonID={item.id} />
-            <CartButton cartButtonID={item.id} />
-          </div>
-        ))}
-      </div>
-    </div>
+    <ul className="flex flex-row flex-wrap justify-center">
+      {menueListSelector.map((item, index) => (
+        <li
+          key={index}
+          className="
+          mx-2 mt-4
+          flex
+          w-full
+          max-w-[40vw]
+          flex-col
+          rounded-md bg-gray-200 p-2
+          text-sm
+          "
+        >
+          {/* // TODO: カード毎のデザインはここのclassNameを修正する */}
+          <ImageViewer imagePath={item.imageURL} />
+          <ButtonCount countButtonID={item.id} />
+          {/* <CartButton cartButtonID={item.id} /> */}
+        </li>
+      ))}
+    </ul>
   )
 }
 export default MenueCard

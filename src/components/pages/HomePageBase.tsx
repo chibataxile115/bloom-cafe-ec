@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-
+// NOTE: original
+import { HomeLayout } from '../../components/layout'
 // NOTE: Redux関連
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
 import {
@@ -24,7 +25,8 @@ const HomePageBase: FC = () => {
 
   // FIXME: Selectorの呼び出しを修正する
   return (
-    <>
+    <HomeLayout title="ようこそ">
+      <h1 className="text-red-500">こんにちは</h1>
       <div className="mt-5 flex w-full justify-center">
         <button
           className="hover:bg-wihte my-3 mx-3 w-8/12 rounded py-2 px-3 text-base text-black
@@ -99,7 +101,7 @@ const HomePageBase: FC = () => {
           </div>
         </ul>
       </div>
-    </>
+    </HomeLayout>
   )
 }
 

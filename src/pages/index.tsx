@@ -8,10 +8,9 @@ import { HomePageBase } from '../components/pages'
 
 const Home: NextPage = () => {
   return (
-    <HomeLayout title="ようこそ">
-      <h1 className="text-red-500">こんにちは</h1>
+    <>
       <HomePageBase />
-    </HomeLayout>
+    </>
   )
 }
 

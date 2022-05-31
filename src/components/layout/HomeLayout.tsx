@@ -40,14 +40,14 @@ const HomeLayout: FC<Props> = (props) => {
       flex min-h-screen flex-col
       items-center
       justify-center
-      bg-gray-500
+      bg-gray-400
       bg-cover 
       "
     >
       <Head>
         <title>{title}</title>
       </Head>
-      <div className="bg-gradient-to-r "></div>
+      <div className="bg-gradient-to-r"></div>
       <header className="mt-10 min-w-full">
         <Steper />
       </header>

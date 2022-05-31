@@ -69,13 +69,18 @@ const ButtonCount: FC<Props> = (props) => {
   }
 
   return (
-    <div className="flex flex-col">
-      <div className="flex flex-row">
+    <div className="mt-2 flex flex-col">
+      <div className="flex flex-row justify-between">
         {/* プラスボタン */}
-        <Button
+        {/* <Button
           id={`incrementButton${countButtonID}`}
           color="secondary"
-          style={{ margin: '3px', fontSize: '20px', padding: '0' }}
+          style={{ fontSize: '20px', padding: '0' }}
+          onClick={() => controlCart('increment', countButtonID)}
+        > */}
+        <button
+          id={`incrementButton${countButtonID}`}
+          className="ml-4"
           onClick={() => controlCart('increment', countButtonID)}
         >
           <svg
@@ -90,12 +95,12 @@ const ButtonCount: FC<Props> = (props) => {
               clipRule="evenodd"
             />
           </svg>
-        </Button>
+        </button>
+        {/* </Button> */}
         {/* マイナスボタン */}
-        <Button
+        <button
           id={`decrementCount${countButtonID}`}
-          color="secondary"
-          style={{ margin: '3px', fontSize: '20px', padding: '0' }}
+          className="mr-4"
           onClick={() => controlCart('decrement', countButtonID)}
         >
           <svg
@@ -110,17 +115,16 @@ const ButtonCount: FC<Props> = (props) => {
               clipRule="evenodd"
             />
           </svg>
-        </Button>
-        {/* カートに追加する */}
-        <Button
-          id={`decrementButton${countButtonID}`}
-          color="primary"
-          style={{ margin: '5px', fontSize: '20px', padding: '0' }}
-          onClick={() => controlCart('increment', countButtonID)}
-        >
-          カートに入れるデモ
-        </Button>
+        </button>
       </div>
+      {/* カートに追加する */}
+      <button
+        id={`decrementButton${countButtonID}`}
+        className="mt-2 text-sm text-blue-500"
+        onClick={() => controlCart('increment', countButtonID)}
+      >
+        カートに入れるデモ
+      </button>
     </div>
   )
 }
