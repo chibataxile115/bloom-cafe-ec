@@ -1,0 +1,46 @@
+<mxfile host="65bd71144e">
+    <diagram id="uWt4cbT2hrOXnrXI4e_q" name="ページ1">
+        <mxGraphModel dx="1049" dy="617" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Vertical Container" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="108" y="50" width="412" height="500" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="お会計に進む&lt;br&gt;&lt;br&gt;合計 : 9000" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                    <mxGeometry x="121" y="410" width="170" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="" style="swimlane;fontSize=14;" vertex="1" parent="2">
+                    <mxGeometry x="12" y="50" width="388" height="350" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="16">
+                    <mxGeometry x="11.5" y="40" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="金額 : 3000" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="16">
+                    <mxGeometry x="246.5" y="80" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="&lt;font style=&quot;font-size: 14px&quot;&gt;5個&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="16">
+                    <mxGeometry x="272.5" y="45" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="16">
+                    <mxGeometry x="11.5" y="130" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="金額 : 3000" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="16">
+                    <mxGeometry x="246.5" y="170" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="&lt;font style=&quot;font-size: 14px&quot;&gt;5個&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="16">
+                    <mxGeometry x="272.5" y="135" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="16">
+                    <mxGeometry x="11.5" y="220" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="金額 : 3000" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="16">
+                    <mxGeometry x="246.5" y="260" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="&lt;font style=&quot;font-size: 14px&quot;&gt;5個&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="16">
+                    <mxGeometry x="272.5" y="225" width="40" height="20" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
