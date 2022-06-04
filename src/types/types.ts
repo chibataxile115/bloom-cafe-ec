@@ -87,7 +87,7 @@ export interface AdminMenueDetail {
   category: string
   count: number
   imageURL: string
-  plice: string
+  plice: number
 }
 
 export interface CartDetail {
