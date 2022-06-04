@@ -76,7 +76,7 @@ export interface MenueList {
   isInCart: boolean
   count: number
   imageURL: string
-  plice: string
+  plice: number
   isInit: boolean
 }
 
@@ -87,7 +87,7 @@ export interface AdminMenueDetail {
   category: string
   count: number
   imageURL: string
-  plice: string
+  plice: number
 }
 
 export interface CartDetail {
@@ -103,7 +103,7 @@ export interface MenueFromFirestore {
   createdAt: Date
   category: string
   detailImagesCount: number
-  plice: string
+  plice: number
   imageURL: string
   updatedAt: Date
   docID: string

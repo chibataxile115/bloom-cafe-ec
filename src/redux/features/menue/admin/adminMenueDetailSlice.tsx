@@ -11,7 +11,7 @@ const initialState: AdminMenueDetail = {
   category: '',
   count: 0,
   imageURL: '',
-  plice: '',
+  plice: 0,
 }
 
 // NOTE: Sliceを定義する
@@ -26,7 +26,7 @@ export const adminMenueDetailSlice = createSlice({
       state.category = ''
       state.count = 0
       state.imageURL = ''
-      state.plice = ''
+      state.plice = 0
     },
     changeState: (
       state: AdminMenueDetail,

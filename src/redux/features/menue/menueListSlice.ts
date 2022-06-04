@@ -12,6 +12,8 @@ interface UpdateCartArg {
   targetIndex: number
   isInCartState: boolean
   countState: number
+  // addedCount: number
+  // addedPlice: string
 }
 
 // NOTE: initialStateを定義
@@ -37,7 +39,7 @@ export const menueListSlice = createSlice({
         isInCart: boolean,
         count: number,
         imageURL: string,
-        plice: string,
+        plice: number,
         isInit: boolean
       ) => {
         return {

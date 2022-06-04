@@ -22,7 +22,7 @@ import { doc, setDoc, serverTimestamp } from 'firebase/firestore'
 interface SetMenue {
   menueID: string
   imageName: string
-  plice: string
+  plice: number
   name: string
   category: string
 }
@@ -64,7 +64,7 @@ export const useSubmitMenue = () => {
           const setMenue: SetMenue = {
             menueID: menueDetail.menueIDL + '-' + menueDetail.menueIDR,
             imageName: processedImageName,
-            plice: menueDetail.plice,
+            plice: Number(menueDetail.plice),
             name: menueDetail.name,
             category: menueDetail.category,
           }
