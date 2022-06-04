@@ -10,6 +10,7 @@ interface UpdateArg {
 // NOTE: initialStateを定義
 const initialState: CartDetail = {
   cartdetailTotal: 0,
+  // totalPlice: 0,
 }
 
 // NOTE: Sliceを定義する

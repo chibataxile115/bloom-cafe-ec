@@ -3,14 +3,11 @@ import { useCallback } from 'react'
 import { MenueFromFirestore } from '../../types/types'
 // NOTE: Firebase関連
 import { DB } from '../../firebase/firebaseConfig'
-import { getDocs, collection, query, orderBy, where } from 'firebase/firestore'
+import { getDocs, collection } from 'firebase/firestore'
 import { ConvertFirestoreData } from '../../lib'
 // NOTE: Redux関連
-import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
-import {
-  selectMenueList,
-  addMenue as addMenueForMenueList,
-} from '../../redux/features/menue/menueListSlice'
+import { useAppDispatch } from '../../redux/app/hooks'
+import { addMenue as addMenueForMenueList } from '../../redux/features/menue/menueListSlice'
 
 export const useFetchMenue = () => {
   const dispatch = useAppDispatch()
