@@ -24,8 +24,7 @@ const BasicModal: React.FC<Props> = (props) => {
             className="
             flex
             max-h-[90%]
-
-            min-w-[500px] flex-col overflow-y-scroll
+            min-w-[500px] flex-col
             rounded-md
             bg-white p-10 shadow-2xl
           "

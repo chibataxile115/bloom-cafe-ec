@@ -8,10 +8,13 @@ import {
   selectMenuePage,
   changeState as changeStateForMenuePage,
 } from '../../../redux/features/menuePageSlice'
+import { selectCartDetail } from '../../../redux/features/cartdetailSlice'
 
 const CartDetailModal: React.FC = () => {
   const dispatch = useAppDispatch()
   const menuPageSelector = useAppSelector(selectMenuePage)
+  const cartDetailSelector = useAppSelector(selectCartDetail)
+
   const modalClose = () => {
     dispatch(
       changeStateForMenuePage({ ...menuPageSelector, isOpenCartModal: false })
@@ -21,10 +24,6 @@ const CartDetailModal: React.FC = () => {
   return (
     <BasicModal isOpenModal={menuPageSelector.isOpenCartModal}>
       <div className="relative flex items-center justify-center">
-        <h1 className="items-center justify-center text-center text-2xl font-bold">
-          カート
-        </h1>
-
         <div className="absolute right-0 p-2">
           <button
             type="button"
@@ -47,7 +46,38 @@ const CartDetailModal: React.FC = () => {
           </button>
         </div>
       </div>
-      <CartDetailView />
+      {/* 商品 */}
+      <div className="z-10 flex max-h-[600px] overflow-auto">
+        <CartDetailView />
+      </div>
+      {/* 合計金額ボタン */}
+      <div
+        className="
+          z-20
+          mt-4
+          flex
+          w-full
+          justify-center
+          "
+      >
+        <button
+          className="
+          focus:shadow-outline
+          mx-auto mb-2
+          w-full min-w-[150px] rounded-md
+          border-2
+          border-gray-700
+          bg-gray-700
+          py-2 px-4 font-bold
+          text-gray-100
+          hover:bg-gray-900
+          hover:text-gray-300
+          focus:outline-none
+          "
+        >
+          お会計に進む : ￥{Math.floor(cartDetailSelector.totalPlice * 1.1)}
+        </button>
+      </div>
     </BasicModal>
   )
 }

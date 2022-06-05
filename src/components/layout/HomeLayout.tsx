@@ -57,7 +57,7 @@ const HomeLayout: FC<Props> = (props) => {
           <Badge
             color="secondary"
             overlap="circular"
-            badgeContent={cartDetailSelector.cartdetailTotal}
+            badgeContent={cartDetailSelector.totalCount}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
