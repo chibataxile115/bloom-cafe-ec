@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { useContext } from 'react'
+import { useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 // NOTE: Custom Hook
 import { useFetchMenue } from '../../hooks/menue/useFetchMenue'
@@ -9,7 +8,6 @@ import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
 import { selectStep, changeState } from '../../redux/features/step/stepSlice'
 import {
   selectMenueList,
-  addMenue as addMenueForMenueList,
   resetMenue as resetMenueForMenueList,
 } from '../../redux/features/menue/menueListSlice'
 
@@ -17,7 +15,6 @@ import {
 import { HomeLayout } from '../layout'
 import { MenueCard } from '../modules'
 import { CartDetailModal } from '../modules/modal'
-import { withCoalescedInvoke } from 'next/dist/lib/coalesced-function'
 
 const MenueBase = () => {
   const router = useRouter()
@@ -26,11 +23,14 @@ const MenueBase = () => {
 
   const { getMenueList } = useFetchMenue()
 
+  const didLogRef = useRef(false)
+
   useEffect(() => {
-    if (menueListSelector.length !== 0) {
-      dispatch(resetMenueForMenueList())
-      getMenueList()
-    } else {
+    // NOTE: React18の2回レンダリングの対処
+    if (didLogRef.current === false) {
+      didLogRef.current = true
+
+      if (menueListSelector.length !== 0) dispatch(resetMenueForMenueList())
       getMenueList()
     }
   }, [])
