@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 // types
 import { AdminMenueDetail } from '../../../../../types/types'
@@ -40,11 +40,14 @@ const AllMenueBase = () => {
   const { getMenueList } = useFetchMenue()
   const { getSubImages } = useFetchSubImages()
 
+  const didLogRef = useRef(false)
+
   useEffect(() => {
-    if (menueListSelector.length !== 0) {
-      dispatch(resetMenueForMenueList())
-      getMenueList()
-    } else {
+    // NOTE: React18の2回レンダリングの対処
+    if (didLogRef.current === false) {
+      didLogRef.current = true
+
+      if (menueListSelector.length !== 0) dispatch(resetMenueForMenueList())
       getMenueList()
     }
   }, [])

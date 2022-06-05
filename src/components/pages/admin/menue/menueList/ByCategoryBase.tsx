@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 // Originals
 import { AdminLayout } from '../../../../layout'
 import { MenueSubmitModal } from '../../../../modules/modal/admin'
@@ -7,6 +7,7 @@ import { MenueDeleteModal } from '../../../../modules/modal/admin'
 import { Tabs } from '../../../../atoms'
 import { ByCategoryMenueView } from '../../../../modules/menue/menueList'
 // Custom Hook
+import { useFetchMenue } from '../../../../../hooks/menue/useFetchMenue'
 import { useFetchByCategory } from '../../../../../hooks/menue/useFetchByCategory'
 // Redux関連
 import { useAppDispatch, useAppSelector } from '../../../../../redux/app/hooks'
@@ -14,17 +15,32 @@ import {
   selectAdminPage,
   changeState as changeStateForAdminPage,
 } from '../../../../../redux/features/adminPageSlice'
+import {
+  selectMenueList,
+  resetMenue as resetMenueForMenueList,
+} from '../../../../../redux/features/menue/menueListSlice'
 import { selectCategoryItems } from '../../../../../redux/features/menue/admin/category/categoryItemsSlice'
 
 const ByCategoryBase = () => {
   const dispatch = useAppDispatch()
   const adminPageSelector = useAppSelector(selectAdminPage)
+  const menueListSelector = useAppSelector(selectMenueList)
   const categoryItemsSelector = useAppSelector(selectCategoryItems)
 
+  const { getMenueList } = useFetchMenue()
   const { getCategoryList } = useFetchByCategory()
 
+  const didLogRef = useRef(false)
+
   useEffect(() => {
-    getCategoryList()
+    // NOTE: React18の2回レンダリングの対処
+    if (didLogRef.current === false) {
+      didLogRef.current = true
+
+      if (menueListSelector.length !== 0) dispatch(resetMenueForMenueList())
+      getMenueList()
+      getCategoryList()
+    }
   }, [])
 
   return (
