@@ -15,6 +15,7 @@ const CartDetailView: React.FC = () => {
             <li key={item.id}>
               <p>{item.name}</p>
               <p>{item.count}</p>
+              <p>{item.plice}</p>
               <DeleteButton deleteButtonID={item.id} deleteDocID={item.docID} />
               <CountButton countButtonID={item.id} />
             </li>

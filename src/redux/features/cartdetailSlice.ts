@@ -5,12 +5,14 @@ import { CartDetail } from '../../types/types'
 
 interface UpdateArg {
   targetMenueCount: number
+  targetMenuePlice: number
+  mode: 'increment' | 'decrement'
 }
 
 // NOTE: initialStateを定義
 const initialState: CartDetail = {
-  cartdetailTotal: 0,
-  // totalPlice: 0,
+  totalCount: 0,
+  totalPlice: 0,
 }
 
 // NOTE: Sliceを定義する
@@ -19,22 +21,29 @@ export const cartdetailSlice = createSlice({
   initialState,
   reducers: {
     resetCount: (state: CartDetail) => {
-      state.cartdetailTotal = 0
+      state.totalCount = 0
     },
     updateCount: (state: CartDetail, action: PayloadAction<UpdateArg>) => {
-      const { targetMenueCount } = action.payload
+      const { targetMenueCount, targetMenuePlice, mode } = action.payload
 
-      const calcedCount = state.cartdetailTotal - targetMenueCount
-      if (calcedCount >= 0) {
-        state.cartdetailTotal = calcedCount
+      const calcedCount = state.totalCount - targetMenueCount
+      const caledPlice = state.totalPlice - targetMenuePlice
+
+      if (mode === 'increment') {
+        state.totalCount = targetMenueCount
+        state.totalPlice = targetMenuePlice
+      } else {
+        if (calcedCount >= 0 && caledPlice >= 0) {
+          state.totalCount = targetMenueCount
+          state.totalPlice = targetMenuePlice
+        }
       }
     },
     cartIncrementOrder: (state: CartDetail) => {
-      state.cartdetailTotal = state.cartdetailTotal + 1
+      state.totalCount = state.totalCount + 1
     },
     cartDecrementOrder: (state: CartDetail) => {
-      if (state.cartdetailTotal > 0)
-        state.cartdetailTotal = state.cartdetailTotal - 1
+      if (state.totalCount > 0) state.totalCount = state.totalCount - 1
     },
   },
 })

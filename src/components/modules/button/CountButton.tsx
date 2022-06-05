@@ -6,12 +6,10 @@ import {
   selectMenueList,
   updateCart,
 } from '../../../redux/features/menue/menueListSlice'
-
 import {
-  cartIncrementOrder,
-  cartDecrementOrder,
+  selectCartDetail,
+  updateCount as updateCountForCartDetail,
 } from '../../../redux/features/cartdetailSlice'
-
 interface Props {
   countButtonID: number
 }
@@ -21,10 +19,11 @@ const CountButton: FC<Props> = (props) => {
 
   const dispatch = useAppDispatch()
   const menueListSelector = useAppSelector(selectMenueList)
+  const cartDetailSelector = useAppSelector(selectCartDetail)
 
   const controlCart = (
     mode: 'increment' | 'decrement',
-    targetIndex?: number
+    targetIndex: number
   ) => {
     if (
       mode === 'increment' &&
@@ -33,14 +32,21 @@ const CountButton: FC<Props> = (props) => {
       // 商品を新規登録
       dispatch(
         updateCart({
-          ...menueListSelector,
           targetIndex: countButtonID,
           isInCartState: true,
-          countState: menueListSelector[targetIndex].count + 1,
+          addedCount: menueListSelector[targetIndex].count + 1,
         })
       )
 
-      dispatch(cartIncrementOrder())
+      dispatch(
+        updateCountForCartDetail({
+          targetMenueCount: cartDetailSelector.totalCount + 1,
+          targetMenuePlice:
+            cartDetailSelector.totalPlice +
+            menueListSelector[targetIndex].plice,
+          mode: 'increment',
+        })
+      )
     }
 
     if (
@@ -49,18 +55,25 @@ const CountButton: FC<Props> = (props) => {
     ) {
       dispatch(
         updateCart({
-          ...menueListSelector,
           targetIndex: countButtonID,
           isInCartState:
             menueListSelector[targetIndex].count <= 1 ? false : true,
-          countState:
+          addedCount:
             menueListSelector[targetIndex].count <= 1
               ? 0
               : menueListSelector[targetIndex].count - 1,
         })
       )
 
-      dispatch(cartDecrementOrder())
+      dispatch(
+        updateCountForCartDetail({
+          targetMenueCount: cartDetailSelector.totalCount - 1,
+          targetMenuePlice:
+            cartDetailSelector.totalPlice -
+            menueListSelector[targetIndex].plice,
+          mode: 'decrement',
+        })
+      )
     }
   }
 
