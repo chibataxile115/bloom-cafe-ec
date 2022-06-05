@@ -77,7 +77,7 @@ const SigninBase: React.FC = () => {
         // ローディングを停止
         dispatch(changeState({ ...authPageSelector, isLoading: false }))
 
-        router.push('/admin/menue-list')
+        router.push('/admin/menue-list/all-menue')
       })
       .catch((error) => {
         // ローディングを停止
