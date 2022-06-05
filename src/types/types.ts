@@ -91,7 +91,8 @@ export interface AdminMenueDetail {
 }
 
 export interface CartDetail {
-  cartdetailTotal: number
+  totalCount: number
+  totalPlice: number
 }
 
 export interface SubmitMenueArgs {

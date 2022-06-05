@@ -11,9 +11,7 @@ interface UpdateArg {
 interface UpdateCartArg {
   targetIndex: number
   isInCartState: boolean
-  countState: number
-  // addedCount: number
-  // addedPlice: string
+  addedCount: number
 }
 
 // NOTE: initialStateを定義
@@ -60,9 +58,9 @@ export const menueListSlice = createSlice({
 
     // 商品を更新
     updateCart: (state: MenueList[], action: PayloadAction<UpdateCartArg>) => {
-      const { targetIndex, isInCartState, countState } = action.payload
+      const { targetIndex, isInCartState, addedCount } = action.payload
       state[targetIndex].isInCart = isInCartState
-      state[targetIndex].count = countState
+      state[targetIndex].count = addedCount
     },
     // 商品の注文数を加算
     incrementOrder: (

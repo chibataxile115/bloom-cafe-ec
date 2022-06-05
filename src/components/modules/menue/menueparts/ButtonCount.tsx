@@ -1,14 +1,16 @@
 import React, { FC } from 'react'
 import { Button } from '@material-ui/core'
+import clsx from 'clsx'
 // Redux関連
 import { useAppDispatch, useAppSelector } from '../../../../redux/app/hooks'
 import {
   selectMenueList,
   updateCart,
 } from '../../../../redux/features/menue/menueListSlice'
+
 import {
-  cartIncrementOrder,
-  cartDecrementOrder,
+  selectCartDetail,
+  updateCount as updateCountForCartDetail,
 } from '../../../../redux/features/cartdetailSlice'
 
 interface Props {
@@ -20,6 +22,7 @@ const ButtonCount: FC<Props> = (props) => {
 
   const dispatch = useAppDispatch()
   const menueListSelector = useAppSelector(selectMenueList)
+  const cartDetailSelector = useAppSelector(selectCartDetail)
 
   const controlCart = (
     mode: 'increment' | 'decrement',
@@ -30,22 +33,23 @@ const ButtonCount: FC<Props> = (props) => {
       menueListSelector[countButtonID].isInit == true
     ) {
       // 商品を新規登録
-      const updateCartArg = {
-        targetIndex: countButtonID,
-        isInCartState: true,
-        countState: 1,
-      }
       dispatch(
         updateCart({
-          ...menueListSelector,
           targetIndex: countButtonID,
           isInCartState: true,
-          countState: menueListSelector[targetIndex].count + 1,
+          addedCount: menueListSelector[targetIndex].count + 1,
         })
       )
 
-      // dispatch(updateCart(updateCartArg))
-      dispatch(cartIncrementOrder())
+      dispatch(
+        updateCountForCartDetail({
+          targetMenueCount: cartDetailSelector.totalCount + 1,
+          targetMenuePlice:
+            cartDetailSelector.totalPlice +
+            menueListSelector[targetIndex].plice,
+          mode: 'increment',
+        })
+      )
     }
 
     if (
@@ -54,17 +58,25 @@ const ButtonCount: FC<Props> = (props) => {
     ) {
       dispatch(
         updateCart({
-          ...menueListSelector,
           targetIndex: countButtonID,
           isInCartState:
             menueListSelector[targetIndex].count <= 1 ? false : true,
-          countState:
+          addedCount:
             menueListSelector[targetIndex].count <= 1
               ? 0
               : menueListSelector[targetIndex].count - 1,
         })
       )
-      dispatch(cartDecrementOrder())
+      dispatch(
+        updateCountForCartDetail({
+          targetMenueCount: cartDetailSelector.totalCount - 1,
+          targetMenuePlice:
+            cartDetailSelector.totalPlice -
+            menueListSelector[targetIndex].plice *
+              menueListSelector[targetIndex].count,
+          mode: 'decrement',
+        })
+      )
     }
   }
 
@@ -102,10 +114,16 @@ const ButtonCount: FC<Props> = (props) => {
           id={`decrementCount${countButtonID}`}
           className="mr-4"
           onClick={() => controlCart('decrement', countButtonID)}
+          disabled={!menueListSelector[countButtonID].isInCart}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 text-blue-700"
+            className={clsx(
+              `h-5 w-5`,
+              menueListSelector[countButtonID].isInCart
+                ? `text-blue-700`
+                : `text-gray-300`
+            )}
             viewBox="0 0 20 20"
             fill="currentColor"
           >
