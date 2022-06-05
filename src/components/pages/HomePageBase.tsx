@@ -1,16 +1,9 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC } from 'react'
 import { useRouter } from 'next/router'
 // NOTE: original
 import { HomeLayout } from '../../components/layout'
 // NOTE: Redux関連
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
-import {
-  selectMenueItems,
-  menueAdd,
-} from '../../redux/features/menue/menueItemsSlice'
-// NOTE: React Icons
-import { FiAlertCircle } from 'react-icons/fi'
-
 import { selectStep, changeState } from '../../redux/features/step/stepSlice'
 
 const HomePageBase: FC = () => {

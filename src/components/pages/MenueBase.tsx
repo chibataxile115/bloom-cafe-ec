@@ -1,8 +1,8 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useContext } from 'react'
 import { useRouter } from 'next/router'
 // NOTE: Custom Hook
 import { useFetchMenue } from '../../hooks/menue/useFetchMenue'
-
+import { useLiff, LiffContext } from '../../hooks/liff/useLiffProvider'
 // NOTE: Redux関連
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
 import { selectStep, changeState } from '../../redux/features/step/stepSlice'
@@ -10,6 +10,7 @@ import {
   selectMenueList,
   resetMenue as resetMenueForMenueList,
 } from '../../redux/features/menue/menueListSlice'
+import { selectUser, updateUserProf } from '../../redux/features/userSlice'
 
 // NOTE: original
 import { HomeLayout } from '../layout'
@@ -20,12 +21,35 @@ const MenueBase = () => {
   const router = useRouter()
   const dispatch = useAppDispatch()
   const menueListSelector = useAppSelector(selectMenueList)
+  const userSelector = useAppSelector(selectUser)
+
+  const { loggedIn, isInClient, login } = useLiff()
+  const liff = useContext(LiffContext)
 
   const { getMenueList } = useFetchMenue()
+
+  const getLiff = async () => {
+    if (!loggedIn) {
+      login
+    }
+    if (isInClient) {
+      liff.getProfile().then(async (profile) => {
+        dispatch(
+          updateUserProf({
+            ...userSelector,
+            liffID: profile.userId,
+            userName: profile.displayName,
+          })
+        )
+      })
+    }
+  }
 
   const didLogRef = useRef(false)
 
   useEffect(() => {
+    getLiff()
+
     // NOTE: React18の2回レンダリングの対処
     if (didLogRef.current === false) {
       didLogRef.current = true
