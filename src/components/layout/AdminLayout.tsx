@@ -1,10 +1,8 @@
 import { useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 // React icons
-import { GrUserAdmin } from 'react-icons/gr'
 import { GiBowlOfRice } from 'react-icons/gi'
 import { CgLogOut } from 'react-icons/cg'
 import { MdDashboard } from 'react-icons/md'
@@ -103,9 +101,6 @@ const AdminLayout: React.FC<Props> = (props) => {
                   管理画面
                 </button>
               </Link>
-              <button className="focus:shadow-outline hidden rounded-lg focus:outline-none">
-                <GrUserAdmin className="text-gray-100" />
-              </button>
             </div>
 
             {/* NOTE: メニューボタン */}
@@ -214,7 +209,7 @@ const AdminLayout: React.FC<Props> = (props) => {
 
         <main className="relative flex-1 overflow-y-auto focus:outline-none">
           <div className="py-0 px-0">
-            <div className="mx-auto flex max-w-full flex-grow px-0 sm:px-6 md:px-8">
+            <div className="mx-4 flex max-w-full flex-grow sm:mx-6 lg:mx-8">
               <h1 className="mt-4 flex-grow content-between text-3xl font-bold text-gray-900">
                 {pageTitle}
               </h1>
