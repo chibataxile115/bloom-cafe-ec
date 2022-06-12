@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 // Originals
-import { BasicModal } from '../'
+import { AdminBasicModal } from '../'
 // Custom Hook
 import { useMenueDelete } from '../../../../hooks/menue/useMenueDelete'
 // Redux関連
@@ -43,7 +43,7 @@ const MenueDeleteModal: React.FC = () => {
   useEffect(() => {}, [])
 
   return (
-    <BasicModal isOpenModal={adminPageSelector.isMenueDeleteModal}>
+    <AdminBasicModal isOpenModal={adminPageSelector.isMenueDeleteModal}>
       <div className="flex flex-col justify-center rounded-md">
         {/* ヘッダー */}
         <div className="relative flex items-center justify-center">
@@ -145,7 +145,7 @@ const MenueDeleteModal: React.FC = () => {
           </div>
         </div>
       </div>
-    </BasicModal>
+    </AdminBasicModal>
   )
 }
 

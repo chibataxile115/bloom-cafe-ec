@@ -2,7 +2,7 @@
 import { SubmitMenue } from '../../../../types/types'
 // Originals
 import { UploadImage, SubmitMenueArgs } from '../../../../types/types'
-import { BasicModal } from '../'
+import { AdminBasicModal } from '../'
 import { ImageDropArea } from '../../dnd'
 import { Spinner, SnackBar } from '../../../atoms'
 import { useSubmitMenue } from '../../../../hooks/menue/useSubmitMenue'
@@ -109,7 +109,7 @@ const MenueSubmitModal: React.FC = () => {
   }
 
   return (
-    <BasicModal isOpenModal={adminPageSelector.isMenueSubmitModal}>
+    <AdminBasicModal isOpenModal={adminPageSelector.isMenueSubmitModal}>
       <div className="flex flex-col justify-center">
         <div className="relative flex items-center justify-center">
           <h1 className="items-center justify-center text-center text-2xl font-bold">
@@ -336,7 +336,7 @@ const MenueSubmitModal: React.FC = () => {
           />
         </div>
       </div>
-    </BasicModal>
+    </AdminBasicModal>
   )
 }
 
