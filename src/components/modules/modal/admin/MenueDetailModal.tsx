@@ -1,6 +1,6 @@
 import Image from 'next/image'
 // Originals
-import { BasicModal } from '../'
+import { AdminBasicModal } from '../'
 import { ImageLoader } from '../../../../lib'
 // Redux関連
 import { useAppDispatch, useAppSelector } from '../../../../redux/app/hooks'
@@ -31,7 +31,7 @@ const MenueDetailModal: React.FC = () => {
   }
 
   return (
-    <BasicModal isOpenModal={adminPageSelector.isMenueDetailModal}>
+    <AdminBasicModal isOpenModal={adminPageSelector.isMenueDetailModal}>
       <div className="flex flex-col justify-center">
         {/* ヘッダー */}
         <div className="relative flex items-center justify-center">
@@ -216,7 +216,7 @@ const MenueDetailModal: React.FC = () => {
           </button>
         </div>
       </div>
-    </BasicModal>
+    </AdminBasicModal>
   )
 }
 
