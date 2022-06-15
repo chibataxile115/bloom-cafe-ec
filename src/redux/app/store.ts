@@ -15,6 +15,7 @@ import uploadImagesReducer from '../features/menue/uploadImagesSlice'
 import snackBarReducer from '../features/snackbar/snackbarSlice'
 import categoryItemsReducer from '../features/menue/admin/category/categoryItemsSlice'
 import subImagesReducer from '../features/menue/subImagesSlice'
+import clientInfoReducer from '../features/clientInfoSlice'
 
 const reducer = {
   adminPage: adminPageReducer,
@@ -31,6 +32,7 @@ const reducer = {
   categoryItems: categoryItemsReducer,
   adminMenueDetail: adminMenueDetailReducer,
   subImages: subImagesReducer,
+  clientInfo: clientInfoReducer,
 }
 
 export const store = configureStore({
