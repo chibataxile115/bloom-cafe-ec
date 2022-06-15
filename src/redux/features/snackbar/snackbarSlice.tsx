@@ -4,9 +4,6 @@ import { RootState } from '../../app/store'
 import { SnackBar } from '../../../types/types'
 import Slide, { SlideProps } from '@mui/material/Slide'
 
-// NOTE: Null許可タイプ
-// type Nullable<T> = T | null;
-
 // NOTE: Stateの型を定義する
 interface SnackBarState {
   SnackBar: SnackBar
@@ -17,6 +14,7 @@ const initialState: SnackBar = {
   isOpenTheMenueRegistSnackbar: false,
   isOpenTheImageUploadSnacbar: false,
   isOpenTheMenueDeleteSnackbar: false,
+  isOpenTheFetchZipcodeSnackbar: false,
   mode: 'success',
 }
 
@@ -30,6 +28,7 @@ export const snackbarSlice = createSlice({
         isOpenTheMenueRegistSnackbar: false,
         isOpenTheImageUploadSnacbar: false,
         isOpenTheMenueDeleteSnackbar: false,
+        isOpenTheFetchZipcodeSnackbar: false,
         mode: 'success',
       }
     },
@@ -40,6 +39,8 @@ export const snackbarSlice = createSlice({
         action.payload.isOpenTheImageUploadSnacbar
       state.isOpenTheMenueDeleteSnackbar =
         action.payload.isOpenTheMenueDeleteSnackbar
+      state.isOpenTheFetchZipcodeSnackbar =
+        action.payload.isOpenTheFetchZipcodeSnackbar
       state.mode = action.payload.mode
     },
   },
