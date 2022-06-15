@@ -55,11 +55,6 @@ const FormItem = () => {
         zipcode: event.target.value,
         prefectures: clientInfoSelector.prefectures,
         municipalities: clientInfoSelector.municipalities,
-        addressbuilding: clientInfoSelector.addressbuilding,
-        clientname: clientInfoSelector.clientname,
-        phonenumber: clientInfoSelector.phonenumber,
-        deliverytime: clientInfoSelector.deliverytime,
-        deliveryday: clientInfoSelector.deliveryday,
       })
     )
 
