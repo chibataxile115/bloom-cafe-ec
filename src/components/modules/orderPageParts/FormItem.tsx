@@ -53,13 +53,13 @@ const FormItem = () => {
       updateInfo({
         ...clientInfoSelector,
         zipcode: event.target.value,
-        prefectures: event.target.value,
-        municipalities: event.target.value,
-        addressbuilding: event.target.value,
-        clientname: event.target.value,
-        phonenumber: event.target.value,
-        deliverytime: event.target.value,
-        deliveryday: event.target.value,
+        prefectures: clientInfoSelector.prefectures,
+        municipalities: clientInfoSelector.municipalities,
+        addressbuilding: clientInfoSelector.addressbuilding,
+        clientname: clientInfoSelector.clientname,
+        phonenumber: clientInfoSelector.phonenumber,
+        deliverytime: clientInfoSelector.deliverytime,
+        deliveryday: clientInfoSelector.deliveryday,
       })
     )
 
