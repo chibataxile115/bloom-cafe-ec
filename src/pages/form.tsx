@@ -1,9 +1,9 @@
 import React from 'react'
 // NOTE: original
-import { InputFormBase } from '../components/pages'
+import { ClientFormBase } from '../components/pages'
 
 const form = () => {
-  return <InputFormBase />
+  return <ClientFormBase />
 }
 
 export default form

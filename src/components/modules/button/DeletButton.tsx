@@ -1,8 +1,6 @@
 import React, { FC } from 'react'
-
 // NOTE: Redux関連
 import { useAppDispatch, useAppSelector } from '../../../redux/app/hooks'
-// import { resetOrder, addOrder } from '../../../redux/features/storingdateSlice'
 import {
   selectMenueList,
   updateCart as updateCartForMenueList,
@@ -38,7 +36,9 @@ const DeletButton: FC<Props> = (props) => {
       // dispatch(resetOrder())
       dispatch(
         CartDetailForUpdateCount({
-          targetMenueCount: menueListSelector[deleteButtonID].count,
+          targetMenueCount:
+            cartdetailSelector.totalCount -
+            menueListSelector[deleteButtonID].count,
           targetMenuePlice:
             cartdetailSelector.totalPlice -
             menueListSelector[deleteButtonID].plice *

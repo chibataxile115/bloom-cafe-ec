@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 // originals
-import { BasicModal, ImageCartModal } from '../modal'
+import { BasicModal } from '../modal'
 import { CartDetailView } from './modalView'
 // NOTE: Redux関連
 import { useAppDispatch, useAppSelector } from '../../../redux/app/hooks'
@@ -8,17 +9,24 @@ import {
   selectMenuePage,
   changeState as changeStateForMenuePage,
 } from '../../../redux/features/menuePageSlice'
+import { selectStep, changeState } from '../../../redux/features/step/stepSlice'
 import { selectCartDetail } from '../../../redux/features/cartdetailSlice'
 
 const CartDetailModal: React.FC = () => {
   const dispatch = useAppDispatch()
   const menuPageSelector = useAppSelector(selectMenuePage)
   const cartDetailSelector = useAppSelector(selectCartDetail)
+  const router = useRouter()
 
   const modalClose = () => {
     dispatch(
       changeStateForMenuePage({ ...menuPageSelector, isOpenCartModal: false })
     )
+  }
+  const registClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // stepperの更新
+    dispatch(changeState({ ...selectStep, stepIndex: 2 }))
+    router.push('/client')
   }
 
   return (
@@ -74,6 +82,7 @@ const CartDetailModal: React.FC = () => {
           hover:text-gray-300
           focus:outline-none
           "
+          onClick={registClick}
         >
           お会計に進む : ￥{Math.floor(cartDetailSelector.totalPlice * 1.1)}
         </button>
