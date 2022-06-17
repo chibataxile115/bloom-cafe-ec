@@ -72,8 +72,7 @@ const ButtonCount: FC<Props> = (props) => {
           targetMenueCount: cartDetailSelector.totalCount - 1,
           targetMenuePlice:
             cartDetailSelector.totalPlice -
-            menueListSelector[targetIndex].plice *
-              menueListSelector[targetIndex].count,
+            menueListSelector[targetIndex].plice,
           mode: 'decrement',
         })
       )
