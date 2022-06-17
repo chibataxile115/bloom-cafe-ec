@@ -8,7 +8,7 @@ import { HomeLayout } from '../layout'
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
 import { selectStep, changeState } from '../../redux/features/step/stepSlice'
 
-const InputFormBase = () => {
+const ClientFormBase = () => {
   const router = useRouter()
   const dispatch = useAppDispatch()
   const registClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -27,4 +27,4 @@ const InputFormBase = () => {
   )
 }
 
-export default InputFormBase
+export default ClientFormBase
