@@ -21,7 +21,7 @@ const InputFormBase = () => {
     <div>
       <HomeLayout title="情報入力">
         <FormItem />
-        <button onClick={registClick}>注文確定</button>
+        <button onClick={registClick}>注文確定へ進む</button>
       </HomeLayout>
     </div>
   )

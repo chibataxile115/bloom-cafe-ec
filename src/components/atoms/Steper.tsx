@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
 import { selectStep } from '../../redux/features/step/stepSlice'
 
 const Steper = () => {
-  const steps = ['ようこそ', '商品選択', '注文確認']
+  const steps = ['ようこそ', '商品選択', '情報入力', '注文確認']
 
   const dispatch = useAppDispatch()
   const stepSelector = useAppSelector(selectStep)
