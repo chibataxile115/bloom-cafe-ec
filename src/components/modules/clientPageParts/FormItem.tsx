@@ -252,7 +252,7 @@ const FormItem = () => {
           </p>
         </div>
 
-        {/* <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center">
           <button
             className="
             focus:shadow-outline
@@ -270,7 +270,7 @@ const FormItem = () => {
           >
             注文を確定へ進む
           </button>
-        </div> */}
+        </div>
       </form>
       {/* スナックバー */}
       <SnackBar

@@ -12,7 +12,7 @@ const HomePageBase: FC = () => {
 
   const registClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     // stepperの更新
-    dispatch(changeState({ ...selectStep, stepIndex: 2 }))
+    dispatch(changeState({ ...selectStep, stepIndex: 1 }))
     router.push('/menue')
   }
 

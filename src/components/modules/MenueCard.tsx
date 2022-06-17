@@ -30,7 +30,6 @@ const MenueCard: FC = () => {
           {/* // TODO: カード毎のデザインはここのclassNameを修正する */}
           <ImageViewer imagePath={item.imageURL} />
           <ButtonCount countButtonID={item.id} />
-          {/* <CartButton cartButtonID={item.id} /> */}
         </li>
       ))}
     </ul>

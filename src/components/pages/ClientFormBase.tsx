@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 // NOTE: original
-import { FormItem } from '../modules/orderPageParts'
+import { FormItem } from '../modules/clientPageParts'
 import { HomeLayout } from '../layout'
 
 // NOTE: Redux関連
@@ -13,7 +13,7 @@ const ClientFormBase = () => {
   const dispatch = useAppDispatch()
   const registClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     // stepperの更新
-    dispatch(changeState({ ...selectStep, stepIndex: 1 }))
+    dispatch(changeState({ ...selectStep, stepIndex: 3 }))
     router.push('/order')
   }
 
@@ -21,7 +21,6 @@ const ClientFormBase = () => {
     <div>
       <HomeLayout title="情報入力">
         <FormItem />
-        <button onClick={registClick}>注文確定へ進む</button>
       </HomeLayout>
     </div>
   )

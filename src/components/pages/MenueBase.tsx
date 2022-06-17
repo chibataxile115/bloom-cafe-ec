@@ -59,21 +59,9 @@ const MenueBase = () => {
     }
   }, [])
 
-  const registClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // stepperの更新
-    dispatch(changeState({ ...selectStep, stepIndex: 3 }))
-    router.push('/form')
-  }
-
-  const cartClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // stepperの更新
-    dispatch(changeState({ ...selectStep, stepIndex: 3 }))
-    router.push('/cart')
-  }
-
   const clientClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     // stepperの更新
-    dispatch(changeState({ ...selectStep, stepIndex: 3 }))
+    dispatch(changeState({ ...selectStep, stepIndex: 2 }))
     router.push('/client')
   }
 
