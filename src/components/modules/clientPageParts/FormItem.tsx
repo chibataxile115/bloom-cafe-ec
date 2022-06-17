@@ -1,5 +1,7 @@
 import axios from 'axios'
 import React, { ChangeEvent, useState } from 'react'
+import { useRouter } from 'next/router'
+
 // Originals
 import { SnackBar } from '../../atoms'
 // types
@@ -15,6 +17,8 @@ import {
   updateInfo,
 } from '../../../redux/features/clientInfoSlice'
 import { selectSnackBar } from '../../../redux/features/snackbar/snackbarSlice'
+import { selectStep, changeState } from '../../../redux/features/step/stepSlice'
+
 // Custom Hook
 import { useFetchFromZipcode } from '../../../hooks/order/useFetchFromZipcode'
 
@@ -23,6 +27,7 @@ const FormItem = () => {
   const clientInfoSelector = useAppSelector(selectClientInfo)
   const snackBarSelector = useAppSelector(selectSnackBar)
   const orderFormSchema = OrderFormSchema()
+  const router = useRouter()
 
   const deliveryTimes = [
     { id: 0, value: '-', state: true },
@@ -69,6 +74,12 @@ const FormItem = () => {
 
   const orderSubmit: SubmitHandler<ClientInfo> = async (data) => {
     console.log(`zipcode: [${data.zipcode}]`)
+  }
+
+  const registClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // stepperの更新
+    dispatch(changeState({ ...selectStep, stepIndex: 3 }))
+    router.push('/order')
   }
 
   return (
@@ -267,6 +278,7 @@ const FormItem = () => {
             "
             // disabled={uploadImagesSelector.length === 0}
             type="submit"
+            onClick={registClick}
           >
             注文を確定へ進む
           </button>
