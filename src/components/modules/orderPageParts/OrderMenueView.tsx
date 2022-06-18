@@ -3,7 +3,7 @@
 import { useAppSelector } from '../../../redux/app/hooks'
 import { selectMenueList } from '../../../redux/features/menue/menueListSlice'
 
-const CartDetailView: React.FC = () => {
+const OrderMenueView: React.FC = () => {
   const menueListSelector = useAppSelector(selectMenueList)
 
   return (
@@ -33,4 +33,4 @@ const CartDetailView: React.FC = () => {
   )
 }
 
-export default CartDetailView
+export default OrderMenueView
