@@ -1,0 +1,43 @@
+<mxfile host="65bd71144e">
+    <diagram id="y1naa6pCyYnspUqlEave" name="ページ1">
+        <mxGraphModel dx="1027" dy="1862" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="32" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="80" y="-655" width="650" height="790" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="郵便番号入力" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="160" y="-620" width="230" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="青森県" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="416" y="-620" width="250" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="番地" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="160" y="-510" width="230" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="建物" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="416" y="-510" width="240" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="連絡先" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="414" y="-410" width="235" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="会社名：お名前" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="160" y="-410" width="230" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="配達日時" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="160" y="-300" width="230" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="時間帯（プルダウン）" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="416.5" y="-300" width="230" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="注文する：合計金額" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="194" y="-160" width="440" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="メニューぺージに戻る" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="204" y="-50" width="420" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

@@ -59,22 +59,10 @@ const MenueBase = () => {
     }
   }, [])
 
-  const registClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const clientClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     // stepperの更新
-    dispatch(changeState({ ...selectStep, stepIndex: 3 }))
-    router.push('/form')
-  }
-
-  const cartClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // stepperの更新
-    dispatch(changeState({ ...selectStep, stepIndex: 3 }))
-    router.push('/cart')
-  }
-
-  const orderClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // stepperの更新
-    dispatch(changeState({ ...selectStep, stepIndex: 3 }))
-    router.push('/order')
+    dispatch(changeState({ ...selectStep, stepIndex: 2 }))
+    router.push('/client')
   }
 
   return (
@@ -82,7 +70,7 @@ const MenueBase = () => {
       <div className="flex flex-row justify-center">
         <MenueCard />
       </div>
-      <button onClick={orderClick}>注文確定へ進む</button>
+      <button onClick={clientClick}>お客様情報へ進む</button>
       <CartDetailModal />
     </HomeLayout>
   )

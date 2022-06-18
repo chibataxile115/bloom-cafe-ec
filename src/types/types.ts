@@ -25,6 +25,7 @@ export interface SnackBar {
   isOpenTheMenueRegistSnackbar: boolean
   isOpenTheImageUploadSnacbar: boolean
   isOpenTheMenueDeleteSnackbar: boolean
+  isOpenTheFetchZipcodeSnackbar: boolean
   mode: 'success' | 'error'
   // TODO: 余裕があったらtransitionさせる方向をdirectionで指定できるようにする
   // direction: 'up' | 'down' | 'right' | 'left'
@@ -35,6 +36,7 @@ export interface UploadImage {
   imageURL: string
 }
 
+// メニュー新規登録用
 export interface SubmitMenue {
   name: string
   plice: string
@@ -42,6 +44,18 @@ export interface SubmitMenue {
   menueIDR: string
   menueIDL: string
   description: string
+}
+
+// お客様情報の入力フォーム用
+export interface ClientInfo {
+  zipcode: string
+  prefectures: string
+  municipalities: string
+  addressbuilding: string
+  clientname: string
+  phonenumber: string
+  deliveryday: string
+  deliverytime: string
 }
 
 export interface MenueItems {

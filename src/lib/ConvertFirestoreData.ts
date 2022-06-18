@@ -17,7 +17,6 @@ const ConvertFirestoreData = <T>(): FirestoreDataConverter<T> => ({
         data[key] = data[key].toDate()
       }
     })
-
     return data
   },
 })
