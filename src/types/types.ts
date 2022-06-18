@@ -41,6 +41,7 @@ export interface SubmitMenue {
   category: string
   menueIDR: string
   menueIDL: string
+  description: string
 }
 
 export interface MenueItems {

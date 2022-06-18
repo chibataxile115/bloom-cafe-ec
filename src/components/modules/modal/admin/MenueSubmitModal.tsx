@@ -12,7 +12,7 @@ import Loader from 'react-loader-spinner'
 // バリデーション関連
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { MenueRegistFormSchema } from '../../../../lib'
+import { MenuSubmitFormSchema } from '../../../../lib'
 // Redux関連
 import { useAppDispatch, useAppSelector } from '../../../../redux/app/hooks'
 import {
@@ -36,7 +36,7 @@ const MenueSubmitModal: React.FC = () => {
   const rightMenueIDs = MenueIDList('right')
 
   // NOTE: Validation
-  const menueRegistFormSchema = MenueRegistFormSchema()
+  const menuRegistFormSchema = MenuSubmitFormSchema()
 
   const {
     register,
@@ -46,7 +46,7 @@ const MenueSubmitModal: React.FC = () => {
   } = useForm<SubmitMenue>({
     mode: 'onChange',
     criteriaMode: 'all',
-    resolver: yupResolver(menueRegistFormSchema),
+    resolver: yupResolver(menuRegistFormSchema),
   })
 
   const { submitMenue } = useSubmitMenue()
@@ -65,16 +65,17 @@ const MenueSubmitModal: React.FC = () => {
       uploadImagesSelector.forEach((item) => {
         uploadImage.push(item)
       })
-      const meneRegistDetail = {
+      const meneSubmintDetail = {
         name: data.name,
         plice: data.plice,
         category: data.category,
         menueIDL: data.menueIDL,
         menueIDR: data.menueIDR,
+        description: data.description,
       }
       const submitMenueArgs: SubmitMenueArgs = {
         uploadImages: uploadImage,
-        menueDetail: meneRegistDetail,
+        menueDetail: meneSubmintDetail,
       }
 
       await submitMenue(submitMenueArgs)
@@ -85,6 +86,7 @@ const MenueSubmitModal: React.FC = () => {
         category: '',
         menueIDL: '',
         menueIDR: '',
+        description: '',
       })
     }
   }
@@ -168,7 +170,15 @@ const MenueSubmitModal: React.FC = () => {
                   商品名
                 </label>
                 <input
-                  className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+                  className="
+                  focus:shadow-outline
+                  w-full appearance-none rounded
+                  border py-2
+                  px-3
+                  leading-tight
+                  text-gray-700
+                  shadow
+                  "
                   id="menue"
                   type="text"
                   placeholder="サンドイッチ"
@@ -190,7 +200,15 @@ const MenueSubmitModal: React.FC = () => {
                     金額(円)
                   </label>
                   <input
-                    className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+                    className="
+                    focus:shadow-outline
+                    w-full appearance-none rounded
+                    border py-2
+                    px-3
+                    leading-tight
+                    text-gray-700
+                    shadow
+                    "
                     id="plice"
                     type="text"
                     placeholder="300"
@@ -206,7 +224,15 @@ const MenueSubmitModal: React.FC = () => {
                     カテゴリー
                   </label>
                   <input
-                    className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+                    className="
+                    focus:shadow-outline
+                    w-full appearance-none rounded
+                    border py-2
+                    px-3
+                    leading-tight
+                    text-gray-700
+                    shadow
+                    "
                     id="category"
                     type="text"
                     placeholder="弁当"
@@ -291,6 +317,35 @@ const MenueSubmitModal: React.FC = () => {
                 {errors.menueIDR?.message}
               </p>
 
+              {/* 商品説明 */}
+              <div className="mb-4">
+                <label
+                  className="mb-2 block text-sm font-bold text-gray-700"
+                  htmlFor="menu-description"
+                >
+                  商品説明
+                </label>
+                <textarea
+                  className="
+                  focus:shadow-outline
+                  w-full appearance-none rounded
+                  border py-2
+                  px-3
+                  leading-tight
+                  text-gray-700
+                  shadow
+                  "
+                  id="menu-description"
+                  cols={35}
+                  rows={5}
+                  placeholder="おすすめ商品です！！"
+                  {...register('description')}
+                ></textarea>
+                <p className="mb-4 font-bold text-red-500">
+                  {errors.description?.message}
+                </p>
+              </div>
+
               {/* 写真 */}
               <div className="mb-6">
                 <label
@@ -306,13 +361,12 @@ const MenueSubmitModal: React.FC = () => {
                 <button
                   className="
                   focus:shadow-outline
-                  w-4/12
-                  min-w-[150px] rounded
-                  bg-blue-400
-                  py-2 px-4 font-bold
+                  w-4/12 min-w-[150px]
+                  rounded
+                  bg-blue-400 py-2 px-4
+                  font-bold
                   text-white
                   hover:bg-blue-500
-                  focus:outline-none
                   disabled:bg-gray-300 disabled:text-gray-400
                   "
                   disabled={uploadImagesSelector.length === 0}
