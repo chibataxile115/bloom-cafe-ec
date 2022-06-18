@@ -37,6 +37,7 @@ const reducer = {
 
 export const store = configureStore({
   reducer,
+  devTools: false,
 })
 
 export type AppDispatch = typeof store.dispatch
