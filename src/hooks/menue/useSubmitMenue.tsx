@@ -25,6 +25,7 @@ interface SetMenue {
   plice: number
   name: string
   category: string
+  description: string
 }
 interface SetImage {
   id: number
@@ -67,6 +68,7 @@ export const useSubmitMenue = () => {
             plice: Number(menueDetail.plice),
             name: menueDetail.name,
             category: menueDetail.category,
+            description: menueDetail.description,
           }
           const setImage: SetImage = {
             id: index,
@@ -83,7 +85,7 @@ export const useSubmitMenue = () => {
 
   // メニューデータを登録する関数
   const setMenueToFirestore = useCallback(async (setMenue: SetMenue) => {
-    const { imageName, menueID, plice, name, category } = setMenue
+    const { imageName, menueID, plice, name, category, description } = setMenue
 
     getDownloadURL(ref(Storage, `menueImages/${imageName}`))
       .then(async (imageURL) => {
@@ -93,6 +95,8 @@ export const useSubmitMenue = () => {
           plice: plice,
           name: name,
           category: category,
+          description: description,
+          totalPurchase: 0,
           detailImagesCount: 0,
           createdAt: serverTimestamp(),
           updatedAt: serverTimestamp(),

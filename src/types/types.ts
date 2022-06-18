@@ -43,6 +43,7 @@ export interface SubmitMenue {
   category: string
   menueIDR: string
   menueIDL: string
+  description: string
 }
 
 // お客様情報の入力フォーム用
