@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React, { ChangeEvent, useState } from 'react'
 import { useRouter } from 'next/router'
-
 // Originals
 import { SnackBar } from '../../atoms'
 // types
@@ -74,10 +73,6 @@ const FormItem = () => {
 
   const orderSubmit: SubmitHandler<ClientInfo> = async (data) => {
     console.log(`zipcode: [${data.zipcode}]`)
-  }
-
-  const registClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // stepperの更新
     dispatch(changeState({ ...selectStep, stepIndex: 3 }))
     router.push('/order')
   }
@@ -276,9 +271,9 @@ const FormItem = () => {
             focus:outline-none
             disabled:bg-gray-300 disabled:text-gray-400
             "
-            // disabled={uploadImagesSelector.length === 0}
+            // disabled={clientInfoSelector.(value ===0).length}
             type="submit"
-            onClick={registClick}
+            // onClick={registClick}
           >
             注文を確定へ進む
           </button>
