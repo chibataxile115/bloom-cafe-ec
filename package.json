@@ -8,8 +8,7 @@
     "unit": "vitest",
     "unit:cov": "vitest run --coverage",
     "lint": "next lint",
-    "push": "vitest && next build && git push origin HEAD",
-
+    "push": "vitest run && next build && git push origin HEAD",
     "liff": "next build && next start"
   },
   "dependencies": {
