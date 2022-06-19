@@ -14,9 +14,9 @@ const Tabs: React.FC<Props> = (props) => {
   const { children, currentTabTitle } = props
 
   const tabContents: TabContents[] = [
-    { title: 'すべて', href: '/admin/menue-list/all-menue' },
-    { title: 'カテゴリー順', href: '/admin/menue-list/by-category' },
-    { title: '人気順', href: '/admin/menue-list/by-rank' },
+    { title: 'すべて', href: '/admin/menu-list/all-menu' },
+    { title: 'カテゴリー順', href: '/admin/menu-list/by-category' },
+    { title: '人気順', href: '/admin/menu-list/by-rank' },
   ]
 
   return (

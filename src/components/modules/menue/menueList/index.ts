@@ -1,1 +1,1 @@
-export { default as ByCategoryMenueView } from './ByCategoryMenueView'
+export { default as ByCategoryMenuView } from './ByCategoryMenuView'

@@ -32,6 +32,7 @@ export const useFetchMenue = () => {
           0,
           docData.imageURL,
           docData.plice,
+          docData.description,
           true
         )
       )

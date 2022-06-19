@@ -4,7 +4,7 @@ import { ImageLoader } from '../../../../lib'
 // Custom Hook
 import { useFetchSubImages } from '../../../../hooks/menue/useFetchSubImages'
 // types
-import { AdminMenueDetail } from '../../../../types/types'
+import { AdminMenuDetail } from '../../../../types/types'
 // Redux関連
 import { useAppDispatch, useAppSelector } from '../../../../redux/app/hooks'
 import {
@@ -18,14 +18,14 @@ import {
 import {
   selectAdminMenueDetail,
   changeState as changeStateForAdminMenueDetailModal,
-} from '../../../../redux/features/menue/admin/adminMenueDetailSlice'
+} from '../../../../redux/features/menue/admin/adminMenuDetailSlice'
 import { resetImages } from '../../../../redux/features/menue/subImagesSlice'
 
 interface Props {
   targetCategory: string
 }
 
-const ByCategoryMenueView: React.FC<Props> = (props) => {
+const ByCategoryMenuView: React.FC<Props> = (props) => {
   const { targetCategory } = props
 
   const dispatch = useAppDispatch()
@@ -35,8 +35,8 @@ const ByCategoryMenueView: React.FC<Props> = (props) => {
 
   const { getSubImages } = useFetchSubImages()
 
-  const openDetails = (menueDetailData: AdminMenueDetail) => {
-    const { docID, id, name, category, count, imageURL, plice } =
+  const openDetails = (menueDetailData: AdminMenuDetail) => {
+    const { docID, id, name, category, count, imageURL, plice, description } =
       menueDetailData
 
     dispatch(resetImages())
@@ -51,6 +51,7 @@ const ByCategoryMenueView: React.FC<Props> = (props) => {
         count: count,
         imageURL: imageURL,
         plice: plice,
+        description: description,
       })
     )
     getSubImages(docID)
@@ -78,6 +79,7 @@ const ByCategoryMenueView: React.FC<Props> = (props) => {
                   count: item.count,
                   imageURL: item.imageURL,
                   plice: item.plice,
+                  description: item.description,
                 })
               }
             >
@@ -128,4 +130,4 @@ const ByCategoryMenueView: React.FC<Props> = (props) => {
   )
 }
 
-export default ByCategoryMenueView
+export default ByCategoryMenuView
