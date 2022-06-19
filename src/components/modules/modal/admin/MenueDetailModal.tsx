@@ -9,7 +9,7 @@ import {
   changeState as changeStateForAdminPage,
 } from '../../../../redux/features/adminPageSlice'
 import { selectSubImages } from '../../../../redux/features/menue/subImagesSlice'
-import { selectAdminMenueDetail } from '../../../../redux/features/menue/admin/adminMenueDetailSlice'
+import { selectAdminMenueDetail } from '../../../../redux/features/menue/admin/adminMenuDetailSlice'
 import { resetImages } from '../../../../redux/features/menue/subImagesSlice'
 
 const MenueDetailModal: React.FC = () => {

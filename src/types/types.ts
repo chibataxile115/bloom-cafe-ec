@@ -92,10 +92,11 @@ export interface MenueList {
   count: number
   imageURL: string
   plice: number
+  description: string
   isInit: boolean
 }
 
-export interface AdminMenueDetail {
+export interface AdminMenuDetail {
   docID: string
   id: number
   name: string
@@ -103,6 +104,7 @@ export interface AdminMenueDetail {
   count: number
   imageURL: string
   plice: number
+  description: string
 }
 
 export interface CartDetail {
@@ -124,6 +126,7 @@ export interface MenueFromFirestore {
   updatedAt: Date
   docID: string
   name: string
+  description: string
 }
 
 export interface CategoryItemsFromFirestore {

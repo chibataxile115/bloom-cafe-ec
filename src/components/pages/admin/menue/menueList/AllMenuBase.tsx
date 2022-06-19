@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 // types
-import { AdminMenueDetail } from '../../../../../types/types'
+import { AdminMenuDetail } from '../../../../../types/types'
 // Originals
 import { AdminLayout } from '../../../../layout'
 import { MenueSubmitModal } from '../../../../modules/modal/admin'
@@ -26,7 +26,7 @@ import {
 import {
   selectAdminMenueDetail,
   changeState as changeStateForAdminMenueDetailModal,
-} from '../../../../../redux/features/menue/admin/adminMenueDetailSlice'
+} from '../../../../../redux/features/menue/admin/adminMenuDetailSlice'
 import { resetImages } from '../../../../../redux/features/menue/subImagesSlice'
 import { selectSnackBar } from '../../../../../redux/features/snackbar/snackbarSlice'
 
@@ -52,9 +52,8 @@ const AllMenueBase = () => {
     }
   }, [])
 
-  const openDetails = (menueDetailData: AdminMenueDetail) => {
-    const { docID, id, name, category, count, imageURL, plice } =
-      menueDetailData
+  const openDetails = (menuDetailData: AdminMenuDetail) => {
+    const { docID, id, name, category, count, imageURL, plice } = menuDetailData
 
     dispatch(resetImages())
 
@@ -117,6 +116,7 @@ const AllMenueBase = () => {
                     count: item.count,
                     imageURL: item.imageURL,
                     plice: item.plice,
+                    description: item.description,
                   })
                 }
               >

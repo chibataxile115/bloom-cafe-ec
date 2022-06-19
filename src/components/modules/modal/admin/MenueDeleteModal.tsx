@@ -9,7 +9,7 @@ import {
   selectAdminPage,
   changeState as changeStateForAdminPage,
 } from '../../../../redux/features/adminPageSlice'
-import { selectAdminMenueDetail } from '../../../../redux/features/menue/admin/adminMenueDetailSlice'
+import { selectAdminMenueDetail } from '../../../../redux/features/menue/admin/adminMenuDetailSlice'
 import { selectSubImages } from '../../../../redux/features/menue/subImagesSlice'
 
 // NOTE: Firebase関連

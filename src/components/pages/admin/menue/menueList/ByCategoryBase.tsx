@@ -5,7 +5,7 @@ import { MenueSubmitModal } from '../../../../modules/modal/admin'
 import { MenueDetailModal } from '../../../../modules/modal/admin'
 import { MenueDeleteModal } from '../../../../modules/modal/admin'
 import { Tabs } from '../../../../atoms'
-import { ByCategoryMenueView } from '../../../../modules/menue/menueList'
+import { ByCategoryMenuView } from '../../../../modules/menue/menueList'
 // Custom Hook
 import { useFetchMenue } from '../../../../../hooks/menue/useFetchMenue'
 import { useFetchByCategory } from '../../../../../hooks/menue/useFetchByCategory'
@@ -73,7 +73,7 @@ const ByCategoryBase = () => {
               <li key={index} className="mt-10 first:mt-2">
                 <h3 className="text-2xl">{item.categoryName}</h3>
                 <div className="mb-2 mt-2 border-t-[1px] border-gray-400"></div>
-                <ByCategoryMenueView targetCategory={item.categoryName} />
+                <ByCategoryMenuView targetCategory={item.categoryName} />
               </li>
             ))}
           </ul>

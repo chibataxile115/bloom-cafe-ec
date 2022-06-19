@@ -9,7 +9,7 @@ import menueItemsReducer from '../features/menue/menueItemsSlice'
 import stepReducer from '../features/step/stepSlice'
 import storingDataReducer from '../features/storingdateSlice'
 import menueListReducer from '../features/menue/menueListSlice'
-import adminMenueDetailReducer from '../features/menue/admin/adminMenueDetailSlice'
+import adminMenuDetailReducer from '../features/menue/admin/adminMenuDetailSlice'
 import CartDetailReducer from '../features/cartdetailSlice'
 import uploadImagesReducer from '../features/menue/uploadImagesSlice'
 import snackBarReducer from '../features/snackbar/snackbarSlice'
@@ -30,7 +30,7 @@ const reducer = {
   uploadImages: uploadImagesReducer,
   snackBar: snackBarReducer,
   categoryItems: categoryItemsReducer,
-  adminMenueDetail: adminMenueDetailReducer,
+  adminMenuDetail: adminMenuDetailReducer,
   subImages: subImagesReducer,
   clientInfo: clientInfoReducer,
 }

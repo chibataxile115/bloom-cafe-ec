@@ -38,6 +38,7 @@ export const menueListSlice = createSlice({
         count: number,
         imageURL: string,
         plice: number,
+        description: string,
         isInit: boolean
       ) => {
         return {
@@ -50,6 +51,7 @@ export const menueListSlice = createSlice({
             count,
             imageURL,
             plice,
+            description,
             isInit,
           },
         }
