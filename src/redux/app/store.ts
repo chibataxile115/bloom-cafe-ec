@@ -37,7 +37,7 @@ const reducer = {
 
 export const store = configureStore({
   reducer,
-  devTools: false,
+  devTools: process.env.NODE_ENV === 'development',
 })
 
 export type AppDispatch = typeof store.dispatch
