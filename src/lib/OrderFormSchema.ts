@@ -17,11 +17,11 @@ const OrderFormSchema = () => {
         .string()
         .required('必須項目です。')
         .matches(/(?=.)/, '入力して下さい。'),
-      addressbuilding: yup
+      addressBuilding: yup
         .string()
         .required('必須項目です。')
         .matches(/(?=.)/, '入力して下さい。'),
-      clientname: yup
+      clientName: yup
         .string()
         .required('必須項目です。')
         .matches(/(?=.)/, '入力して下さい。'),
@@ -29,11 +29,11 @@ const OrderFormSchema = () => {
         .string()
         .required('必須項目です。')
         .matches(/(?=.)/, '入力して下さい。'),
-      deliveryday: yup
+      deliveryDate: yup
         .string()
         .required('配達日時を選択してください。')
         .matches(/(?=.)/, '配達時間を選択してください。'),
-      deliverytime: yup
+      deliveryTime: yup
         .string()
         .required('配達時間を選択してください。')
         .min(5, '配達時間を選択してください。')

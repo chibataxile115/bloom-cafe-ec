@@ -51,11 +51,11 @@ export interface ClientInfo {
   zipcode: string
   prefectures: string
   municipalities: string
-  addressbuilding: string
-  clientname: string
-  phonenumber: string
-  deliveryday: string
-  deliverytime: string
+  addressBuilding: string
+  clientName: string
+  phoneNumber: string
+  deliveryDate: string
+  deliveryTime: string
 }
 
 export interface MenueItems {
