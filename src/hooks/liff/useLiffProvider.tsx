@@ -6,6 +6,8 @@ type UseLiff = {
   initialized: boolean
   isInClient: boolean
   loggedIn: boolean
+  getNameWithLiffOpen?: () => string
+  sendMessage?: (message: string) => void
   closeWindow?: () => void
   isExpire: () => boolean
   login?: () => void
@@ -51,11 +53,36 @@ export const useLiff = (): UseLiff => {
     return expirationTime < Date.now() / 1000
   }
 
+  const getNameWithLiffOpen = () => {
+    const liffOpenName = liff.getDecodedIDToken().name
+
+    return liffOpenName
+  }
+
+  const sendMessage = (message: string) => {
+    liff
+      .sendMessages([
+        {
+          // メッセージを送信する
+          type: 'text',
+          text: message,
+        },
+      ])
+      .then(() => {
+        // window.alert('メッセージ送信完了')
+      })
+      .catch((error) => {
+        window.alert('送信に失敗しました: ' + error)
+      })
+  }
+
   return {
     idToken: liff.getIDToken(),
     initialized: true,
     isInClient: liff.isInClient(),
     loggedIn: liff.isLoggedIn(),
+    getNameWithLiffOpen: getNameWithLiffOpen,
+    sendMessage: sendMessage,
     // closeWindow: liff.closeWindow,
     isExpire: isExpire,
     login: liff.login,
