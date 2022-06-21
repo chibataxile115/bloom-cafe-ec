@@ -14,11 +14,6 @@ const initialState: ClientInfo = {
   deliveryDate: '',
   deliveryTime: '',
 }
-
-// const initialState : UpdateInfo ={
-
-// }
-
 // NOTE: Sliceを定義する
 export const clientInfoSlice = createSlice({
   name: 'clientInfo',
