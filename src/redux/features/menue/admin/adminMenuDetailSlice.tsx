@@ -13,6 +13,9 @@ const initialState: AdminMenuDetail = {
   imageURL: '',
   plice: 0,
   description: '',
+  isNameEdit: false,
+  isPliceEdit: false,
+  isDescriptionEdit: false,
 }
 
 // NOTE: Sliceを定義する
@@ -29,6 +32,9 @@ export const adminMenuDetailSlice = createSlice({
       state.imageURL = ''
       state.plice = 0
       state.description = ''
+      state.isNameEdit = false
+      state.isPliceEdit = false
+      state.isDescriptionEdit = false
     },
     changeState: (
       state: AdminMenuDetail,
@@ -42,6 +48,9 @@ export const adminMenuDetailSlice = createSlice({
       state.imageURL = action.payload.imageURL
       state.plice = action.payload.plice
       state.description = action.payload.description
+      state.isNameEdit = action.payload.isNameEdit
+      state.isPliceEdit = action.payload.isPliceEdit
+      state.isDescriptionEdit = action.payload.isDescriptionEdit
     },
   },
 })

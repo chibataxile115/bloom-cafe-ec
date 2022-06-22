@@ -67,6 +67,9 @@ const AllMenueBase = () => {
         count: count,
         imageURL: imageURL,
         plice: plice,
+        isNameEdit: false,
+        isPliceEdit: false,
+        isDescriptionEdit: false,
       })
     )
     getSubImages(docID)
@@ -117,6 +120,9 @@ const AllMenueBase = () => {
                     imageURL: item.imageURL,
                     plice: item.plice,
                     description: item.description,
+                    isNameEdit: false,
+                    isPliceEdit: false,
+                    isDescriptionEdit: false,
                   })
                 }
               >

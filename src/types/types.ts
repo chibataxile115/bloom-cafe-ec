@@ -105,6 +105,9 @@ export interface AdminMenuDetail {
   imageURL: string
   plice: number
   description: string
+  isNameEdit: boolean
+  isPliceEdit: boolean
+  isDescriptionEdit: boolean
 }
 
 export interface CartDetail {

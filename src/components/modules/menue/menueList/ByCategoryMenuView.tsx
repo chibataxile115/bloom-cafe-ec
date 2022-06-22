@@ -52,6 +52,9 @@ const ByCategoryMenuView: React.FC<Props> = (props) => {
         imageURL: imageURL,
         plice: plice,
         description: description,
+        isNameEdit: false,
+        isPliceEdit: false,
+        isDescriptionEdit: false,
       })
     )
     getSubImages(docID)
@@ -80,6 +83,9 @@ const ByCategoryMenuView: React.FC<Props> = (props) => {
                   imageURL: item.imageURL,
                   plice: item.plice,
                   description: item.description,
+                  isNameEdit: false,
+                  isPliceEdit: false,
+                  isDescriptionEdit: false,
                 })
               }
             >
