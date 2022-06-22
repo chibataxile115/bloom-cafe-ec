@@ -90,6 +90,12 @@ const OrderConfiButton = () => {
     }
   }
 
+  const clientPageClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // stepperの更新
+    dispatch(changeState({ ...selectStep, stepIndex: 2 }))
+    router.push('/client')
+  }
+
   return (
     <div>
       <button
@@ -107,7 +113,24 @@ const OrderConfiButton = () => {
         type="button"
         onClick={sendMessageToLine}
       >
-        メッセージを送信
+        注文を確定する
+      </button>
+      <button
+        className="
+        focus:shadow-outline
+        w-4/12
+        min-w-[150px] rounded
+        bg-blue-400
+        py-2 px-4 font-bold
+        text-white
+        hover:bg-blue-500
+        focus:outline-none
+        disabled:bg-gray-300 disabled:text-gray-400
+        "
+        type="button"
+        onClick={clientPageClick}
+      >
+        お客様情報へ戻る
       </button>
     </div>
   )

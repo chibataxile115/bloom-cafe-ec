@@ -8,7 +8,7 @@ import {
   addMenue,
 } from '../../redux/features/menue/menueListSlice'
 
-const MenueCard: FC = () => {
+const MenuCard: FC = () => {
   const dispatch = useAppDispatch()
   const menueListSelector = useAppSelector(selectMenueList)
 
@@ -35,4 +35,4 @@ const MenueCard: FC = () => {
     </ul>
   )
 }
-export default MenueCard
+export default MenuCard

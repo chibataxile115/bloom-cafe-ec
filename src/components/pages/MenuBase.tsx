@@ -14,10 +14,10 @@ import { selectUser, updateUserProf } from '../../redux/features/userSlice'
 
 // NOTE: original
 import { HomeLayout } from '../layout'
-import { MenueCard } from '../modules'
+import { MenuCard } from '../modules'
 import { CartDetailModal } from '../modules/modal'
 
-const MenueBase = () => {
+const MenuBase = () => {
   const router = useRouter()
   const dispatch = useAppDispatch()
   const menueListSelector = useAppSelector(selectMenueList)
@@ -64,16 +64,22 @@ const MenueBase = () => {
     dispatch(changeState({ ...selectStep, stepIndex: 2 }))
     router.push('/client')
   }
+  const topPageClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // stepperの更新
+    dispatch(changeState({ ...selectStep, stepIndex: 2 }))
+    router.push('/')
+  }
 
   return (
     <HomeLayout title="商品一覧">
       <div className="flex flex-row justify-center">
-        <MenueCard />
+        <MenuCard />
       </div>
       <button onClick={clientClick}>お客様情報へ進む</button>
+      <button onClick={topPageClick}>トップページに戻る</button>
       <CartDetailModal />
     </HomeLayout>
   )
 }
 
-export default MenueBase
+export default MenuBase

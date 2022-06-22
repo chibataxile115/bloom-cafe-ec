@@ -59,6 +59,12 @@ const FormItem = () => {
     router.push('/order')
   }
 
+  const menuPageClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // stepperの更新
+    dispatch(changeState({ ...selectStep, stepIndex: 2 }))
+    router.push('/menu')
+  }
+
   return (
     <div className=" mt-3 flex w-full flex-col justify-start pt-3">
       <form
@@ -319,6 +325,23 @@ const FormItem = () => {
             type="submit"
           >
             注文を確定へ進む
+          </button>
+          <button
+            className="
+            focus:shadow-outline
+            w-4/12
+            min-w-[150px] rounded
+            bg-blue-400
+            py-2 px-4 font-bold
+            text-white
+            hover:bg-blue-500
+            focus:outline-none
+            disabled:bg-gray-300 disabled:text-gray-400
+            "
+            type="submit"
+            onClick={menuPageClick}
+          >
+            注文登録へ戻る
           </button>
         </div>
       </form>
