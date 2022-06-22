@@ -1,11 +1,11 @@
 import React from 'react'
 // NOTE: original
-import { MenueBase } from '../components/pages'
+import { MenuBase } from '../components/pages'
 
 const menu = () => {
   return (
     <>
-      <MenueBase />
+      <MenuBase />
     </>
   )
 }

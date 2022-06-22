@@ -1,4 +1,4 @@
-export { default as MenueBase } from './MenuBase'
+export { default as MenuBase } from './MenuBase'
 export { default as MenueDetaileBase } from './MenueDetaileBase'
 export { default as OrderBase } from './OrderBase'
 export { default as HomePageBase } from './HomePageBase'
