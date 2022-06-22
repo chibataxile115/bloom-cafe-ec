@@ -8,13 +8,12 @@ const initialState: ClientInfo = {
   zipcode: '',
   prefectures: '',
   municipalities: '',
-  addressbuilding: '',
-  clientname: '',
-  phonenumber: '',
-  deliveryday: '',
-  deliverytime: '',
+  addressBuilding: '',
+  clientName: '',
+  phoneNumber: '',
+  deliveryDate: '',
+  deliveryTime: '',
 }
-
 // NOTE: Sliceを定義する
 export const clientInfoSlice = createSlice({
   name: 'clientInfo',
@@ -24,11 +23,11 @@ export const clientInfoSlice = createSlice({
       state.zipcode = action.payload.zipcode
       state.prefectures = action.payload.prefectures
       state.municipalities = action.payload.municipalities
-      state.addressbuilding = action.payload.addressbuilding
-      state.clientname = action.payload.clientname
-      state.phonenumber = action.payload.phonenumber
-      state.deliveryday = action.payload.deliveryday
-      state.deliverytime = action.payload.deliverytime
+      state.addressBuilding = action.payload.addressBuilding
+      state.clientName = action.payload.clientName
+      state.phoneNumber = action.payload.phoneNumber
+      state.deliveryDate = action.payload.deliveryDate
+      state.deliveryTime = action.payload.deliveryTime
     },
   },
 })

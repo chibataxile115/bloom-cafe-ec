@@ -1,5 +1,4 @@
-import axios from 'axios'
-import React, { ChangeEvent, useState } from 'react'
+import React from 'react'
 import { useRouter } from 'next/router'
 // Originals
 import { SnackBar } from '../../atoms'
@@ -17,7 +16,6 @@ import {
 } from '../../../redux/features/clientInfoSlice'
 import { selectSnackBar } from '../../../redux/features/snackbar/snackbarSlice'
 import { selectStep, changeState } from '../../../redux/features/step/stepSlice'
-
 // Custom Hook
 import { useFetchFromZipcode } from '../../../hooks/order/useFetchFromZipcode'
 
@@ -45,31 +43,15 @@ const FormItem = () => {
     formState: { errors },
     reset,
   } = useForm<ClientInfo>({
-    mode: 'onChange',
     criteriaMode: 'all',
     resolver: yupResolver(orderFormSchema),
   })
 
   const { fetchZipcode } = useFetchFromZipcode()
 
-  const handleZipcode = (event: React.ChangeEvent<HTMLInputElement>) =>
-    dispatch(
-      updateInfo({
-        ...clientInfoSelector,
-        zipcode: event.target.value,
-        prefectures: clientInfoSelector.prefectures,
-        municipalities: clientInfoSelector.municipalities,
-      })
-    )
-
-  const handleFetchFromZipcode = () =>
-    // event: React.FormEvent<HTMLButtonElement>
-    {
-      // event.preventDefault()
-      fetchZipcode()
-    }
-
-  // FIXME
+  const handleFetchFromZipcode = () => {
+    fetchZipcode()
+  }
 
   const orderSubmit: SubmitHandler<ClientInfo> = async (data) => {
     console.log(`zipcode: [${data.zipcode}]`)
@@ -78,18 +60,16 @@ const FormItem = () => {
   }
 
   return (
-    <div className=" mt-3 flex w-full justify-start pt-3">
-      {/* FIXME: 後で戻す */}
-
+    <div className=" mt-3 flex w-full flex-col justify-start pt-3">
       <form
-        className="mb-4 rounded bg-gray-100 px-8 pt-6 pb-8 shadow-md"
+        className="mb-4 flex flex-col rounded bg-gray-100 px-8 pt-6 pb-8 shadow-md"
         onSubmit={handleSubmit(orderSubmit)}
       >
         {/* 郵便番号 */}
         <div className="mb-4 flex max-h-[100px] flex-row">
           <label
             className="mb-2 block text-sm font-bold text-gray-700"
-            htmlFor="address"
+            htmlFor="zipcode"
           >
             郵便番号
           </label>
@@ -100,7 +80,14 @@ const FormItem = () => {
             placeholder="090123456"
             {...register('zipcode')}
             value={clientInfoSelector.zipcode}
-            onChange={handleZipcode}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              dispatch(
+                updateInfo({
+                  ...clientInfoSelector,
+                  zipcode: event.target.value,
+                })
+              )
+            }}
           />
           <button
             className="m-2 border-2 bg-red-500 p-2"
@@ -110,26 +97,31 @@ const FormItem = () => {
             住所検索
           </button>
         </div>
-
         <p className="mb-4 font-bold text-red-500">{errors.zipcode?.message}</p>
-
-        <div className="flex flex-row">
+        <div className="flex flex-col">
           {/* 都道府県 */}
           <div className="mb-4 mr-2">
             <label
               className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="address1"
+              htmlFor="prefectures"
             >
               都道府県
             </label>
             <input
               className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
-              id="address1"
+              id="prefectures"
               type="text"
               placeholder="青森"
               value={clientInfoSelector.prefectures}
-              onChange={() => console.log('demo')}
               {...register('prefectures')}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                dispatch(
+                  updateInfo({
+                    ...clientInfoSelector,
+                    prefectures: event.target.value,
+                  })
+                )
+              }}
             />
           </div>
           <p className="mb-4 font-bold text-red-500">
@@ -139,18 +131,25 @@ const FormItem = () => {
           <div className="mb-4 ml-2">
             <label
               className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="address2"
+              htmlFor="municipalities"
             >
               市区町村
             </label>
             <input
               className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
-              id="address2"
+              id="municipalities"
               type="text"
               placeholder="○○市"
               value={clientInfoSelector.municipalities}
-              onChange={() => console.log('demo')}
               {...register('municipalities')}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                dispatch(
+                  updateInfo({
+                    ...clientInfoSelector,
+                    municipalities: event.target.value,
+                  })
+                )
+              }}
             />
           </div>{' '}
           <p className="mb-4 font-bold text-red-500">
@@ -160,90 +159,136 @@ const FormItem = () => {
           <div className="mb-4 ml-2">
             <label
               className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="address2"
+              htmlFor="addressBuilding"
             >
               番地・建物
             </label>
             <input
               className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
               type="text"
+              id="addressBuilding"
               placeholder="番地・建物"
-              {...register('addressbuilding')}
+              value={clientInfoSelector.addressBuilding}
+              {...register('addressBuilding')}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                dispatch(
+                  updateInfo({
+                    ...clientInfoSelector,
+                    addressBuilding: event.target.value,
+                  })
+                )
+              }}
             />
           </div>{' '}
           <p className="mb-4 font-bold text-red-500">
-            {errors.addressbuilding?.message}
+            {errors.addressBuilding?.message}
           </p>
           {/* 会社名 */}
           <div className="mb-4 ml-2">
             <label
               className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="address2"
+              htmlFor="clientName"
             >
               会社名・お客様名
             </label>
             <input
               className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
               type="text"
+              id="clientName"
               placeholder="会社名・お客様名"
-              {...register('clientname')}
+              value={clientInfoSelector.clientName}
+              {...register('clientName')}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                dispatch(
+                  updateInfo({
+                    ...clientInfoSelector,
+                    clientName: event.target.value,
+                  })
+                )
+              }}
             />
           </div>
           <p className="mb-4 font-bold text-red-500">
-            {errors.clientname?.message}
+            {errors.clientName?.message}
           </p>
           {/* 連絡先 */}
           <div className="mb-4 ml-2">
             <label
               className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="address2"
+              htmlFor="phoneNumber"
             >
               連絡先
             </label>
             <input
               className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
               type="text"
+              id="phoneNumber"
               placeholder="連絡先"
-              onChange={() => console.log('demo')}
-              {...register('phonenumber')}
+              value={clientInfoSelector.phoneNumber}
+              {...register('phoneNumber')}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                dispatch(
+                  updateInfo({
+                    ...clientInfoSelector,
+                    phoneNumber: event.target.value,
+                  })
+                )
+              }}
             />
           </div>
           <p className="mb-4 font-bold text-red-500">
-            {errors.phonenumber?.message}
+            {errors.phoneNumber?.message}
           </p>
           {/* 配達日時 */}
           <div className="mb-4 ml-2">
             <label
               className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="address2"
+              htmlFor="deliveryDate"
             >
               配達日時
             </label>
             <input
               className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
               type="date"
+              id="deliveryDate"
               placeholder="配達日時"
-              onChange={() => console.log('demo')}
-              {...register('deliveryday')}
+              value={clientInfoSelector.deliveryDate}
+              {...register('deliveryDate')}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                dispatch(
+                  updateInfo({
+                    ...clientInfoSelector,
+                    deliveryDate: event.target.value,
+                  })
+                )
+              }}
             />
           </div>
           <p className="mb-4 font-bold text-red-500">
-            {errors.deliveryday?.message}
+            {errors.deliveryDate?.message}
           </p>
           {/* 受取時間 */}
           <div className="mb-4 ml-2">
             <label
               className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="address2"
+              htmlFor="deliveryTime"
             >
               受取時間
             </label>
             <select
               className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
-              id="selectTime"
+              id="deliveryTime"
               placeholder="受取時間"
-              onChange={() => console.log('demo')}
-              {...register('deliverytime')}
+              value={clientInfoSelector.deliveryTime}
+              {...register('deliveryTime')}
+              onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
+                dispatch(
+                  updateInfo({
+                    ...clientInfoSelector,
+                    deliveryTime: event.target.value,
+                  })
+                )
+              }}
             >
               {/* <DeliveryTimesView /> */}
               {deliveryTimes.map((item) => (
@@ -254,7 +299,7 @@ const FormItem = () => {
             </select>
           </div>
           <p className="mb-4 font-bold text-red-500">
-            {errors.deliverytime?.message}
+            {errors.deliveryTime?.message}
           </p>
         </div>
 
@@ -271,9 +316,7 @@ const FormItem = () => {
             focus:outline-none
             disabled:bg-gray-300 disabled:text-gray-400
             "
-            // disabled={clientInfoSelector.(value ===0).length}
             type="submit"
-            // onClick={registClick}
           >
             注文を確定へ進む
           </button>
