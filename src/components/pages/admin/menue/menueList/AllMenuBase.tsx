@@ -53,7 +53,8 @@ const AllMenueBase = () => {
   }, [])
 
   const openDetails = (menuDetailData: AdminMenuDetail) => {
-    const { docID, id, name, category, count, imageURL, plice } = menuDetailData
+    const { docID, id, name, category, count, imageURL, plice, description } =
+      menuDetailData
 
     dispatch(resetImages())
 
@@ -67,6 +68,7 @@ const AllMenueBase = () => {
         count: count,
         imageURL: imageURL,
         plice: plice,
+        description: description,
         isNameEdit: false,
         isPliceEdit: false,
         isDescriptionEdit: false,
