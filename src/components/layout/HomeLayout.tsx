@@ -40,7 +40,7 @@ const HomeLayout: FC<Props> = (props) => {
       flex min-h-screen flex-col
       items-center
       justify-center
-      bg-gray-400
+      bg-gray-200
       bg-cover 
       "
     >
@@ -79,7 +79,7 @@ const HomeLayout: FC<Props> = (props) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          bloom{' '}
+          お弁当受付について{' '}
         </a>
       </footer>
     </div>
