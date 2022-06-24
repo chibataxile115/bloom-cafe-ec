@@ -3,17 +3,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../app/store'
 import { Step } from '../../../types/types'
 
-// NOTE: Stateの型を定義する
-interface stepState {
-  Step: Step
-}
-
 // NOTE: initialStateを定義
-const initialState: stepState = {
-  Step: {
-    stepIndex: 0,
-    isCartModal: false,
-  },
+const initialState: Step = {
+  stepIndex: 0,
+  isCartModal: false,
 }
 
 // NOTE: Sliceを定義する
@@ -21,16 +14,16 @@ export const stepSlice = createSlice({
   name: 'step',
   initialState,
   reducers: {
-    resetState: (state) => {
-      state.Step = {
+    resetState: (state: Step) => {
+      state = {
         stepIndex: 0,
         isCartModal: false,
       }
     },
-    changeState: (state, action: PayloadAction<Step>) => {
-      state.Step.stepIndex = action.payload.stepIndex
+    changeState: (state: Step, action: PayloadAction<Step>) => {
+      state.stepIndex = action.payload.stepIndex
       // FIXME: 後で削除する
-      state.Step.isCartModal = action.payload.isCartModal
+      state.isCartModal = action.payload.isCartModal
     },
   },
 })
@@ -38,6 +31,6 @@ export const stepSlice = createSlice({
 // NOTE: actionsをエクスポートする
 export const { resetState, changeState } = stepSlice.actions
 // NOTE: reducerをエクスポートする
-export const selectStep = (state: RootState) => state.step.Step
+export const selectStep = (state: RootState) => state.step
 // NOTE: selectorをエクスポートする
 export default stepSlice.reducer
