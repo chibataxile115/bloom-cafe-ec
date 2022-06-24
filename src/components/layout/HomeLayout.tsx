@@ -77,7 +77,7 @@ const HomeLayout: FC<Props> = (props) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          bloom{' '}
+          お弁当受付について{' '}
         </a>
       </footer>
     </div>

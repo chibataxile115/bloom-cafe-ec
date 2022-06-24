@@ -9,7 +9,7 @@ import { selectStep, changeState } from '../../../redux/features/step/stepSlice'
 import { selectMenueList } from '../../../redux/features/menue/menueListSlice'
 import { selectClientInfo } from '../../../redux/features/clientInfoSlice'
 
-const OrderConfiButton = () => {
+const OrderConfButton = () => {
   const router = useRouter()
 
   const dispatch = useAppDispatch()
@@ -136,4 +136,4 @@ const OrderConfiButton = () => {
   )
 }
 
-export default OrderConfiButton
+export default OrderConfButton
