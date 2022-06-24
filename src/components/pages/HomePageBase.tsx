@@ -23,13 +23,10 @@ const HomePageBase: FC = () => {
         <span className="block text-5xl">b l o o m</span>
       </h1>
       <div className="m-32 flex w-full justify-center">
-        <button
-          className="absolute  mt-44  bg-gray-300 px-5  py-5 hover:bg-gray-400"
-          onClick={registClick}
-        >
+        <button className="absolute  mt-44   px-5  py-5" onClick={registClick}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-10 w-10"
+            className="h-12 w-12"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
