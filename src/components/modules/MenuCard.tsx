@@ -1,15 +1,11 @@
 import React, { FC } from 'react'
 
-import { ButtonCount, CartButton, ImageViewer } from './menue/menueparts'
+import { ButtonCount, ImageViewer } from './menue/menueparts'
 // Redux関連
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
-import {
-  selectMenueList,
-  addMenue,
-} from '../../redux/features/menue/menueListSlice'
+import { selectMenueList } from '../../redux/features/menue/menueListSlice'
 
 const MenuCard: FC = () => {
-  const dispatch = useAppDispatch()
   const menueListSelector = useAppSelector(selectMenueList)
 
   return (
@@ -29,6 +25,10 @@ const MenuCard: FC = () => {
         >
           {/* // TODO: カード毎のデザインはここのclassNameを修正する */}
           <ImageViewer imagePath={item.imageURL} />
+          <span className="block">
+            <p>{item.name}</p>
+            <p className="mt-2">￥{item.plice}</p>
+          </span>
           <ButtonCount countButtonID={item.id} />
         </li>
       ))}
