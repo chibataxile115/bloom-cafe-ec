@@ -1,3 +1,4 @@
+import React from 'react'
 import clsx from 'clsx'
 // Redux関連
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
@@ -39,13 +40,11 @@ const Stepper = () => {
       <div className="p-5">
         <ul className="flex items-center">
           {stepItems.map((step) => (
-            <>
+            <React.Fragment key={step.index}>
               <li
                 key={step.index}
                 className={clsx(
-                  `
-                relative flex items-center
-                `,
+                  `relative flex items-center`,
                   stepSelector.stepIndex === step.index
                     ? 'text-white'
                     : 'text-black'
@@ -75,7 +74,7 @@ const Stepper = () => {
                   )}
                 ></div>
               )}
-            </>
+            </React.Fragment>
           ))}
         </ul>
       </div>
