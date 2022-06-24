@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
 import Head from 'next/head'
-import { Steper } from '../atoms'
+import { Stepper } from '../atoms'
 import Badge from '@mui/material/Badge'
 // NOTE: Redux関連
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
@@ -37,19 +37,17 @@ const HomeLayout: FC<Props> = (props) => {
   return (
     <div
       className="
-      flex min-h-screen flex-col
+      flex min-h-screen w-full flex-col
       items-center
       justify-center
       bg-gray-200
-      bg-cover 
       "
     >
       <Head>
         <title>{title}</title>
       </Head>
-      <div className="bg-gradient-to-r"></div>
-      <header className="mt-10 min-w-full">
-        <Steper />
+      <header className="min-w-full">
+        <Stepper />
       </header>
 
       <main className="flex w-screen flex-1 flex-col items-center">
