@@ -1,11 +1,10 @@
 import React from 'react'
-import { useRouter } from 'next/router'
 // NOTE: original
 import { HomeLayout } from '../layout'
 import {
   OrderMenueView,
   OrderClientView,
-  OrderConfiButton,
+  OrderConfButton,
 } from '../modules/orderPageParts'
 // NOTE: Redux関連
 
@@ -14,7 +13,7 @@ const OrderBase = () => {
     <HomeLayout title="注文確認">
       <OrderMenueView />
       <OrderClientView />
-      <OrderConfiButton />
+      <OrderConfButton />
     </HomeLayout>
   )
 }
