@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import { Button } from '@material-ui/core'
 import clsx from 'clsx'
 // Redux関連
 import { useAppDispatch, useAppSelector } from '../../../../redux/app/hooks'
@@ -83,20 +82,14 @@ const ButtonCount: FC<Props> = (props) => {
     <div className="mt-2 flex flex-col">
       <div className="flex flex-row justify-between">
         {/* プラスボタン */}
-        {/* <Button
-          id={`incrementButton${countButtonID}`}
-          color="secondary"
-          style={{ fontSize: '20px', padding: '0' }}
-          onClick={() => controlCart('increment', countButtonID)}
-        > */}
         <button
           id={`incrementButton${countButtonID}`}
-          className="ml-4"
+          className="ml-4 box-content h-3 w-3 rounded-full border-2 border-black bg-white p-2"
           onClick={() => controlCart('increment', countButtonID)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 text-red-700"
+            className="text-black"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -111,17 +104,16 @@ const ButtonCount: FC<Props> = (props) => {
         {/* マイナスボタン */}
         <button
           id={`decrementCount${countButtonID}`}
-          className="mr-4"
+          className="mr-2 box-content h-3 w-3 rounded-full border-2 border-white bg-black p-2"
           onClick={() => controlCart('decrement', countButtonID)}
           disabled={!menueListSelector[countButtonID].isInCart}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className={clsx(
-              `h-5 w-5`,
               menueListSelector[countButtonID].isInCart
-                ? `text-blue-700`
-                : `text-gray-300`
+                ? `text-white`
+                : `text-gray-400`
             )}
             viewBox="0 0 20 20"
             fill="currentColor"
@@ -137,10 +129,10 @@ const ButtonCount: FC<Props> = (props) => {
       {/* カートに追加する */}
       <button
         id={`decrementButton${countButtonID}`}
-        className="mt-2 text-sm text-blue-500"
+        className="mt-4 ml-4 rounded-full border-2  bg-gray-400 text-sm text-white 	"
         onClick={() => controlCart('increment', countButtonID)}
       >
-        カートに入れるデモ
+        カートに追加
       </button>
     </div>
   )
