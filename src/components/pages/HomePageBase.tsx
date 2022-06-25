@@ -1,7 +1,9 @@
 import React, { FC } from 'react'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 // NOTE: original
 import { HomeLayout } from '../../components/layout'
+import { ImageLoader } from '../../lib'
 // NOTE: Redux関連
 import { useAppDispatch } from '../../redux/app/hooks'
 import { selectStep, changeState } from '../../redux/features/step/stepSlice'
@@ -19,23 +21,33 @@ const HomePageBase: FC = () => {
   return (
     <HomeLayout title="ようこそ">
       <p className="m-24"></p>
-      <h1 className="font-cursive justify-center font-light text-black">
+      <h1 className="font-cursive items-center justify-center font-light text-black">
         <span className="block text-5xl">b l o o m</span>
       </h1>
-      <div className="m-32 flex w-full justify-center">
-        <button className="absolute  mt-44   px-5  py-5" onClick={registClick}>
+      <div
+        className="
+        mt-auto mb-10
+        flex w-full
+        justify-center
+        bg-gray-200
+        "
+      >
+        <button
+          className="rounded-full bg-white p-2 shadow-lg"
+          onClick={registClick}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-12 w-12"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            stroke-width="1"
+            stroke-width="2"
           >
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
-              d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+              d="M13 7l5 5m0 0l-5 5m5-5H6"
             />
           </svg>
         </button>
