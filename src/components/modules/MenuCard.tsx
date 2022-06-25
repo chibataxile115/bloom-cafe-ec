@@ -9,18 +9,18 @@ const MenuCard: FC = () => {
   const menueListSelector = useAppSelector(selectMenueList)
 
   return (
-    <ul className="flex flex-row flex-wrap justify-center">
+    <ul className="flex flex-wrap ">
       {menueListSelector.map((item, index) => (
         <li
           key={index}
           className="
-          mx-2 mt-4
-          flex
-          w-full
-          max-w-[40vw]
+          m-[calc(20px/2)] flex w-[calc(100%/2_-_20px)]
           flex-col
-          rounded-md bg-gray-200 p-2
+          rounded-md bg-gray-200
+          p-2
           text-sm
+          shadow-md sm:m-[calc(40px/2)]
+          sm:w-[calc(100%/3_-_40px)]
           "
         >
           {/* // TODO: カード毎のデザインはここのclassNameを修正する */}

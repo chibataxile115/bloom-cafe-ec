@@ -67,28 +67,35 @@ const MenuBase = () => {
 
   return (
     <HomeLayout title="商品一覧">
-      <div className="flex flex-row justify-center">
-        <MenuCard />
-      </div>
-      <button
-        className=" absolute bottom-[70px]  px-5 py-1 "
-        onClick={clientClick}
+      <MenuCard />
+      <div
+        className="
+        sticky
+        bottom-10 ml-auto mr-4
+        flex flex-row
+        p-2
+        "
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-12 w-12"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="1"
+        <button
+          className="rounded-full bg-white p-2 shadow-lg"
+          onClick={clientClick}
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-12 w-12"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M13 7l5 5m0 0l-5 5m5-5H6"
+            />
+          </svg>
+        </button>
+      </div>
       <CartDetailModal />
     </HomeLayout>
   )
