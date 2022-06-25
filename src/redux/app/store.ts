@@ -5,9 +5,7 @@ import adminPageReducer from '../features/adminPageSlice'
 import authPageReducer from '../features/authPageSlice'
 import menuePageReducer from '../features/menuePageSlice'
 import userReducer from '../features/userSlice'
-import menueItemsReducer from '../features/menue/menueItemsSlice'
 import stepReducer from '../features/step/stepSlice'
-import storingDataReducer from '../features/storingdateSlice'
 import menueListReducer from '../features/menue/menueListSlice'
 import adminMenuDetailReducer from '../features/menue/admin/adminMenuDetailSlice'
 import CartDetailReducer from '../features/cartdetailSlice'
@@ -22,9 +20,7 @@ const reducer = {
   authPage: authPageReducer,
   menuePage: menuePageReducer,
   user: userReducer,
-  menueItems: menueItemsReducer,
   step: stepReducer,
-  storingData: storingDataReducer,
   menueList: menueListReducer,
   cartDetail: CartDetailReducer,
   uploadImages: uploadImagesReducer,
