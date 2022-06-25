@@ -69,7 +69,7 @@ const HomeLayout: FC<Props> = (props) => {
         </span>
         {children}
       </main>
-      <footer className="flex h-12 w-full items-center justify-center border-t ">
+      <footer className="sticky bottom-0 flex h-10 w-full items-center justify-center border-t border-white bg-gray-200">
         {/* FIXME: 文字色を修正 */}
         <a
           className="flex items-center text-black"
