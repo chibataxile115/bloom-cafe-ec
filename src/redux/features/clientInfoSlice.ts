@@ -19,6 +19,18 @@ export const clientInfoSlice = createSlice({
   name: 'clientInfo',
   initialState,
   reducers: {
+    resetState: (state: ClientInfo) => {
+      state = {
+        zipcode: '',
+        prefectures: '',
+        municipalities: '',
+        addressBuilding: '',
+        clientName: '',
+        phoneNumber: '',
+        deliveryDate: '',
+        deliveryTime: '',
+      }
+    },
     updateInfo: (state, action: PayloadAction<ClientInfo>) => {
       state.zipcode = action.payload.zipcode
       state.prefectures = action.payload.prefectures
@@ -33,7 +45,7 @@ export const clientInfoSlice = createSlice({
 })
 
 // NOTE: actionsをエクスポートする
-export const { updateInfo } = clientInfoSlice.actions
+export const { resetState, updateInfo } = clientInfoSlice.actions
 // NOTE: selectorをエクスポートする
 export const selectClientInfo = (state: RootState) => state.clientInfo
 // NOTE: reducerをエクスポートする
