@@ -1,19 +1,12 @@
 const MenueIDList = (mode: 'left' | 'right') => {
   if (mode === 'left') {
     const leftMenueIDs = [
-      { id: 0, value: 'aaa' },
-      { id: 1, value: 'aab' },
-      { id: 2, value: 'abb' },
-      { id: 3, value: 'bbb' },
-      { id: 4, value: 'bbc' },
-      { id: 5, value: 'bcc' },
-      { id: 6, value: 'ccc' },
-      { id: 7, value: 'ccd' },
-      { id: 8, value: 'cdd' },
-      { id: 9, value: 'ddd' },
-      { id: 10, value: 'dde' },
-      { id: 11, value: 'dee' },
-      { id: 12, value: 'eee' },
+      { id: 0, value: 'plt' },
+      { id: 1, value: 'box' },
+      { id: 2, value: 'snd' },
+      { id: 3, value: 'bgr' },
+      { id: 4, value: 'bwl' },
+      { id: 5, value: 'sid' },
     ]
     return leftMenueIDs
   } else {
@@ -37,10 +30,6 @@ const MenueIDList = (mode: 'left' | 'right') => {
       { id: 16, value: '018' },
       { id: 17, value: '019' },
       { id: 18, value: '020' },
-      { id: 19, value: '021' },
-      { id: 20, value: '022' },
-      { id: 21, value: '023' },
-      { id: 22, value: '024' },
     ]
     return rightMenueIDs
   }
