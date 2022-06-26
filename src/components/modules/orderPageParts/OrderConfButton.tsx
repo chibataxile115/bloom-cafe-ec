@@ -1,6 +1,5 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { useRouter } from 'next/router'
-import { MenueList } from '../../../types/types'
 // NOTE:Custom Hook
 import { useLiff, LiffContext } from '../../../hooks/liff/useLiffProvider'
 // NOTE: Redux関連
@@ -73,11 +72,13 @@ const OrderConfButton = () => {
     return processedMessage
   }
 
-  const { loggedIn, isInClient, getNameWithLiffOpen, sendMessage, login } =
-    useLiff()
+  const { loggedIn, isInClient, sendMessage, login } = useLiff()
   const liff = useContext(LiffContext)
 
   const sendMessageToLine = () => {
+    // FIXME:thanksPageの作成が完了したら削除する
+    router.push('/thanks')
+
     if (!loggedIn) {
       login
     }
@@ -87,12 +88,13 @@ const OrderConfButton = () => {
 
       sendMessage(messageOrderDetail)
       sendMessage(messageClientInfo)
+      router.push('/thanks')
     }
   }
 
   const clientPageClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     // stepperの更新
-    dispatch(changeState({ ...selectStep, stepIndex: 2 }))
+    dispatch(changeState({ ...selectStep, stepIndex: 3 }))
     router.push('/client')
   }
 
