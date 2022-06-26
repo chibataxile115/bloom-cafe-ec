@@ -16,20 +16,20 @@ const Stepper = () => {
   const stepSelector = useAppSelector(selectStep)
 
   const stepItems = [
-    { name: 'ようこそ', index: 0, svg: <HomeIcon className="h-full w-full" /> },
+    { name: 'ようこそ', index: 1, svg: <HomeIcon className="h-full w-full" /> },
     {
       name: '商品選択',
-      index: 1,
+      index: 2,
       svg: <DocumentDuplicateIcon className="h-full w-full" />,
     },
     {
       name: 'お客様情報',
-      index: 2,
+      index: 3,
       svg: <ExclamationCircleIcon className="h-full w-full" />,
     },
     {
       name: '注文内容',
-      index: 3,
+      index: 4,
       svg: <ClipboardCheckIcon className="h-full w-full" />,
     },
   ]
@@ -64,7 +64,7 @@ const Stepper = () => {
                   {step.name}
                 </div>
               </li>
-              {step.index < stepsLength - 1 && (
+              {step.index < stepsLength && (
                 <div
                   className={clsx(
                     `flex-auto border-t-2 border-black transition duration-500 ease-in-out`,

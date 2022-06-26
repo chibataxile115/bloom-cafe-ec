@@ -55,11 +55,11 @@ const FormItem = () => {
 
   const orderSubmit: SubmitHandler<ClientInfo> = async (data) => {
     console.log(`zipcode: [${data.zipcode}]`)
-    dispatch(changeState({ ...selectStep, stepIndex: 3 }))
+    dispatch(changeState({ ...selectStep, stepIndex: 4 }))
     router.push('/order')
   }
 
-  const menuPageClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const toMenuPage = (e: React.MouseEvent<HTMLButtonElement>) => {
     // stepperの更新
     dispatch(changeState({ ...selectStep, stepIndex: 2 }))
     router.push('/menu')
@@ -70,9 +70,10 @@ const FormItem = () => {
       <form
         className="mb-4 flex flex-col rounded bg-gray-100 px-8 pt-6 pb-8 shadow-md"
         onSubmit={handleSubmit(orderSubmit)}
+        id="clientForm"
       >
         {/* 郵便番号 */}
-        <div className="mb-4 flex max-h-[100px] flex-row">
+        <div className="flex-roxw mb-4 flex max-h-[100px]">
           <label
             className="mb-2 block text-sm font-bold text-gray-700"
             htmlFor="zipcode"
@@ -157,7 +158,7 @@ const FormItem = () => {
                 )
               }}
             />
-          </div>{' '}
+          </div>
           <p className="mb-4 font-bold text-red-500">
             {errors.municipalities?.message}
           </p>
@@ -185,7 +186,7 @@ const FormItem = () => {
                 )
               }}
             />
-          </div>{' '}
+          </div>
           <p className="mb-4 font-bold text-red-500">
             {errors.addressBuilding?.message}
           </p>
@@ -296,7 +297,6 @@ const FormItem = () => {
                 )
               }}
             >
-              {/* <DeliveryTimesView /> */}
               {deliveryTimes.map((item) => (
                 <option value={item.value} key={item.id}>
                   {item.state && item.value.replaceAll(/"/g, '')}
@@ -310,7 +310,7 @@ const FormItem = () => {
         </div>
 
         <div className="flex items-center justify-center">
-          <button
+          <input
             className="
             focus:shadow-outline
             w-4/12
@@ -323,9 +323,9 @@ const FormItem = () => {
             disabled:bg-gray-300 disabled:text-gray-400
             "
             type="submit"
-          >
-            注文を確定へ進む
-          </button>
+            form="clientForm"
+            value="注文を確定へ進む"
+          />
           <button
             className="
             focus:shadow-outline
@@ -338,8 +338,8 @@ const FormItem = () => {
             focus:outline-none
             disabled:bg-gray-300 disabled:text-gray-400
             "
-            type="submit"
-            onClick={menuPageClick}
+            type="button"
+            onClick={toMenuPage}
           >
             注文登録へ戻る
           </button>

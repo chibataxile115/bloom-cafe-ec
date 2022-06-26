@@ -10,10 +10,14 @@ import { useAppDispatch } from '../redux/app/hooks'
 export const useResetAllState = () => {
   const dispatch = useAppDispatch()
 
-  dispatch(resetMenueList)
-  dispatch(resetSnackbar)
-  dispatch(resetStep)
-  dispatch(resetCartdetail)
-  dispatch(resetClientInfo)
-  dispatch(resetMenuePage)
+  const resetAllState = () => {
+    dispatch(resetMenueList())
+    dispatch(resetSnackbar())
+    dispatch(resetStep())
+    dispatch(resetCartdetail())
+    dispatch(resetClientInfo())
+    dispatch(resetMenuePage())
+  }
+
+  return { resetAllState }
 }

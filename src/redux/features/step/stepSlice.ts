@@ -5,7 +5,7 @@ import { Step } from '../../../types/types'
 
 // NOTE: initialStateを定義
 const initialState: Step = {
-  stepIndex: 0,
+  stepIndex: 1,
   isCartModal: false,
 }
 
@@ -15,10 +15,8 @@ export const stepSlice = createSlice({
   initialState,
   reducers: {
     resetState: (state: Step) => {
-      state = {
-        stepIndex: 0,
-        isCartModal: false,
-      }
+      state.stepIndex = 1
+      state.isCartModal = false
     },
     changeState: (state: Step, action: PayloadAction<Step>) => {
       state.stepIndex = action.payload.stepIndex

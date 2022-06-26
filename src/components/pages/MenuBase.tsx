@@ -61,7 +61,7 @@ const MenuBase = () => {
 
   const clientClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     // stepperの更新
-    dispatch(changeState({ ...selectStep, stepIndex: 2 }))
+    dispatch(changeState({ ...selectStep, stepIndex: 3 }))
     router.push('/client')
   }
 
