@@ -54,8 +54,9 @@ const MenuBase = () => {
     if (didLogRef.current === false) {
       didLogRef.current = true
 
-      if (menueListSelector.length !== 0) dispatch(resetMenueForMenueList())
-      getMenueList()
+      // FIXME: 新情報と旧情報を比較して動的に、最新の値で更新するようにする。
+      // if (menueListSelector.length !== 0) dispatch(resetMenueForMenueList())
+      if (menueListSelector.length === 0) getMenueList()
     }
   }, [])
 
