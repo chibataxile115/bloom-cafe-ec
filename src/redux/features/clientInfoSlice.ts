@@ -20,16 +20,14 @@ export const clientInfoSlice = createSlice({
   initialState,
   reducers: {
     resetState: (state: ClientInfo) => {
-      state = {
-        zipcode: '',
-        prefectures: '',
-        municipalities: '',
-        addressBuilding: '',
-        clientName: '',
-        phoneNumber: '',
-        deliveryDate: '',
-        deliveryTime: '',
-      }
+      state.zipcode = ''
+      state.prefectures = ''
+      state.municipalities = ''
+      state.addressBuilding = ''
+      state.clientName = ''
+      state.phoneNumber = ''
+      state.deliveryDate = ''
+      state.deliveryTime = ''
     },
     updateInfo: (state, action: PayloadAction<ClientInfo>) => {
       state.zipcode = action.payload.zipcode
