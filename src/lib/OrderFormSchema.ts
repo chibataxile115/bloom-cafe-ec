@@ -25,7 +25,7 @@ const OrderFormSchema = () => {
         .string()
         .required('必須項目です。')
         .matches(/(?=.)/, '入力して下さい。'),
-      phonenumber: yup
+      phoneNumber: yup
         .string()
         .required('必須項目です。')
         .matches(/(?=.)/, '入力して下さい。'),
