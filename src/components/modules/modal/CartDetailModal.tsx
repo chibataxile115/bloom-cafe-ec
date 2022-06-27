@@ -23,7 +23,7 @@ const CartDetailModal: React.FC = () => {
       changeStateForMenuePage({ ...menuPageSelector, isOpenCartModal: false })
     )
   }
-  const registClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const toClientPage = (e: React.MouseEvent<HTMLButtonElement>) => {
     // stepperの更新
     dispatch(changeState({ ...selectStep, stepIndex: 2 }))
     router.push('/client')
@@ -31,7 +31,7 @@ const CartDetailModal: React.FC = () => {
 
   return (
     <BasicModal isOpenModal={menuPageSelector.isOpenCartModal}>
-      <div className="relative flex items-center justify-center">
+      <div className="relative flex items-center ">
         <div className="absolute right-0 p-2">
           <button
             type="button"
@@ -72,19 +72,21 @@ const CartDetailModal: React.FC = () => {
           className="
           focus:shadow-outline
           mx-auto mb-2
-          w-full min-w-[150px] rounded-md
+          min-w-[300px] rounded-full
           border-2
-          border-gray-700
-          bg-gray-700
+          border-black
+          bg-gray-400
           py-2 px-4 font-bold
           text-gray-100
-          hover:bg-gray-900
           hover:text-gray-300
           focus:outline-none
           "
-          onClick={registClick}
+          onClick={toClientPage}
         >
-          お会計に進む : ￥{Math.floor(cartDetailSelector.totalPlice * 1.1)}
+          {/* //NOTE:消費税追加 */}
+          {/* お会計に進む : ￥{Math.floor(cartDetailSelector.totalPlice * 1.1).toLocaleString()} */}
+          お会計に進む : ￥
+          {Math.floor(cartDetailSelector.totalPlice * 1.1).toLocaleString()}
         </button>
       </div>
     </BasicModal>

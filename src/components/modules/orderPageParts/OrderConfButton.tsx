@@ -22,7 +22,9 @@ const OrderConfButton = () => {
     menueListSelector.forEach((item) => {
       if (item.isInCart) {
         const calcedPlce = Math.floor(
-          item.plice * item.count * 1.1
+          // NOTE:消費税追加
+          // item.plice * item.count * 1.1
+          item.plice * item.count
         ).toLocaleString()
 
         processedMessage =

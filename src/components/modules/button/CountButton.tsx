@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import { Button } from '@material-ui/core'
 // Redux関連
 import { useAppDispatch, useAppSelector } from '../../../redux/app/hooks'
 import {
@@ -79,17 +78,16 @@ const CountButton: FC<Props> = (props) => {
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row">
+      <div className="flex flex-row justify-between">
         {/* プラスボタン */}
-        <Button
+        <button
           id={`incrementButton${countButtonID}`}
-          color="secondary"
-          style={{ margin: '3px', fontSize: '20px', padding: '0' }}
+          className="ml-4 box-content h-3 w-3 rounded-full border-2 border-black bg-white p-2"
           onClick={() => controlCart('increment', countButtonID)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 text-red-700"
+            className=" text-black"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -99,17 +97,16 @@ const CountButton: FC<Props> = (props) => {
               clipRule="evenodd"
             />
           </svg>
-        </Button>
+        </button>
         {/* マイナスボタン */}
-        <Button
+        <button
           id={`decrementCount${countButtonID}`}
-          color="secondary"
-          style={{ margin: '3px', fontSize: '20px', padding: '0' }}
+          className="mr-2 box-content h-3 w-3 rounded-full border-2 border-white bg-black p-2"
           onClick={() => controlCart('decrement', countButtonID)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 text-blue-700"
+            className="text-white"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -119,7 +116,7 @@ const CountButton: FC<Props> = (props) => {
               clipRule="evenodd"
             />
           </svg>
-        </Button>
+        </button>
       </div>
     </div>
   )

@@ -33,7 +33,6 @@ const DeletButton: FC<Props> = (props) => {
           addedCount: 0,
         })
       )
-      // dispatch(resetOrder())
       dispatch(
         CartDetailForUpdateCount({
           targetMenueCount:
@@ -56,14 +55,14 @@ const DeletButton: FC<Props> = (props) => {
         id={`decrementButton${deleteButtonID}`}
         className="
         focus:shadow-outline
-        mx-auto mb-2
-        min-w-[150px] rounded-md
+        mx-auto
+        mb-2 min-w-[150px]
+        justify-between rounded-full
         border-2
-        border-red-500
-        bg-white
+        border-black
+        bg-gray-400
         py-2 px-4 font-bold
-        text-gray-400
-        hover:bg-red-400
+        text-white
         hover:text-gray-100
         focus:outline-none
         "
