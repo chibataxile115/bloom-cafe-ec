@@ -6,18 +6,11 @@ import { User } from '../../types/types'
 // NOTE: Null許可タイプ
 // type Nullable<T> = T | null;
 
-// NOTE: Stateの型を定義する
-interface UserState {
-  User: User
-}
-
 // NOTE: initialStateを定義
-const initialState: UserState = {
-  User: {
-    liffID: '',
-    userName: '',
-    uuid: '',
-  },
+const initialState: User = {
+  liffID: '',
+  userName: '',
+  uuid: '',
 }
 
 // NOTE: Sliceを定義する
@@ -25,16 +18,18 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    signin: (state, action: PayloadAction<User>) => {
-      state.User = action.payload
+    signin: (state: User, action: PayloadAction<User>) => {
+      state.uuid = action.payload.uuid
     },
-    signout: (state) => {
-      state.User = { liffID: '', userName: '', uuid: '' }
+    signout: (state: User) => {
+      state.liffID = ''
+      state.userName = ''
+      state.uuid = ''
     },
-    updateUserProf: (state, action: PayloadAction<User>) => {
-      state.User.liffID = action.payload.liffID
-      state.User.userName = action.payload.userName
-      state.User.uuid = action.payload.uuid
+    updateUserProf: (state: User, action: PayloadAction<User>) => {
+      state.liffID = action.payload.liffID
+      state.userName = action.payload.userName
+      state.uuid = action.payload.uuid
     },
   },
 })
@@ -42,6 +37,6 @@ export const userSlice = createSlice({
 // NOTE: actionsをエクスポートする
 export const { signin, signout, updateUserProf } = userSlice.actions
 // NOTE: selectorをエクスポートする
-export const selectUser = (state: RootState) => state.user.User
+export const selectUser = (state: RootState) => state.user
 // NOTE: reducerをエクスポートする
 export default userSlice.reducer
