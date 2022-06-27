@@ -9,7 +9,7 @@ const CartDetailView: React.FC = () => {
   const menueListSelector = useAppSelector(selectMenueList)
 
   return (
-    <ul className="flex flex-col justify-between p-10">
+    <ul className="flex flex-col p-10">
       {menueListSelector.map((item) => (
         <div key={item.id}>
           {item.isInCart && (
@@ -19,12 +19,14 @@ const CartDetailView: React.FC = () => {
                 <p className="mt-2">{item.name}</p>
                 <p className="mt-2">{item.count}個</p>
               </span>
-              <div className="mt-2 px-5">
+              <div className="mt-2">
+                <CountButton countButtonID={item.id} />
+              </div>
+              <div className="mt-2 ml-6 mr-auto">
                 <DeleteButton
                   deleteButtonID={item.id}
                   deleteDocID={item.docID}
                 />
-                <CountButton countButtonID={item.id} />
               </div>
             </li>
           )}

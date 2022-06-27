@@ -72,7 +72,7 @@ const CartDetailModal: React.FC = () => {
           className="
           focus:shadow-outline
           mx-auto mb-2
-          w-full min-w-[150px] rounded-md
+          min-w-[300px] rounded-full
           border-2
           border-black
           bg-gray-400

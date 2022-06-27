@@ -57,7 +57,7 @@ const DeletButton: FC<Props> = (props) => {
         focus:shadow-outline
         mx-auto
         mb-2 min-w-[150px]
-        justify-between rounded-md
+        justify-between rounded-full
         border-2
         border-black
         bg-gray-400
