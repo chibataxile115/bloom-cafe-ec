@@ -47,11 +47,12 @@ const AdminLayout: React.FC<Props> = (props) => {
         if (!userDoc.exists()) {
           // Firestoreにユーザー情報のドキュメントが無ければ新規作成
           await setDoc(userRef, {
+            uuid: authUser.uid,
             createdAt: serverTimestamp(),
             updatedAt: serverTimestamp(),
           })
 
-          dispatch(signin({ liffID: '', userName: '', uuid: authUser.uid }))
+          dispatch(signin({ ...userSelector, uuid: authUser.uid }))
         } else {
           dispatch(signin({ liffID: '', userName: '', uuid: authUser.uid }))
         }
