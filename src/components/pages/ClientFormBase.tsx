@@ -7,7 +7,7 @@ import { HomeLayout } from '../layout'
 const ClientFormBase = () => {
   return (
     <div>
-      <HomeLayout title="情報入力">
+      <HomeLayout title="お客様情報">
         <FormItem />
       </HomeLayout>
     </div>

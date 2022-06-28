@@ -10,7 +10,7 @@ import {
 
 const OrderBase = () => {
   return (
-    <HomeLayout title="注文確認">
+    <HomeLayout title="注文内容">
       <OrderMenueView />
       <OrderClientView />
       <OrderConfButton />
