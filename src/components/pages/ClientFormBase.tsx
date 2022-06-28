@@ -1,5 +1,4 @@
-import React, { useState, useContext } from 'react'
-import { useRouter } from 'next/router'
+import React from 'react'
 // NOTE: original
 import { FormItem } from '../modules/clientPageParts'
 import { HomeLayout } from '../layout'
@@ -7,7 +6,7 @@ import { HomeLayout } from '../layout'
 const ClientFormBase = () => {
   return (
     <div>
-      <HomeLayout title="情報入力">
+      <HomeLayout title="お客様情報">
         <FormItem />
       </HomeLayout>
     </div>
