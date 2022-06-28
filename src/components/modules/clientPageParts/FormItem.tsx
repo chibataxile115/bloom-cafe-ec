@@ -70,7 +70,7 @@ const FormItem = () => {
   return (
     <div className=" mt-3 flex max-w-[95%] flex-col justify-start pt-3">
       <form
-        className="mb-4 flex flex-col rounded bg-gray-100 px-8 pt-6 pb-8 shadow-md"
+        className="mb-4 flex flex-col rounded bg-gray-200 px-8 pt-6 pb-8 shadow-md"
         onSubmit={handleSubmit(orderSubmit)}
         id="clientForm"
       >
@@ -84,7 +84,7 @@ const FormItem = () => {
           </label>
           <div className=" flex ">
             <input
-              className="focus:shadow-outline w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow focus:outline-none"
+              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
               id="zipcode"
               type="text"
               placeholder="090123456"
@@ -101,7 +101,7 @@ const FormItem = () => {
             />
 
             <button
-              className="ml-4 w-1/3 rounded bg-gray-400  leading-tight text-white"
+              className="ml-4 w-1/3 rounded bg-gray-400  leading-tight text-white outline-black"
               type="button"
               onClick={handleFetchFromZipcode}
             >
@@ -120,7 +120,7 @@ const FormItem = () => {
               都道府県
             </label>
             <input
-              className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
               id="prefectures"
               type="text"
               placeholder="青森"
@@ -148,7 +148,7 @@ const FormItem = () => {
               市区町村
             </label>
             <input
-              className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
               id="municipalities"
               type="text"
               placeholder="○○市"
@@ -176,7 +176,7 @@ const FormItem = () => {
               番地・建物
             </label>
             <input
-              className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
               type="text"
               id="addressBuilding"
               placeholder="番地・建物"
@@ -204,7 +204,7 @@ const FormItem = () => {
               会社名・お客様名
             </label>
             <input
-              className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
               type="text"
               id="clientName"
               placeholder="会社名・お客様名"
@@ -232,7 +232,7 @@ const FormItem = () => {
               連絡先
             </label>
             <input
-              className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
               type="text"
               id="phoneNumber"
               placeholder="連絡先"
@@ -260,7 +260,7 @@ const FormItem = () => {
               配達日
             </label>
             <input
-              className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
               type="date"
               id="deliveryDate"
               placeholder="配達日"
@@ -288,7 +288,7 @@ const FormItem = () => {
               受取時間
             </label>
             <select
-              className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
               id="deliveryTime"
               placeholder="受取時間"
               value={clientInfoSelector.deliveryTime}
@@ -316,14 +316,14 @@ const FormItem = () => {
 
         <div className="flex items-center justify-between">
           <button
-            className="ml-10 rounded-full bg-white p-2 shadow-lg"
+            className="ml-10 rounded-full bg-white p-2 shadow-lg outline-black"
             type="button"
             onClick={toMenuPage}
           >
             <ArrowButton ClassName="h-12 w-12" direction="left" />
           </button>
           <button
-            className="mr-10 rounded-full bg-white p-2 shadow-lg"
+            className="mr-10 rounded-full bg-white p-2 shadow-lg outline-black"
             type="submit"
             form="clientForm"
           >

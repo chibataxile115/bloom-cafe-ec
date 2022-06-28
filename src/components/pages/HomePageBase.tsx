@@ -32,10 +32,10 @@ const HomePageBase: FC = () => {
         "
       >
         <button
-          className="rounded-full bg-white p-2 shadow-lg"
+          className="rounded-full bg-white p-2 shadow-lg outline-black"
           onClick={registClick}
         >
-          <ArrowButton ClassName="h-12 w-12" direction="right" />
+          <ArrowButton ClassName="h-12 w-12 outline-black" direction="right" />
         </button>
       </div>
     </HomeLayout>
