@@ -1,5 +1,4 @@
-import React, { useState, useContext } from 'react'
-import { useRouter } from 'next/router'
+import React from 'react'
 // NOTE: original
 import { FormItem } from '../modules/clientPageParts'
 import { HomeLayout } from '../layout'

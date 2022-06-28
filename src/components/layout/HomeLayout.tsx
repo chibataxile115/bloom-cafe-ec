@@ -1,15 +1,6 @@
 import { FC, ReactNode } from 'react'
 import Head from 'next/head'
 import { Stepper } from '../atoms'
-import Badge from '@mui/material/Badge'
-
-// NOTE: Redux関連
-import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
-import { selectCartDetail } from '../../redux/features/cartdetailSlice'
-import {
-  selectMenuePage,
-  changeState as changeStateForMenuePage,
-} from '../../redux/features/menuePageSlice'
 
 interface Props {
   children: ReactNode
@@ -38,7 +29,6 @@ const HomeLayout: FC<Props> = (props) => {
         {children}
       </main>
       <footer className="sticky bottom-0 flex h-10 w-full items-center justify-center border-t border-white bg-gray-200">
-        {/* FIXME: 文字色を修正 */}
         <a
           className="flex items-center text-black"
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
