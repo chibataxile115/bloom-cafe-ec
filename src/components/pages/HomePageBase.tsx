@@ -1,9 +1,8 @@
 import React, { FC } from 'react'
 import { useRouter } from 'next/router'
-import Image from 'next/image'
 // NOTE: original
 import { HomeLayout } from '../../components/layout'
-import { ImageLoader } from '../../lib'
+import { ArrowButton } from '../atoms'
 // NOTE: Redux関連
 import { useAppDispatch } from '../../redux/app/hooks'
 import { selectStep, changeState } from '../../redux/features/step/stepSlice'
@@ -33,23 +32,10 @@ const HomePageBase: FC = () => {
         "
       >
         <button
-          className="rounded-full bg-white p-2 shadow-lg"
+          className="rounded-full bg-white p-2 shadow-lg outline-black"
           onClick={registClick}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-12 w-12"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              strokeLinecap="round"
-              stroke-linejoin="round"
-              d="M13 7l5 5m0 0l-5 5m5-5H6"
-            />
-          </svg>
+          <ArrowButton ClassName="h-12 w-12 outline-black" direction="right" />
         </button>
       </div>
     </HomeLayout>

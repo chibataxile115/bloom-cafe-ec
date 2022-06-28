@@ -18,6 +18,8 @@ import { selectSnackBar } from '../../../redux/features/snackbar/snackbarSlice'
 import { selectStep, changeState } from '../../../redux/features/step/stepSlice'
 // Custom Hook
 import { useFetchFromZipcode } from '../../../hooks/order/useFetchFromZipcode'
+// Originals
+import { ArrowButton } from '../../atoms'
 
 const FormItem = () => {
   const dispatch = useAppDispatch()
@@ -66,48 +68,51 @@ const FormItem = () => {
   }
 
   return (
-    <div className=" mt-3 flex w-full flex-col justify-start pt-3">
+    <div className=" mt-3 flex max-w-[95%] flex-col justify-start pt-3">
       <form
-        className="mb-4 flex flex-col rounded bg-gray-100 px-8 pt-6 pb-8 shadow-md"
+        className="mb-4 flex flex-col rounded bg-gray-200 px-8 pt-6 pb-8 shadow-md"
         onSubmit={handleSubmit(orderSubmit)}
         id="clientForm"
       >
         {/* 郵便番号 */}
-        <div className="flex-roxw mb-4 flex max-h-[100px]">
+        <div className="mb-4 ml-2 flex max-h-[100px] flex-col">
           <label
-            className="mb-2 block text-sm font-bold text-gray-700"
+            className="mb-2 block text-sm  font-bold text-gray-700"
             htmlFor="zipcode"
           >
             郵便番号
           </label>
-          <input
-            className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
-            id="zipcode"
-            type="text"
-            placeholder="090123456"
-            {...register('zipcode')}
-            value={clientInfoSelector.zipcode}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              dispatch(
-                updateInfo({
-                  ...clientInfoSelector,
-                  zipcode: event.target.value,
-                })
-              )
-            }}
-          />
-          <button
-            className="m-2 border-2 bg-red-500 p-2"
-            type="button"
-            onClick={handleFetchFromZipcode}
-          >
-            住所検索
-          </button>
+          <div className=" flex ">
+            <input
+              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
+              id="zipcode"
+              type="text"
+              placeholder="090123456"
+              {...register('zipcode')}
+              value={clientInfoSelector.zipcode}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                dispatch(
+                  updateInfo({
+                    ...clientInfoSelector,
+                    zipcode: event.target.value,
+                  })
+                )
+              }}
+            />
+
+            <button
+              className="ml-4 w-1/3 rounded bg-gray-400  leading-tight text-white outline-black"
+              type="button"
+              onClick={handleFetchFromZipcode}
+            >
+              住所検索
+            </button>
+          </div>
         </div>
         <p className="mb-4 font-bold text-red-500">{errors.zipcode?.message}</p>
         <div className="flex flex-col">
           {/* 都道府県 */}
-          <div className="mb-4 mr-2">
+          <div className="mb-4 ml-2">
             <label
               className="mb-2 block text-sm font-bold text-gray-700"
               htmlFor="prefectures"
@@ -115,7 +120,7 @@ const FormItem = () => {
               都道府県
             </label>
             <input
-              className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
               id="prefectures"
               type="text"
               placeholder="青森"
@@ -143,7 +148,7 @@ const FormItem = () => {
               市区町村
             </label>
             <input
-              className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
               id="municipalities"
               type="text"
               placeholder="○○市"
@@ -171,7 +176,7 @@ const FormItem = () => {
               番地・建物
             </label>
             <input
-              className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
               type="text"
               id="addressBuilding"
               placeholder="番地・建物"
@@ -199,7 +204,7 @@ const FormItem = () => {
               会社名・お客様名
             </label>
             <input
-              className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
               type="text"
               id="clientName"
               placeholder="会社名・お客様名"
@@ -227,7 +232,7 @@ const FormItem = () => {
               連絡先
             </label>
             <input
-              className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
               type="text"
               id="phoneNumber"
               placeholder="連絡先"
@@ -246,19 +251,19 @@ const FormItem = () => {
           <p className="mb-4 font-bold text-red-500">
             {errors.phoneNumber?.message}
           </p>
-          {/* 配達日時 */}
+          {/* 配達日 */}
           <div className="mb-4 ml-2">
             <label
               className="mb-2 block text-sm font-bold text-gray-700"
               htmlFor="deliveryDate"
             >
-              配達日時
+              配達日
             </label>
             <input
-              className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
               type="date"
               id="deliveryDate"
-              placeholder="配達日時"
+              placeholder="配達日"
               value={clientInfoSelector.deliveryDate}
               {...register('deliveryDate')}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -283,7 +288,7 @@ const FormItem = () => {
               受取時間
             </label>
             <select
-              className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
               id="deliveryTime"
               placeholder="受取時間"
               value={clientInfoSelector.deliveryTime}
@@ -309,39 +314,20 @@ const FormItem = () => {
           </p>
         </div>
 
-        <div className="flex items-center justify-center">
-          <input
-            className="
-            focus:shadow-outline
-            w-4/12
-            min-w-[150px] rounded
-            bg-blue-400
-            py-2 px-4 font-bold
-            text-white
-            hover:bg-blue-500
-            focus:outline-none
-            disabled:bg-gray-300 disabled:text-gray-400
-            "
-            type="submit"
-            form="clientForm"
-            value="注文を確定へ進む"
-          />
+        <div className="flex items-center justify-between">
           <button
-            className="
-            focus:shadow-outline
-            w-4/12
-            min-w-[150px] rounded
-            bg-blue-400
-            py-2 px-4 font-bold
-            text-white
-            hover:bg-blue-500
-            focus:outline-none
-            disabled:bg-gray-300 disabled:text-gray-400
-            "
+            className="ml-10 rounded-full bg-white p-2 shadow-lg outline-black"
             type="button"
             onClick={toMenuPage}
           >
-            注文登録へ戻る
+            <ArrowButton ClassName="h-12 w-12" direction="left" />
+          </button>
+          <button
+            className="mr-10 rounded-full bg-white p-2 shadow-lg outline-black"
+            type="submit"
+            form="clientForm"
+          >
+            <ArrowButton ClassName="h-12 w-12" direction="right" />
           </button>
         </div>
       </form>

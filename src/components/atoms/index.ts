@@ -1,3 +1,4 @@
+export { default as ArrowButton } from './ArrowButton'
 export { default as Spinner } from './Spinner'
 export { default as Stepper } from './Stepper'
 export { default as SnackBar } from './SnackBar'
