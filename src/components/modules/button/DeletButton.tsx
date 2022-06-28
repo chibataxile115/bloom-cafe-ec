@@ -49,28 +49,25 @@ const DeletButton: FC<Props> = (props) => {
   }
 
   return (
-    <div>
-      {/* カートに追加する */}
-      <button
-        id={`decrementButton${deleteButtonID}`}
-        className="
+    <button
+      id={`decrementButton${deleteButtonID}`}
+      className="
         focus:shadow-outline
         mx-auto
-        mb-2 min-w-[150px]
+        min-w-[80px]
         justify-between rounded-full
         border-2
         border-black
         bg-gray-400
-        py-2 px-4 font-bold
+        py-1 px-4 font-bold
         text-white
         hover:text-gray-100
         focus:outline-none
         "
-        onClick={() => targetDeletecart(deleteButtonID)}
-      >
-        削除
-      </button>
-    </div>
+      onClick={() => targetDeletecart(deleteButtonID)}
+    >
+      削除
+    </button>
   )
 }
 export default DeletButton

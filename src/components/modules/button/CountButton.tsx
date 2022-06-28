@@ -78,11 +78,11 @@ const CountButton: FC<Props> = (props) => {
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row justify-between">
+      <div className="flex">
         {/* プラスボタン */}
         <button
           id={`incrementButton${countButtonID}`}
-          className="ml-4 box-content h-3 w-3 rounded-full border-2 border-black bg-white p-2"
+          className="ml-4 mr-4 box-content h-3 w-3 rounded-full border-2 border-black bg-white p-2"
           onClick={() => controlCart('increment', countButtonID)}
         >
           <svg
@@ -101,7 +101,7 @@ const CountButton: FC<Props> = (props) => {
         {/* マイナスボタン */}
         <button
           id={`decrementCount${countButtonID}`}
-          className="mr-2 box-content h-3 w-3 rounded-full border-2 border-white bg-black p-2"
+          className="mr-4 box-content h-3 w-3 rounded-full border-2 border-white bg-black p-2"
           onClick={() => controlCart('decrement', countButtonID)}
         >
           <svg

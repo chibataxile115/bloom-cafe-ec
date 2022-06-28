@@ -14,9 +14,9 @@ const CartImageView: FC<Props> = (props) => {
     <div>
       <Image
         loader={() => ImageLoader()}
-        src={ImageLoader(imagePath, 190)}
-        width={190}
-        height={190}
+        src={ImageLoader(imagePath, 100)}
+        width={100}
+        height={100}
         className="m-0 items-center justify-center rounded-md p-0"
         unoptimized
       />
