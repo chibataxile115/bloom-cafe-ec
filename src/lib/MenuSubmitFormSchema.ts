@@ -7,8 +7,8 @@ const MenuSubmitFormSchema = () => {
       name: yup.string().required('商品名は必須項目です。'),
       plice: yup
         .string()
-        .required('パスワードは必須項目です。')
-        .matches(/(?=.*[0-9])/, '数字を含めてください。')
+        .required('金額は必須項目です。')
+        .matches(/(?=.*[0-9])/, '数字で入力して下さい。')
         .min(3, '最低100円以上で入力して下さい。'),
       category: yup.string().required('カテゴリーは必須項目です。'),
       menueIDL: yup
