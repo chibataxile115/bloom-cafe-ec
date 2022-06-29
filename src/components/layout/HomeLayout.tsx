@@ -28,7 +28,7 @@ const HomeLayout: FC<Props> = (props) => {
       <main className="flex w-screen flex-1 flex-col items-center">
         {children}
       </main>
-      <footer className="sticky bottom-0 flex h-10 w-full items-center justify-center border-t border-white bg-gray-200">
+      <footer className="bottom-0 flex h-10 w-full items-center justify-center border-t border-white bg-gray-200">
         <a
           className="flex items-center text-black"
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"

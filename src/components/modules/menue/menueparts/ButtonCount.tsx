@@ -84,7 +84,15 @@ const ButtonCount: FC<Props> = (props) => {
         {/* プラスボタン */}
         <button
           id={`incrementButton${countButtonID}`}
-          className="ml-4 box-content h-3 w-3 rounded-full border-2 border-black bg-white p-2"
+          className="
+          ml-4 box-content
+          h-3 w-3
+          rounded-full
+          border-2 border-black
+          bg-white
+          p-2
+          outline-none
+          "
           onClick={() => controlCart('increment', countButtonID)}
         >
           <svg
@@ -104,7 +112,15 @@ const ButtonCount: FC<Props> = (props) => {
         {/* マイナスボタン */}
         <button
           id={`decrementCount${countButtonID}`}
-          className="mr-2 box-content h-3 w-3 rounded-full border-2 border-white bg-black p-2"
+          className="
+          ml-4 box-content
+          h-3 w-3
+          rounded-full
+          border-2 border-white
+          bg-black
+          p-2
+          outline-none
+          "
           onClick={() => controlCart('decrement', countButtonID)}
           disabled={!menueListSelector[countButtonID].isInCart}
         >
@@ -129,7 +145,11 @@ const ButtonCount: FC<Props> = (props) => {
       {/* カートに追加する */}
       <button
         id={`decrementButton${countButtonID}`}
-        className="mt-4 ml-4 rounded-full border-2  bg-gray-400 text-sm text-white 	"
+        className="
+        mt-4 ml-4
+        rounded-full border-2 border-black
+        bg-gray-400
+        text-sm text-white 	"
         onClick={() => controlCart('increment', countButtonID)}
       >
         カートに追加
