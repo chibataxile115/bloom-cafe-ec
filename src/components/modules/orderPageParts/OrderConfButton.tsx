@@ -7,6 +7,9 @@ import { useAppDispatch, useAppSelector } from '../../../redux/app/hooks'
 import { selectStep, changeState } from '../../../redux/features/step/stepSlice'
 import { selectMenueList } from '../../../redux/features/menue/menueListSlice'
 import { selectClientInfo } from '../../../redux/features/clientInfoSlice'
+import { selectCartDetail } from '../../../redux/features/cartdetailSlice'
+// originals
+import { ArrowButton } from '../../atoms'
 
 const OrderConfButton = () => {
   const router = useRouter()
@@ -15,6 +18,7 @@ const OrderConfButton = () => {
 
   const menueListSelector = useAppSelector(selectMenueList)
   const ClientInfoSelector = useAppSelector(selectClientInfo)
+  const cartDetailSelector = useAppSelector(selectCartDetail)
 
   const messageWithProcessedMemuList = () => {
     let processedMessage = `■■■ 注文内容 ■■■\n`
@@ -101,40 +105,22 @@ const OrderConfButton = () => {
   }
 
   return (
-    <div>
+    <div className="flex items-center justify-between">
       <button
-        className="
-        focus:shadow-outline
-        w-4/12
-        min-w-[150px] rounded
-        bg-blue-400
-        py-2 px-4 font-bold
-        text-white
-        hover:bg-blue-500
-        focus:outline-none
-        disabled:bg-gray-300 disabled:text-gray-400
-        "
-        type="button"
-        onClick={sendMessageToLine}
-      >
-        注文を確定する
-      </button>
-      <button
-        className="
-        focus:shadow-outline
-        w-4/12
-        min-w-[150px] rounded
-        bg-blue-400
-        py-2 px-4 font-bold
-        text-white
-        hover:bg-blue-500
-        focus:outline-none
-        disabled:bg-gray-300 disabled:text-gray-400
-        "
+        className="ml-10 rounded-full bg-white p-2 shadow-lg outline-black"
         type="button"
         onClick={clientPageClick}
       >
-        お客様情報へ戻る
+        <ArrowButton ClassName="h-12 w-12" direction="left" />
+      </button>
+
+      <button
+        className=" mr-10 rounded-full bg-white p-2 shadow-lg outline-black"
+        type="button"
+        onClick={sendMessageToLine}
+      >
+        注文を確定 ￥
+        {Math.floor(cartDetailSelector.totalPlice).toLocaleString()}
       </button>
     </div>
   )
