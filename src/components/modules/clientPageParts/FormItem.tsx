@@ -45,6 +45,7 @@ const FormItem = () => {
     formState: { errors },
     reset,
   } = useForm<ClientInfo>({
+    mode: 'onChange',
     criteriaMode: 'all',
     resolver: yupResolver(orderFormSchema),
   })
@@ -75,16 +76,16 @@ const FormItem = () => {
         id="clientForm"
       >
         {/* 郵便番号 */}
-        <div className="mb-4 ml-2 flex max-h-[100px] flex-col">
+        <div className="mb-6 ml-2 flex max-h-[100px] flex-col">
           <label
             className="mb-2 block text-sm  font-bold text-gray-700"
             htmlFor="zipcode"
           >
             郵便番号
           </label>
-          <div className=" flex ">
+          <div className="flex justify-between">
             <input
-              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
+              className="w-[65%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
               id="zipcode"
               type="text"
               placeholder="090123456"
@@ -101,217 +102,201 @@ const FormItem = () => {
             />
 
             <button
-              className="ml-4 w-1/3 rounded bg-gray-400  leading-tight text-white outline-black"
+              className="ml-4 w-[30%] rounded bg-gray-400  leading-tight text-white outline-black"
               type="button"
               onClick={handleFetchFromZipcode}
             >
               住所検索
             </button>
           </div>
+          <p className="text-red-500">{errors.zipcode?.message}</p>
         </div>
-        <p className="mb-4 font-bold text-red-500">{errors.zipcode?.message}</p>
-        <div className="flex flex-col">
-          {/* 都道府県 */}
-          <div className="mb-4 ml-2">
-            <label
-              className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="prefectures"
-            >
-              都道府県
-            </label>
-            <input
-              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
-              id="prefectures"
-              type="text"
-              placeholder="青森"
-              value={clientInfoSelector.prefectures}
-              {...register('prefectures')}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                dispatch(
-                  updateInfo({
-                    ...clientInfoSelector,
-                    prefectures: event.target.value,
-                  })
-                )
-              }}
-            />
-          </div>
-          <p className="mb-4 font-bold text-red-500">
-            {errors.prefectures?.message}
-          </p>
-          {/* 市町村 */}
-          <div className="mb-4 ml-2">
-            <label
-              className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="municipalities"
-            >
-              市区町村
-            </label>
-            <input
-              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
-              id="municipalities"
-              type="text"
-              placeholder="○○市"
-              value={clientInfoSelector.municipalities}
-              {...register('municipalities')}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                dispatch(
-                  updateInfo({
-                    ...clientInfoSelector,
-                    municipalities: event.target.value,
-                  })
-                )
-              }}
-            />
-          </div>
-          <p className="mb-4 font-bold text-red-500">
-            {errors.municipalities?.message}
-          </p>
-          {/* 番地・建物 */}
-          <div className="mb-4 ml-2">
-            <label
-              className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="addressBuilding"
-            >
-              番地・建物
-            </label>
-            <input
-              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
-              type="text"
-              id="addressBuilding"
-              placeholder="番地・建物"
-              value={clientInfoSelector.addressBuilding}
-              {...register('addressBuilding')}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                dispatch(
-                  updateInfo({
-                    ...clientInfoSelector,
-                    addressBuilding: event.target.value,
-                  })
-                )
-              }}
-            />
-          </div>
-          <p className="mb-4 font-bold text-red-500">
-            {errors.addressBuilding?.message}
-          </p>
-          {/* 会社名 */}
-          <div className="mb-4 ml-2">
-            <label
-              className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="clientName"
-            >
-              会社名・お客様名
-            </label>
-            <input
-              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
-              type="text"
-              id="clientName"
-              placeholder="会社名・お客様名"
-              value={clientInfoSelector.clientName}
-              {...register('clientName')}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                dispatch(
-                  updateInfo({
-                    ...clientInfoSelector,
-                    clientName: event.target.value,
-                  })
-                )
-              }}
-            />
-          </div>
-          <p className="mb-4 font-bold text-red-500">
-            {errors.clientName?.message}
-          </p>
-          {/* 連絡先 */}
-          <div className="mb-4 ml-2">
-            <label
-              className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="phoneNumber"
-            >
-              連絡先
-            </label>
-            <input
-              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
-              type="text"
-              id="phoneNumber"
-              placeholder="連絡先"
-              value={clientInfoSelector.phoneNumber}
-              {...register('phoneNumber')}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                dispatch(
-                  updateInfo({
-                    ...clientInfoSelector,
-                    phoneNumber: event.target.value,
-                  })
-                )
-              }}
-            />
-          </div>
-          <p className="mb-4 font-bold text-red-500">
-            {errors.phoneNumber?.message}
-          </p>
-          {/* 配達日 */}
-          <div className="mb-4 ml-2">
-            <label
-              className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="deliveryDate"
-            >
-              配達日
-            </label>
-            <input
-              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
-              type="date"
-              id="deliveryDate"
-              placeholder="配達日"
-              value={clientInfoSelector.deliveryDate}
-              {...register('deliveryDate')}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                dispatch(
-                  updateInfo({
-                    ...clientInfoSelector,
-                    deliveryDate: event.target.value,
-                  })
-                )
-              }}
-            />
-          </div>
-          <p className="mb-4 font-bold text-red-500">
-            {errors.deliveryDate?.message}
-          </p>
-          {/* 受取時間 */}
-          <div className="mb-4 ml-2">
-            <label
-              className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="deliveryTime"
-            >
-              受取時間
-            </label>
-            <select
-              className="w-[60%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
-              id="deliveryTime"
-              placeholder="受取時間"
-              value={clientInfoSelector.deliveryTime}
-              {...register('deliveryTime')}
-              onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
-                dispatch(
-                  updateInfo({
-                    ...clientInfoSelector,
-                    deliveryTime: event.target.value,
-                  })
-                )
-              }}
-            >
-              {deliveryTimes.map((item) => (
-                <option value={item.value} key={item.id}>
-                  {item.state && item.value.replaceAll(/"/g, '')}
-                </option>
-              ))}
-            </select>
-          </div>
-          <p className="mb-4 font-bold text-red-500">
-            {errors.deliveryTime?.message}
-          </p>
+        {/* 都道府県 */}
+        <div className="mb-6 ml-2 flex max-h-[100px] flex-col">
+          <label
+            className="mb-2 block text-sm font-bold text-gray-700"
+            htmlFor="prefectures"
+          >
+            都道府県
+          </label>
+          <input
+            className="w-full appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
+            id="prefectures"
+            type="text"
+            placeholder="青森"
+            value={clientInfoSelector.prefectures}
+            {...register('prefectures')}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              dispatch(
+                updateInfo({
+                  ...clientInfoSelector,
+                  prefectures: event.target.value,
+                })
+              )
+            }}
+          />
+          <p className="text-red-500">{errors.prefectures?.message}</p>
+        </div>
+        {/* 市町村 */}
+        <div className="mb-6 ml-2 flex max-h-[100px] flex-col">
+          <label
+            className="mb-2 block text-sm font-bold text-gray-700"
+            htmlFor="municipalities"
+          >
+            市区町村
+          </label>
+          <input
+            className="w-full appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
+            id="municipalities"
+            type="text"
+            placeholder="○○市"
+            value={clientInfoSelector.municipalities}
+            {...register('municipalities')}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              dispatch(
+                updateInfo({
+                  ...clientInfoSelector,
+                  municipalities: event.target.value,
+                })
+              )
+            }}
+          />
+          <p className="text-red-500">{errors.municipalities?.message}</p>
+        </div>
+        {/* 番地・建物 */}
+        <div className="mb-6 ml-2 flex max-h-[100px] flex-col">
+          <label
+            className="mb-2 block text-sm font-bold text-gray-700"
+            htmlFor="addressBuilding"
+          >
+            番地・建物
+          </label>
+          <input
+            className="w-full appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
+            type="text"
+            id="addressBuilding"
+            placeholder="番地・建物"
+            value={clientInfoSelector.addressBuilding}
+            {...register('addressBuilding')}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              dispatch(
+                updateInfo({
+                  ...clientInfoSelector,
+                  addressBuilding: event.target.value,
+                })
+              )
+            }}
+          />
+          <p className="text-red-500">{errors.addressBuilding?.message}</p>
+        </div>
+        {/* 会社名 */}
+        <div className="mb-6 ml-2 flex max-h-[100px] flex-col">
+          <label
+            className="mb-2 block text-sm font-bold text-gray-700"
+            htmlFor="clientName"
+          >
+            会社名・お客様名
+          </label>
+          <input
+            className="w-full appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
+            type="text"
+            id="clientName"
+            placeholder="会社名・お客様名"
+            value={clientInfoSelector.clientName}
+            {...register('clientName')}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              dispatch(
+                updateInfo({
+                  ...clientInfoSelector,
+                  clientName: event.target.value,
+                })
+              )
+            }}
+          />
+          <p className="text-red-500">{errors.clientName?.message}</p>
+        </div>
+        {/* 連絡先 */}
+        <div className="mb-6 ml-2 flex max-h-[100px] flex-col">
+          <label
+            className="mb-2 block text-sm font-bold text-gray-700"
+            htmlFor="phoneNumber"
+          >
+            連絡先
+          </label>
+          <input
+            className="w-full appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
+            type="text"
+            id="phoneNumber"
+            placeholder="連絡先"
+            value={clientInfoSelector.phoneNumber}
+            {...register('phoneNumber')}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              dispatch(
+                updateInfo({
+                  ...clientInfoSelector,
+                  phoneNumber: event.target.value,
+                })
+              )
+            }}
+          />
+          <p className="text-red-500">{errors.phoneNumber?.message}</p>
+        </div>
+        {/* 配達日 */}
+        <div className="mb-6 ml-2 flex max-h-[100px] flex-col">
+          <label
+            className="mb-2 block text-sm font-bold text-gray-700"
+            htmlFor="deliveryDate"
+          >
+            配達日
+          </label>
+          <input
+            className="w-full appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
+            type="date"
+            id="deliveryDate"
+            placeholder="配達日"
+            value={clientInfoSelector.deliveryDate}
+            {...register('deliveryDate')}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              dispatch(
+                updateInfo({
+                  ...clientInfoSelector,
+                  deliveryDate: event.target.value,
+                })
+              )
+            }}
+          />
+          <p className="text-red-500">{errors.deliveryDate?.message}</p>
+        </div>
+        {/* 受取時間 */}
+        <div className="mb-6 ml-2 flex max-h-[100px] flex-col">
+          <label
+            className="mb-2 block text-sm font-bold text-gray-700"
+            htmlFor="deliveryTime"
+          >
+            受取時間
+          </label>
+          <select
+            className="w-full appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
+            id="deliveryTime"
+            placeholder="受取時間"
+            value={clientInfoSelector.deliveryTime}
+            {...register('deliveryTime')}
+            onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
+              dispatch(
+                updateInfo({
+                  ...clientInfoSelector,
+                  deliveryTime: event.target.value,
+                })
+              )
+            }}
+          >
+            {deliveryTimes.map((item) => (
+              <option value={item.value} key={item.id}>
+                {item.state && item.value.replaceAll(/"/g, '')}
+              </option>
+            ))}
+          </select>
+          <p className="text-red-500">{errors.deliveryTime?.message}</p>
         </div>
 
         <div className="flex items-center justify-between">
