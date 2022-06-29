@@ -1,5 +1,6 @@
 import { useEffect, useRef, useContext } from 'react'
 import { useRouter } from 'next/router'
+import clsx from 'clsx'
 // NOTE: Custom Hook
 import { useFetchMenue } from '../../hooks/menue/useFetchMenue'
 import { useLiff, LiffContext } from '../../hooks/liff/useLiffProvider'
@@ -16,8 +17,8 @@ import {
   changeState as changeStateForMenuePage,
 } from '../../redux/features/menuePageSlice'
 import { selectCartDetail } from '../../redux/features/cartdetailSlice'
-
 // NOTE: original
+import { ArrowButton } from '../atoms'
 import { HomeLayout } from '../layout'
 import { MenuCard } from '../modules'
 import { CartDetailModal } from '../modules/modal'
@@ -82,7 +83,7 @@ const MenuBase = () => {
   return (
     <HomeLayout title="商品選択">
       <MenuCard />
-      <div className="sticky bottom-10 ml-auto mr-4 flex justify-end">
+      <div className="sticky bottom-0 ml-auto mr-4 flex justify-end">
         <div
           className="
           sticky
@@ -94,20 +95,7 @@ const MenuBase = () => {
             className="rounded-full border-2 border-black bg-white p-2 shadow-xl"
             onClick={clientClick}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-12 w-12"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M13 7l5 5m0 0l-5 5m5-5H6"
-              />
-            </svg>
+            <ArrowButton ClassName="h-12 w-12" direction="right" />
           </button>
         </div>
         {/* カートアイコン */}
@@ -141,15 +129,19 @@ const MenuBase = () => {
             </span>
             {/* カート内の数 */}
             <p
-              className="
+              className={clsx(
+                `
               absolute top-[-15px] right-0
               z-20 flex h-9
-              w-9 items-center
+              w-9
+              items-center
               justify-center
-              rounded-full
-              bg-gray-400
+              rounded-full border-2 border-black bg-gray-400
               text-white
-              "
+              shadow-xl
+              `,
+                !cartDetailSelector.totalCount && 'hidden'
+              )}
             >
               {cartDetailSelector.totalCount}
             </p>
