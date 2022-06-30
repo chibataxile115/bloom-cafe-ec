@@ -11,6 +11,11 @@ import {
   changeState as changeStateForSnackBar,
 } from '../../redux/features/snackbar/snackbarSlice'
 
+interface ZipcodeRes {
+  address1: string
+  address2: string
+}
+
 export const useFetchFromZipcode = () => {
   const dispatch = useAppDispatch()
   const clientInfoSelector = useAppSelector(selectClientInfo)
@@ -25,7 +30,7 @@ export const useFetchFromZipcode = () => {
       })
       .then((res) => {
         if (res.data.results) {
-          const result = res.data.results[0]
+          const result: ZipcodeRes = res.data.results[0]
 
           console.log(`address1 : [${result['address1']}]`)
           console.log(`address2 : [${result['address2']}]`)
