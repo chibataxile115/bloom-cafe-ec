@@ -86,7 +86,7 @@ const CartDetailModal: React.FC = () => {
           {/* //NOTE:消費税追加 */}
           {/* お会計に進む : ￥{Math.floor(cartDetailSelector.totalPlice * 1.1).toLocaleString()} */}
           お会計に進む : ￥
-          {Math.floor(cartDetailSelector.totalPlice * 1.1).toLocaleString()}
+          {Math.floor(cartDetailSelector.totalPlice).toLocaleString()}
         </button>
       </div>
     </BasicModal>
