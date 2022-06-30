@@ -7,6 +7,11 @@ interface Props {
   title: 'ようこそ' | '商品選択' | 'お客様情報' | '注文内容'
 }
 
+const copyRights = [
+  { url: 'https://instagram.com/super_takuto115/', name: 'super_takuto115' },
+  { url: 'https://instagram.com/bo.yu__go/', name: 'bo.yu__go' },
+]
+
 const HomeLayout: FC<Props> = (props) => {
   const { children, title } = props
 
@@ -30,12 +35,21 @@ const HomeLayout: FC<Props> = (props) => {
       </main>
       <footer className="bottom-0 flex h-10 w-full items-center justify-center border-t border-white bg-gray-200">
         <a
-          className="flex items-center text-black"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          className="flex cursor-pointer items-center text-black"
+          href={copyRights[0].url}
           target="_blank"
           rel="noopener noreferrer"
         >
-          お弁当受付について{' '}
+          {copyRights[0].name}
+        </a>
+        <p className="mx-2">/</p>
+        <a
+          className="flex cursor-pointer items-center text-black"
+          href={copyRights[1].url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {copyRights[1].name}
         </a>
       </footer>
     </div>
