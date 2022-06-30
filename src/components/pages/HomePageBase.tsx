@@ -19,8 +19,8 @@ const HomePageBase: FC = () => {
 
   return (
     <HomeLayout title="ようこそ">
-      <p className="m-24"></p>
-      <h1 className="font-cursive items-center justify-center font-light text-black">
+      <p className="m-14"></p>
+      <h1 className="mt-18 font-cursive items-center justify-center font-light text-black">
         <span className="block text-5xl">b l o o m</span>
       </h1>
       <div
