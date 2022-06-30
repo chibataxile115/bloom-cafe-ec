@@ -83,7 +83,7 @@ export const useLiff = (): UseLiff => {
     loggedIn: liff.isLoggedIn(),
     getNameWithLiffOpen: getNameWithLiffOpen,
     sendMessage: sendMessage,
-    // closeWindow: liff.closeWindow,
+    closeWindow: liff.closeWindow,
     isExpire: isExpire,
     login: liff.login,
     logout: liff.logout,
