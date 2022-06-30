@@ -75,7 +75,7 @@ const FormItem = () => {
   }, [clientInfoSelector.zipcode])
 
   return (
-    <div className=" mt-3 flex max-w-[95%] flex-col justify-start pt-3">
+    <div className="mt-3 flex min-w-[95%] max-w-[95%] flex-col justify-start pt-3">
       <form
         className="mb-4 flex flex-col rounded bg-gray-200 px-8 pt-6 pb-8 shadow-md"
         onSubmit={handleSubmit(orderSubmit)}
@@ -84,14 +84,14 @@ const FormItem = () => {
         {/* 郵便番号 */}
         <div className="mb-6 ml-2 flex max-h-[100px] flex-col">
           <label
-            className="mb-2 block text-sm  font-bold text-gray-700"
+            className="mb-2 block text-sm font-bold text-gray-700"
             htmlFor="zipcode"
           >
             郵便番号
           </label>
-          <div className="flex justify-between">
+          <div className="flex min-w-[100%] justify-between">
             <input
-              className="w-[65%] appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
+              className="w-full appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
               id="zipcode"
               type="text"
               placeholder="090123456"
@@ -106,14 +106,6 @@ const FormItem = () => {
                 )
               }}
             />
-
-            <button
-              className="ml-4 w-[30%] rounded bg-gray-400  leading-tight text-white outline-black"
-              type="button"
-              onClick={handleFetchFromZipcode}
-            >
-              住所検索
-            </button>
           </div>
           <p className="text-red-500">{errors.zipcode?.message}</p>
         </div>
