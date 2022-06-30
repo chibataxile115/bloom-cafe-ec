@@ -9,7 +9,7 @@ import { selectMenueList } from '../../../redux/features/menue/menueListSlice'
 import { selectClientInfo } from '../../../redux/features/clientInfoSlice'
 import { selectCartDetail } from '../../../redux/features/cartdetailSlice'
 // originals
-import { ArrowButton } from '../../atoms'
+import { ArrowButton } from '../../atoms/button'
 
 const OrderConfButton = () => {
   const router = useRouter()
@@ -105,22 +105,23 @@ const OrderConfButton = () => {
   }
 
   return (
-    <div className="flex items-center justify-between">
+    <div className=" flex items-center justify-between">
       <button
-        className="ml-10 rounded-full bg-white p-2 shadow-lg outline-black"
+        className="mr-24 rounded-full bg-white p-2 shadow-lg outline-black"
         type="button"
         onClick={clientPageClick}
       >
         <ArrowButton ClassName="h-12 w-12" direction="left" />
       </button>
-
       <button
-        className=" mr-10 rounded-full bg-white p-2 shadow-lg outline-black"
+        className="ml-24 rounded-full bg-black p-2 text-white shadow-lg outline-black"
         type="button"
         onClick={sendMessageToLine}
       >
-        注文を確定 ￥
-        {Math.floor(cartDetailSelector.totalPlice).toLocaleString()}
+        <span className="block">
+          <p>注文を確定</p>
+          <p>￥{Math.floor(cartDetailSelector.totalPlice).toLocaleString()}</p>
+        </span>
       </button>
     </div>
   )

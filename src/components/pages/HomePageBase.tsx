@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { useRouter } from 'next/router'
 // NOTE: original
 import { HomeLayout } from '../../components/layout'
-import { ArrowButton } from '../atoms'
+import { ArrowButton } from '../atoms/button'
 // NOTE: Redux関連
 import { useAppDispatch } from '../../redux/app/hooks'
 import { selectStep, changeState } from '../../redux/features/step/stepSlice'

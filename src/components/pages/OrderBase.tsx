@@ -11,20 +11,16 @@ import {
 const OrderBase = () => {
   return (
     <HomeLayout title="注文内容">
-      <div className=" mt-3 flex w-full max-w-[95%] flex-col justify-start pt-3">
-        <form className="mb-4 flex flex-col rounded bg-gray-200 px-8 pt-6 pb-8 shadow-md">
-          <h1 className="w-1/3 rounded-full  bg-white p-2 shadow-lg outline-black">
-            ご注文内容
-          </h1>
-          <OrderMenueView />
-        </form>
-        <form className="mb-4 flex flex-col rounded bg-gray-200 px-8 pt-6 pb-8 shadow-md">
-          <h1 className="w-1/3 rounded-full  bg-white p-2 shadow-lg outline-black">
-            お客様情報
-          </h1>
+      <div className="mt-2 flex max-w-[95%] flex-col justify-start bg-gray-200 pt-3">
+        <div className="mb-6 ml-2 flex flex-col pb-4">
           <OrderClientView />
-        </form>
-        <OrderConfButton />
+        </div>
+        <div className="mb-6 ml-2 flex flex-col">
+          <OrderMenueView />
+        </div>
+        <div className="sticky bottom-0 z-20  mr-auto ml-auto flex items-center">
+          <OrderConfButton />
+        </div>
       </div>
     </HomeLayout>
   )

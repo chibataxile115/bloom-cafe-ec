@@ -19,7 +19,7 @@ import { selectStep, changeState } from '../../../redux/features/step/stepSlice'
 // Custom Hook
 import { useFetchFromZipcode } from '../../../hooks/order/useFetchFromZipcode'
 // Originals
-import { ArrowButton } from '../../atoms'
+import { ArrowButton } from '../../atoms/button'
 
 const FormItem = () => {
   const dispatch = useAppDispatch()
