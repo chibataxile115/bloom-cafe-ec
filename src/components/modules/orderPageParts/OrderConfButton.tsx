@@ -35,12 +35,13 @@ const OrderConfButton = () => {
           processedMessage +
           '・' +
           item.name +
-          ' : ' +
+          '\n  ' +
           item.count +
-          '個\n' +
-          '   ' +
+          '個' +
+          '  :  ' +
           calcedPlce +
-          '円\n'
+          '円\n' +
+          ' \n'
       }
     })
 

@@ -22,6 +22,7 @@ export const cartdetailSlice = createSlice({
   reducers: {
     resetCount: (state: CartDetail) => {
       state.totalCount = 0
+      state.totalPlice = 0
     },
     updateCount: (state: CartDetail, action: PayloadAction<UpdateArg>) => {
       const { targetMenueCount, targetMenuePlice, mode } = action.payload
