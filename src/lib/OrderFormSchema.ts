@@ -13,7 +13,7 @@ const OrderFormSchema = () => {
       // prefectures: yup.string().required('都道府県は必須項目です'),
       // municipalities: yup.string().required('市区町村は必須項目です。'),
       addressBuilding: yup.string().required('番地・建物は必須項目です。'),
-      clientName: yup.string().required('会社名・お客様名は必須項目です。'),
+      clientName: yup.string().required('お客様名は必須項目です。'),
       phoneNumber: yup
         .string()
         .required('連絡先は必須項目です。')

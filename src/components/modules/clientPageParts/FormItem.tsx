@@ -195,19 +195,19 @@ const FormItem = () => {
           />
           <p className="text-red-500">{errors.addressBuilding?.message}</p>
         </div>
-        {/* 会社名 */}
+        {/*　お客様名 */}
         <div className="mb-6 ml-2 flex max-h-[100px] flex-col">
           <label
             className="mb-2 block text-sm font-bold text-gray-700"
             htmlFor="clientName"
           >
-            会社名・お客様名
+            お客様名
           </label>
           <input
             className="w-full appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
             type="text"
             id="clientName"
-            placeholder="会社名・お客様名"
+            placeholder="お客様名"
             {...register('clientName')}
             value={clientInfoSelector.clientName}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
