@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 // Originals
 import { SnackBar } from '../../atoms'
@@ -46,18 +46,15 @@ const FormItem = () => {
     reset,
   } = useForm<ClientInfo>({
     mode: 'onChange',
-    criteriaMode: 'all',
+    criteriaMode: 'firstError',
     resolver: yupResolver(orderFormSchema),
   })
 
   const { fetchZipcode } = useFetchFromZipcode()
 
-  const handleFetchFromZipcode = () => {
-    fetchZipcode()
-  }
+  const handleFetchFromZipcode = async () => {}
 
   const orderSubmit: SubmitHandler<ClientInfo> = async (data) => {
-    console.log(`zipcode: [${data.zipcode}]`)
     dispatch(changeState({ ...selectStep, stepIndex: 4 }))
     router.push('/order')
   }
@@ -67,6 +64,15 @@ const FormItem = () => {
     dispatch(changeState({ ...selectStep, stepIndex: 2 }))
     router.push('/menu')
   }
+
+  useEffect(() => {
+    if (
+      clientInfoSelector.zipcode.length >= 7 &&
+      clientInfoSelector.zipcode.length <= 7
+    ) {
+      fetchZipcode()
+    }
+  }, [clientInfoSelector.zipcode])
 
   return (
     <div className=" mt-3 flex max-w-[95%] flex-col justify-start pt-3">
@@ -89,7 +95,7 @@ const FormItem = () => {
               id="zipcode"
               type="text"
               placeholder="090123456"
-              {...register('zipcode')}
+              // {...register('zipcode')}
               value={clientInfoSelector.zipcode}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 dispatch(
@@ -124,8 +130,8 @@ const FormItem = () => {
             id="prefectures"
             type="text"
             placeholder="青森"
+            // {...register('prefectures')}
             value={clientInfoSelector.prefectures}
-            {...register('prefectures')}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               dispatch(
                 updateInfo({
@@ -150,8 +156,8 @@ const FormItem = () => {
             id="municipalities"
             type="text"
             placeholder="○○市"
+            // {...register('municipalities')}
             value={clientInfoSelector.municipalities}
-            {...register('municipalities')}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               dispatch(
                 updateInfo({
@@ -176,8 +182,8 @@ const FormItem = () => {
             type="text"
             id="addressBuilding"
             placeholder="番地・建物"
-            value={clientInfoSelector.addressBuilding}
             {...register('addressBuilding')}
+            value={clientInfoSelector.addressBuilding}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               dispatch(
                 updateInfo({
@@ -202,8 +208,8 @@ const FormItem = () => {
             type="text"
             id="clientName"
             placeholder="会社名・お客様名"
-            value={clientInfoSelector.clientName}
             {...register('clientName')}
+            value={clientInfoSelector.clientName}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               dispatch(
                 updateInfo({
@@ -228,8 +234,8 @@ const FormItem = () => {
             type="text"
             id="phoneNumber"
             placeholder="連絡先"
-            value={clientInfoSelector.phoneNumber}
             {...register('phoneNumber')}
+            value={clientInfoSelector.phoneNumber}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               dispatch(
                 updateInfo({
@@ -254,8 +260,8 @@ const FormItem = () => {
             type="date"
             id="deliveryDate"
             placeholder="配達日"
-            value={clientInfoSelector.deliveryDate}
             {...register('deliveryDate')}
+            value={clientInfoSelector.deliveryDate}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               dispatch(
                 updateInfo({
@@ -279,8 +285,8 @@ const FormItem = () => {
             className="w-full appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
             id="deliveryTime"
             placeholder="受取時間"
-            value={clientInfoSelector.deliveryTime}
             {...register('deliveryTime')}
+            value={clientInfoSelector.deliveryTime}
             onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
               dispatch(
                 updateInfo({
