@@ -73,7 +73,7 @@ const OrderClientView: React.FC = () => {
             </tr>
 
             <tr className="mt-2 flex w-full flex-col">
-              <th className="ml-0 flex">会社名・お客様名</th>
+              <th className="ml-0 flex">お客様名</th>
               <td>{ClientInfoSelector.clientName}</td>
             </tr>
 
