@@ -18,7 +18,7 @@ import {
 } from '../../redux/features/menuePageSlice'
 import { selectCartDetail } from '../../redux/features/cartdetailSlice'
 // NOTE: original
-import { ArrowButton } from '../atoms'
+import { ArrowButton } from '../atoms/button'
 import { HomeLayout } from '../layout'
 import { MenuCard } from '../modules'
 import { CartDetailModal } from '../modules/modal'
