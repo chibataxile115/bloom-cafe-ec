@@ -13,6 +13,7 @@ const nextConfig = {
       storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
       messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_SENDER_ID,
       appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+      liffId: process.env.NEXT_PUBLIC_LIFF_ID,
     },
   },
   env: {
@@ -22,6 +23,7 @@ const nextConfig = {
     storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
     messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_SENDER_ID,
     appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+    liffId: process.env.NEXT_PUBLIC_LIFF_ID,
   },
 }
 
