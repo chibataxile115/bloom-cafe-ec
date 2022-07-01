@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.admin-side-btn {
+  @apply mt-1 inline-flex w-full transform items-center rounded-lg border border-transparent bg-transparent px-4 py-2 text-base text-gray-100 transition ease-in-out hover:border-gray-100;
+}
+
+@layer components {
+  .admin-side-menu-txt {
+    @apply ml-4 text-gray-100 hover:border-gray-100;
+  }
+  .admin-side-menu-icon {
+    @apply flex justify-start text-gray-100 hover:border-gray-100;
+  }
+  .next-image-div {
+    letter-spacing: 0;
+    word-spacing: 0;
+    font-size: 0;
+  }
+}

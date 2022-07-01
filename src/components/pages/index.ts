@@ -1,0 +1,7 @@
+export { default as MenuBase } from './MenuBase'
+export { default as MenueDetaileBase } from './MenueDetaileBase'
+export { default as OrderBase } from './OrderBase'
+export { default as HomePageBase } from './HomePageBase'
+export { default as ClientFormBase } from './ClientFormBase'
+export { default as SigninBase } from './SigninBase'
+export { default as ThanksPageBase } from './ThanksPageBase'

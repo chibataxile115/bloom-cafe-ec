@@ -1,0 +1,42 @@
+
+menues:
+  memueID: UID
+    docID: string
+    imageURL: string
+    name: string
+    plice: number
+    category: string
+    detailImageCount: number
+    createdAt: timestamp
+    updatedAt: timestamp
+
+    imageURLs: docID
+      docID: string # ○○○ - ○○○
+      imageName: string
+      imageURL: string
+      createdAt: timestamp
+      updatedAt: timestamp
+
+  categories: UID
+    docID: number
+    categoryName: string
+    createdAt: timestamp
+
+
+users:
+  userID: lineID
+    - userName: string
+    - lineID: lineID
+    - createdAt: timestamp
+
+    cartItems:
+      docID: string
+        - docID: string
+        - imageURL: string
+        - name: string
+        - plice: number
+        - category: string
+        - detailImageCount: number
+        - createdAt: timestamp
+        - updatedAt: timestamp
+

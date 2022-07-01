@@ -1,0 +1,5 @@
+// NOTE: Parsing error: Cannot find module 'next/babel'のエラーを無くすため
+{
+  "extends": ["next", "next/core-web-vitals", "prettier", "next/babel"],
+  "root": true
+}
