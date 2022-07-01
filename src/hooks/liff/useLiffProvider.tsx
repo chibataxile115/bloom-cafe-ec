@@ -69,7 +69,7 @@ export const useLiff = (): UseLiff => {
         },
       ])
       .then(() => {
-        // window.alert('メッセージ送信完了')
+        window.alert('注文を受け付けました。')
       })
       .catch((error) => {
         window.alert('送信に失敗しました: ' + error)
