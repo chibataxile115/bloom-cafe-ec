@@ -8,11 +8,11 @@ import { LiffProvider } from '../hooks/liff/useLiffProvider'
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
-    <Provider store={store}>
-      <LiffProvider>
+    <LiffProvider>
+      <Provider store={store}>
         <Component {...pageProps} />
-      </LiffProvider>
-    </Provider>
+      </Provider>
+    </LiffProvider>
   )
 }
 
