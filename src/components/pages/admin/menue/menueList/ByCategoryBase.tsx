@@ -5,6 +5,7 @@ import { MenueSubmitModal } from '../../../../modules/modal/admin'
 import { MenueDetailModal } from '../../../../modules/modal/admin'
 import { MenueDeleteModal } from '../../../../modules/modal/admin'
 import { Tabs } from '../../../../atoms'
+import { SnackBar } from '../../../../atoms'
 import { ByCategoryMenuView } from '../../../../modules/menue/menueList'
 // Custom Hook
 import { useFetchMenue } from '../../../../../hooks/menue/useFetchMenue'
@@ -20,12 +21,14 @@ import {
   resetMenue as resetMenueForMenueList,
 } from '../../../../../redux/features/menue/menueListSlice'
 import { selectCategoryItems } from '../../../../../redux/features/menue/admin/category/categoryItemsSlice'
+import { selectSnackBar } from '../../../../../redux/features/snackbar/snackbarSlice'
 
 const ByCategoryBase = () => {
   const dispatch = useAppDispatch()
   const adminPageSelector = useAppSelector(selectAdminPage)
   const menueListSelector = useAppSelector(selectMenueList)
   const categoryItemsSelector = useAppSelector(selectCategoryItems)
+  const snackBarSelector = useAppSelector(selectSnackBar)
 
   const { getMenueList } = useFetchMenue()
   const { getCategoryList } = useFetchByCategory()
@@ -82,6 +85,17 @@ const ByCategoryBase = () => {
       <MenueSubmitModal />
       <MenueDetailModal />
       <MenueDeleteModal />
+
+      {/* メニュー削除用スナックバー */}
+      <SnackBar
+        message={
+          snackBarSelector.mode === 'success'
+            ? '削除が完了しました！'
+            : '削除に失敗しました。もう一度お試し下さい。'
+        }
+        isOpen={snackBarSelector.isOpenTheMenueDeleteSnackbar}
+        mode={snackBarSelector.mode}
+      />
     </AdminLayout>
   )
 }
