@@ -1,59 +1,45 @@
-import { FC, ReactNode } from 'react'
-import Head from 'next/head'
-import { Stepper } from '../atoms'
+import React, { FC } from 'react'
+import { useRouter } from 'next/router'
+// NOTE: original
+import { HomeLayout } from '../../components/layout'
+import { ArrowButton } from '../atoms/button'
+// NOTE: Redux関連
+import { useAppDispatch } from '../../redux/app/hooks'
+import { selectStep, changeState } from '../../redux/features/step/stepSlice'
 
-interface Props {
-  children: ReactNode
-  title: 'ようこそ' | '商品選択' | 'お客様情報' | '注文内容'
-}
+const HomePageBase: FC = () => {
+  const router = useRouter()
+  const dispatch = useAppDispatch()
 
-const copyRights = [
-  { url: 'https://instagram.com/super_takuto0115/', name: 'super_takuto0115' },
-  { url: 'https://instagram.com/bo.yu__go/', name: 'bo.yu__go' },
-]
-
-const HomeLayout: FC<Props> = (props) => {
-  const { children, title } = props
+  const registClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // stepperの更新
+    dispatch(changeState({ ...selectStep, stepIndex: 2 }))
+    router.push('/menu')
+  }
 
   return (
-    <div
-      className="
-      flex min-h-screen w-full flex-col
-      items-center
-      justify-center
-      bg-gray-200
-      "
-    >
-      <Head>
-        <title>{title}</title>
-      </Head>
-      <header className="min-w-full">
-        <Stepper />
-      </header>
-      <main className="flex w-screen flex-1 flex-col items-center">
-        {children}
-      </main>
-      <footer className="bottom-0 flex h-10 w-full items-center justify-center border-t border-white bg-gray-200">
-        <a
-          className="flex cursor-pointer items-center text-black"
-          href={copyRights[0].url}
-          target="_blank"
-          rel="noopener noreferrer"
+    <HomeLayout title="ようこそ">
+      <p className="m-14"></p>
+      <h1 className="mt-18 font-cursive items-center justify-center font-light text-black">
+        <span className="block text-5xl">b l o o m</span>
+      </h1>
+      <div
+        className="
+        mt-auto mb-10
+        flex w-full
+        justify-center
+        bg-gray-200
+        "
+      >
+        <button
+          className="rounded-full bg-white p-2 shadow-lg outline-black"
+          onClick={registClick}
         >
-          {copyRights[0].name}
-        </a>
-        <p className="mx-2">/</p>
-        <a
-          className="flex cursor-pointer items-center text-black"
-          href={copyRights[1].url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {copyRights[1].name}
-        </a>
-      </footer>
-    </div>
+          <ArrowButton ClassName="h-12 w-12 outline-black" direction="right" />
+        </button>
+      </div>
+    </HomeLayout>
   )
 }
 
-export default HomeLayout
+export default HomePageBase
