@@ -8,7 +8,7 @@ interface Props {
 }
 
 const copyRights = [
-  { url: 'https://instagram.com/super_takuto115/', name: 'super_takuto115' },
+  { url: 'https://instagram.com/super_takuto0115/', name: 'super_takuto0115' },
   { url: 'https://instagram.com/bo.yu__go/', name: 'bo.yu__go' },
 ]
 
