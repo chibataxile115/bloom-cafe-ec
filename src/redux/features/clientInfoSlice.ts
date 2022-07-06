@@ -13,6 +13,7 @@ const initialState: ClientInfo = {
   phoneNumber: '',
   deliveryDate: '',
   deliveryTime: '',
+  remarks: '',
 }
 // NOTE: Sliceを定義する
 export const clientInfoSlice = createSlice({
@@ -28,6 +29,7 @@ export const clientInfoSlice = createSlice({
       state.phoneNumber = ''
       state.deliveryDate = ''
       state.deliveryTime = ''
+      state.remarks = ''
     },
     updateInfo: (state, action: PayloadAction<ClientInfo>) => {
       state.zipcode = action.payload.zipcode
@@ -38,6 +40,7 @@ export const clientInfoSlice = createSlice({
       state.phoneNumber = action.payload.phoneNumber
       state.deliveryDate = action.payload.deliveryDate
       state.deliveryTime = action.payload.deliveryTime
+      state.remarks = action.payload.remarks
     },
   },
 })
