@@ -52,23 +52,23 @@ const OrderClientView: React.FC = () => {
       {isMenu && (
         <table className="flex w-full flex-col justify-between rounded-md bg-white p-4">
           <tbody>
-            <tr className="mt-2 flex w-full justify-between">
-              <th>郵便番号</th>
+            <tr className="mt-2 flex w-full flex-col">
+              <th className="ml-0 flex">郵便番号</th>
               <td>{ClientInfoSelector.zipcode}</td>
             </tr>
 
-            <tr className="mt-2 flex w-full justify-between">
-              <th className="ml-0">都道府県</th>
+            <tr className="mt-2 flex w-full flex-col">
+              <th className="ml-0 flex">都道府県</th>
               <td>{ClientInfoSelector.prefectures}</td>
             </tr>
 
-            <tr className="mt-2 flex w-full justify-between">
-              <th className="ml-0">市区町村</th>
+            <tr className="mt-2 flex w-full flex-col">
+              <th className="ml-0 flex">市区町村</th>
               <td>{ClientInfoSelector.municipalities}</td>
             </tr>
 
-            <tr className="mt-2 flex w-full justify-between">
-              <th className="ml-0">番地建物</th>
+            <tr className="mt-2 flex w-full flex-col">
+              <th className="ml-0 flex">番地建物</th>
               <td>{ClientInfoSelector.addressBuilding}</td>
             </tr>
 
@@ -94,7 +94,9 @@ const OrderClientView: React.FC = () => {
 
             <tr className="mt-2 flex w-full flex-col">
               <th className="ml-0 flex">備考</th>
-              <td>{ClientInfoSelector.remarks}</td>
+              <td className="mt-2 flex w-full flex-col">
+                {ClientInfoSelector.remarks}
+              </td>
             </tr>
           </tbody>
           <tfoot />
