@@ -296,7 +296,30 @@ const FormItem = () => {
           </select>
           <p className="text-red-500">{errors.deliveryTime?.message}</p>
         </div>
-
+        {/* 備考入力欄 */}
+        <div className="mb-6 ml-2 flex max-h-[100px] flex-col">
+          <label
+            className="mb-2 block text-sm font-bold text-gray-700"
+            htmlFor="inputForm"
+          >
+            備考
+          </label>
+          <textarea
+            className="w-full appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
+            id="inputForm"
+            placeholder="例：豚キムチ丼　大盛り×１+200円"
+            value={clientInfoSelector.inputForm}
+            onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
+              dispatch(
+                updateInfo({
+                  ...clientInfoSelector,
+                  inputForm: event.target.value,
+                })
+              )
+            }}
+          ></textarea>
+        </div>
+        {/* 遷移ボタン */}
         <div className="flex items-center justify-between">
           <button
             className="ml-10 rounded-full bg-white p-2 shadow-lg outline-black"

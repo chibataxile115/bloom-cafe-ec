@@ -56,6 +56,7 @@ export interface ClientInfo {
   phoneNumber: string
   deliveryDate: string
   deliveryTime: string
+  inputForm: string
 }
 
 export interface MenueItems {

@@ -91,6 +91,11 @@ const OrderClientView: React.FC = () => {
               <th className="ml-0 flex">受取時間</th>
               <td>{ClientInfoSelector.deliveryTime}</td>
             </tr>
+
+            <tr className="mt-2 flex w-full flex-col">
+              <th className="ml-0 flex">備考</th>
+              <td>{ClientInfoSelector.inputForm}</td>
+            </tr>
           </tbody>
           <tfoot />
         </table>
