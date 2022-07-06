@@ -300,20 +300,20 @@ const FormItem = () => {
         <div className="mb-6 ml-2 flex max-h-[100px] flex-col">
           <label
             className="mb-2 block text-sm font-bold text-gray-700"
-            htmlFor="inputForm"
+            htmlFor="inputRemarks"
           >
             備考
           </label>
           <textarea
             className="w-full appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
-            id="inputForm"
+            id="inputRemarks"
             placeholder="例：豚キムチ丼　大盛り×１+200円"
-            value={clientInfoSelector.inputForm}
+            value={clientInfoSelector.inputRemarks}
             onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
               dispatch(
                 updateInfo({
                   ...clientInfoSelector,
-                  inputForm: event.target.value,
+                  inputRemarks: event.target.value,
                 })
               )
             }}

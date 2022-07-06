@@ -94,7 +94,7 @@ const OrderClientView: React.FC = () => {
 
             <tr className="mt-2 flex w-full flex-col">
               <th className="ml-0 flex">備考</th>
-              <td>{ClientInfoSelector.inputForm}</td>
+              <td>{ClientInfoSelector.inputRemarks}</td>
             </tr>
           </tbody>
           <tfoot />
