@@ -308,6 +308,7 @@ const FormItem = () => {
             className="w-full appearance-none rounded border py-2 px-2 leading-tight text-gray-700 shadow outline-black focus:outline"
             id="remarks"
             placeholder="例：豚キムチ丼　大盛り×１+200円"
+            {...register('remarks')}
             value={clientInfoSelector.remarks}
             onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
               dispatch(

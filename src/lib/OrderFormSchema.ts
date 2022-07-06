@@ -26,6 +26,7 @@ const OrderFormSchema = () => {
         .required('配達時間を選択してください。')
         .min(5, '配達時間を選択してください。')
         .max(5, '配達時間を選択してください。。'),
+      remarks: yup.string().max(256, '最大256文字で入力して下さい。'),
     })
     .required()
 
