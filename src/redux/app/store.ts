@@ -5,6 +5,7 @@ import adminPageReducer from '../features/adminPageSlice'
 import authPageReducer from '../features/authPageSlice'
 import menuePageReducer from '../features/menuePageSlice'
 import userReducer from '../features/userSlice'
+import possibleTimerReducer from '../features/possibleTimeSclie'
 import stepReducer from '../features/step/stepSlice'
 import menueListReducer from '../features/menue/menueListSlice'
 import adminMenuDetailReducer from '../features/menue/admin/adminMenuDetailSlice'
@@ -20,6 +21,7 @@ const reducer = {
   authPage: authPageReducer,
   menuePage: menuePageReducer,
   user: userReducer,
+  possibleTime: possibleTimerReducer,
   step: stepReducer,
   menueList: menueListReducer,
   cartDetail: CartDetailReducer,
