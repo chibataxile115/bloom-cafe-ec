@@ -41,13 +41,15 @@ const AdminLayout: React.FC<Props> = (props) => {
       if (authUser) {
         const pathName = router.pathname
         // ログイン済みのユーザー情報があるかチェック
-        const userRef = doc(DB, 'admin', authUser.uid)
+        console.log('usersを読みに行くよ')
+        const userRef = doc(DB, 'users', authUser.uid)
         const userDoc = await getDoc(userRef)
 
         if (!userDoc.exists()) {
           // Firestoreにユーザー情報のドキュメントが無ければ新規作成
           await setDoc(userRef, {
             uuid: authUser.uid,
+            isAdmin: false,
             createdAt: serverTimestamp(),
             updatedAt: serverTimestamp(),
           })
@@ -55,6 +57,13 @@ const AdminLayout: React.FC<Props> = (props) => {
           dispatch(signin({ ...userSelector, uuid: authUser.uid }))
         } else {
           dispatch(signin({ liffID: '', userName: '', uuid: authUser.uid }))
+          // ドキュメントの値を更新
+          await setDoc(userRef, {
+            uuid: authUser.uid,
+            isAdmin: userDoc.data().isAdmin,
+            createdAt: userDoc.data().createdAt,
+            updatedAt: serverTimestamp(),
+          })
         }
       } else {
         router.push('/signin')
