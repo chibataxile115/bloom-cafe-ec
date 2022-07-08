@@ -39,9 +39,7 @@ const AdminLayout: React.FC<Props> = (props) => {
   useEffect(() => {
     const unSub = onAuthStateChanged(Auth, async (authUser) => {
       if (authUser) {
-        const pathName = router.pathname
         // ログイン済みのユーザー情報があるかチェック
-        console.log('usersを読みに行くよ')
         const userRef = doc(DB, 'users', authUser.uid)
         const userDoc = await getDoc(userRef)
 
