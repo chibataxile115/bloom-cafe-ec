@@ -4,6 +4,11 @@ export interface User {
   uuid: string
 }
 
+export interface possibleTime {
+  id: number
+  time: string
+}
+
 export interface AuthPage {
   email: string
   password: string
