@@ -17,11 +17,13 @@ const OrderConfButton = () => {
   const dispatch = useAppDispatch()
 
   const menueListSelector = useAppSelector(selectMenueList)
-  const ClientInfoSelector = useAppSelector(selectClientInfo)
+  const clientInfoSelector = useAppSelector(selectClientInfo)
   const cartDetailSelector = useAppSelector(selectCartDetail)
 
   const messageWithProcessedMemuList = () => {
     let processedMessage = `■■■ 注文内容 ■■■\n`
+    let totalPlice = cartDetailSelector.totalPlice
+    let totalCount = cartDetailSelector.totalCount
 
     menueListSelector.forEach((item) => {
       if (item.isInCart) {
@@ -41,12 +43,24 @@ const OrderConfButton = () => {
           '  :  ' +
           calcedPlce +
           '円\n' +
-          ' \n'
+          '\n'
       }
     })
 
+    processedMessage =
+      processedMessage +
+      '\n' +
+      '合計  :  ' +
+      totalCount +
+      '個' +
+      ' ' +
+      totalPlice +
+      '円' +
+      '\n\n'
+
     return processedMessage
   }
+
   const messageWithProcessedClientInfo = () => {
     let processedMessage = `■■■ お客様情報 ■■■\n`
 
@@ -54,27 +68,36 @@ const OrderConfButton = () => {
       processedMessage +
       '● 配達先住所\n' +
       '〒' +
-      ClientInfoSelector.zipcode +
+      clientInfoSelector.zipcode +
       '\n' +
-      ClientInfoSelector.prefectures +
-      ClientInfoSelector.municipalities +
-      ClientInfoSelector.addressBuilding +
+      clientInfoSelector.prefectures +
+      clientInfoSelector.municipalities +
+      clientInfoSelector.addressBuilding +
       '\n' +
       '\n' +
       '● お客様氏名\n' +
-      ClientInfoSelector.clientName +
+      clientInfoSelector.clientName +
       '\n' +
       '\n' +
       '● ご連絡先\n' +
-      ClientInfoSelector.phoneNumber +
+      clientInfoSelector.phoneNumber +
       '\n' +
       '\n' +
       '● 配達日時\n' +
-      ClientInfoSelector.deliveryDate +
+      clientInfoSelector.deliveryDate +
       '\n' +
       '\n' +
       '● 配達時間\n' +
-      ClientInfoSelector.deliveryTime
+      clientInfoSelector.deliveryTime +
+      '\n\n'
+
+    return processedMessage
+  }
+
+  const messageWithRemarks = () => {
+    let processedMessage = `■■■ 備考 ■■■\n`
+
+    processedMessage = processedMessage + clientInfoSelector.remarks
 
     return processedMessage
   }
@@ -92,9 +115,8 @@ const OrderConfButton = () => {
     if (isInClient) {
       const messageOrderDetail = messageWithProcessedMemuList()
       const messageClientInfo = messageWithProcessedClientInfo()
-
-      sendMessage(messageOrderDetail)
-      sendMessage(messageClientInfo)
+      const messageRemarks = messageWithRemarks()
+      sendMessage(messageOrderDetail + messageClientInfo + messageRemarks)
       router.push('/thanks')
     }
   }
