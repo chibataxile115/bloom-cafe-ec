@@ -5,7 +5,8 @@ export interface User {
 }
 
 export interface possibleTime {
-  setTimes: string
+  id: number
+  time: string
 }
 
 export interface AuthPage {
