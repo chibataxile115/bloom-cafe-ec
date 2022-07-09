@@ -39,6 +39,7 @@ export const useMenueDelete = () => {
               changeStateForSnackBar({
                 ...snackBarSelector,
                 isOpenTheMenueDeleteSnackbar: false,
+                mode: 'error',
               })
             )
           }, 3000)
@@ -72,6 +73,7 @@ export const useMenueDelete = () => {
                 changeStateForSnackBar({
                   ...snackBarSelector,
                   isOpenTheMenueDeleteSnackbar: false,
+                  mode: 'success',
                 })
               )
             }, 3000)
@@ -90,6 +92,7 @@ export const useMenueDelete = () => {
               changeStateForSnackBar({
                 ...snackBarSelector,
                 isOpenTheMenueDeleteSnackbar: false,
+                mode: 'error',
               })
             )
           }, 3000)

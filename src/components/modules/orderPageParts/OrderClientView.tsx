@@ -18,9 +18,9 @@ const OrderClientView: React.FC = () => {
           setIsMenu(!isMenu)
         }}
         className="
-        flex w-full 
-        items-center 
-        rounded-md 
+        flex w-full
+        items-center
+        rounded-md
         border-2
         border-black
         bg-white
