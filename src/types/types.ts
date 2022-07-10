@@ -26,6 +26,7 @@ export interface SnackBar {
   isOpenTheImageUploadSnacbar: boolean
   isOpenTheMenueDeleteSnackbar: boolean
   isOpenTheFetchZipcodeSnackbar: boolean
+  isOpenTheMenuUpdateSnackbar: boolean
   mode: 'success' | 'error'
   // TODO: 余裕があったらtransitionさせる方向をdirectionで指定できるようにする
   // direction: 'up' | 'down' | 'right' | 'left'
@@ -131,6 +132,7 @@ export interface MenueFromFirestore {
   docID: string
   name: string
   description: string
+  totalPurchase: number
 }
 
 export interface CategoryItemsFromFirestore {

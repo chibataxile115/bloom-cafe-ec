@@ -2,12 +2,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../app/store'
 import { SnackBar } from '../../../types/types'
-import Slide, { SlideProps } from '@mui/material/Slide'
-
-// NOTE: Stateの型を定義する
-interface SnackBarState {
-  SnackBar: SnackBar
-}
 
 // NOTE: initialStateを定義
 const initialState: SnackBar = {
@@ -15,6 +9,7 @@ const initialState: SnackBar = {
   isOpenTheImageUploadSnacbar: false,
   isOpenTheMenueDeleteSnackbar: false,
   isOpenTheFetchZipcodeSnackbar: false,
+  isOpenTheMenuUpdateSnackbar: false,
   mode: 'success',
 }
 
@@ -29,6 +24,7 @@ export const snackbarSlice = createSlice({
         isOpenTheImageUploadSnacbar: false,
         isOpenTheMenueDeleteSnackbar: false,
         isOpenTheFetchZipcodeSnackbar: false,
+        isOpenTheMenuUpdateSnackbar: false,
         mode: 'success',
       }
     },
@@ -41,6 +37,8 @@ export const snackbarSlice = createSlice({
         action.payload.isOpenTheMenueDeleteSnackbar
       state.isOpenTheFetchZipcodeSnackbar =
         action.payload.isOpenTheFetchZipcodeSnackbar
+      state.isOpenTheMenuUpdateSnackbar =
+        action.payload.isOpenTheMenuUpdateSnackbar
       state.mode = action.payload.mode
     },
   },

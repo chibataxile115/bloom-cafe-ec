@@ -167,6 +167,7 @@ export const useSubmitMenue = () => {
                 changeStateForSnackBar({
                   ...snackBarSelector,
                   isOpenTheMenueRegistSnackbar: false,
+                  mode: 'success',
                 })
               )
             }, 3000)
@@ -186,6 +187,7 @@ export const useSubmitMenue = () => {
               changeStateForSnackBar({
                 ...snackBarSelector,
                 isOpenTheMenueRegistSnackbar: false,
+                mode: 'success',
               })
             )
           }, 3000)
